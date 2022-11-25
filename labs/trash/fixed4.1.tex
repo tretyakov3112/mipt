@@ -1,0 +1,51 @@
+\input{default}
+\usepackage{lineno}
+\begin{document}
+	\section{Задача 4.1}
+	Если некоторое выпуклое трехмерное тело спроектировать на плоскость,
+	характеризуемую нормалью n, то площадь получившейся проекции будет
+	равна S(n). Выразите среднее по направлениям нормали $<S(\vec{n})>_{\vec{n}}$ через интегральные
+	характеристики тела (например, такие, как объем, площадь поверхности, ее
+	средняя кривизна, наибольшее или наименьшее сечение, и т.п.)
+	\newline
+	Ответ: $<S(\vec{n})>_{\vec{n}} = \frac{S}{4}$, где S - площадь поверхности тела.
+	\begin{center}
+		Решение
+	\end{center}
+	\linenumbers
+	$S(\vec{n}) = \int_{D}^{} \vec{n} d\vec{S} = \int_{D^{*}}^{} \vec{n^{*}} d\vec{S} = S(\vec{n^{*}})$, где $\vec{n^{*}} = -\vec{n} $, 
+	\newline
+	а $D \; \text{и} \; D^{*} - \text{противоположные части поверхности тела}$
+	\newline
+	$2S(\vec{n}) = S(\vec{n})+S(-\vec{n}) = \oint \vec{n} d\vec{S} $ 
+	\newline
+	Рассмотрим площадку S с единичным вектором нормали $\vec{N}$
+	\newline
+	Тогда $S(\vec{n}) = \mid \vec{n} \cdot \vec{N} \mid S$
+	\newline
+	$<S(\vec{n})>_{\vec{n}} = \frac{1}{4\pi} \int S(\vec{n}) \: \mid d\Omega \mid  =\frac{1}{4\pi} \iint S(\vec{n}) \mid \cos \theta \: d\phi \: d\theta \mid , \phi \in (0, 2\pi) , \theta \in (-\frac{\pi}{2}, \frac{\pi}{2}) $
+	\newline
+	$<S(\vec{n})>_{\vec{n}}  =\frac{1}{4\pi} \iint \mid \vec{n} \cdot \vec{N} \mid \cdot S \cdot \mid  \cos \theta \: d\phi \: d\theta \mid $
+	\newline
+	$\vec{n} = (\cos \theta \cos \phi , \cos \theta \sin \phi , \sin \theta)$
+	\newline
+	Так как мы усредняем по всем направлениям, 	$<S(\vec{n})>_{\vec{n}}$ не зависит от $\vec{N}$. Выберем $\vec{N} = (0, 0, 1)$
+	\newline
+	Тогда $<S(\vec{n})>_{\vec{n}}  =\frac{S}{4\pi} \iint \mid (\cos \theta \cos \phi , \cos \theta \sin \phi , \sin \theta) \cdot (0, 0, 1)   \cos \theta \: d\phi \: d\theta \mid $
+	\newline
+	$<S(\vec{n})>_{\vec{n}}  =\frac{S}{4\pi} \iint \mid  \sin \theta    \cos \theta \: d\phi \: d\theta \mid = \frac{S}{4\pi} \iint \mid  \sin \theta   \cos \theta \: d\phi \: d\theta \mid $
+	\newline
+	$<S(\vec{n})>_{\vec{n}} = \frac{S}{8\pi} \iint \mid  \sin 2\theta \: d\phi \: d\theta \mid  = \frac{S}{8\pi} \cdot 2\pi \cdot \frac{-2\cos 2\theta}{2} \bigg|_{0}^{\frac{pi}{2}} = \frac{S}{2}$
+	\newline
+	Разобьем поверхность тела на много маленьких площадок $d \vec{S}$
+	\newline
+	$<dS(\vec{n})>_{\vec{n}} = \frac{dS}{2}$
+	\newline
+	$\int <dS(\vec{n})>_{\vec{n}} = \int_S \frac{dS}{2} = \frac{S}{2}$
+	\newline
+	С другой стороны из 3 строчки следует, что $\int <dS(\vec{n})>_{\vec{n}} = 2 <S(\vec{n})>_{\vec{n}} $
+	\newline
+	Значит $<S(\vec{n})>_{\vec{n}} = \frac{1}{2} \cdot \frac{S}{2} = \frac{S}{4} $
+	\newline
+	Ответ: $<S(\vec{n})>_{\vec{n}} = \frac{S}{4}$
+\end{document}

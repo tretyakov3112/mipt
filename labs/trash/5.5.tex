@@ -1,0 +1,38 @@
+\input{default}
+
+\begin{document}
+	\section{Задача 5.5}
+	Вычислите неопределенный интеграл:
+	\newline
+	\begin{center}
+		$\int{\frac{x^4+1}{x^6+1}\, dx} $
+	\end{center}
+	Ответ: 	$\int{\frac{x^4+1}{x^6+1}\, dx} = \frac{1}{3} (2 \arctan x +   \arctan \frac{x}{1-x^2}) + C$
+	\newline
+	$Q(x) = \frac{x^4+1}{x^6+1} \stackrel{(1)}{=}\frac{x^2}{x^3} \cdot \frac{x^2+\frac{1}{x^2}}{x^3+\frac{1}{x^3}} \stackrel{(2)}{=}  
+	\frac{1}{x}\cdot \frac{x^2+\frac{1}{x^2}}{(x+\frac{1}{x})(x^2+\frac{1}{x^2}-1)} \stackrel{(3)}{=} 
+	\frac{1}{x}\cdot \frac{(x^2+\frac{1}{x^2}-1)+1}{(x+\frac{1}{x})(x^2+\frac{1}{x^2}-1)} \stackrel{(4)}{=} 
+	\frac{1}{x}\cdot (\frac{1}{x+\frac{1}{x}} + \frac{1}{(x+\frac{1}{x})(x^2+\frac{1}{x^2}-1)}) \stackrel{(5)}{=} 
+	\frac{1}{x}\cdot (\frac{1}{x+\frac{1}{x}} + \frac{1}{(x+\frac{1}{x})((x+\frac{1}{x})^2-3)}) \stackrel{(6)}{=} 
+	\frac{1}{x}\cdot (\frac{1}{x+\frac{1}{x}} + \frac{1}{(x+\frac{1}{x})(x+\frac{1}{x}-\sqrt{3})(x+\frac{1}{x}+\sqrt{3})})$
+	\newline
+	$u = x+\frac{1}{x}$
+	\newline
+	$\frac{1}{u(u-\sqrt{3})(u+\sqrt{3})} \stackrel{(7)}{=} A\cdot \frac{1}{u} + B\cdot \frac{1}{u-\sqrt{3}} + C\cdot \frac{1}{u+\sqrt{3}} \stackrel{(8)}{=}$
+	\newline
+	$\stackrel{(8)}{=}\frac{1}{-\sqrt{3} \cdot \sqrt{3}}\cdot \frac{1}{u} + \frac{1}{2 \sqrt{3}\cdot \sqrt{3}}\cdot \frac{1}{u-\sqrt{3}} + \frac{1}{(-2 \sqrt{3})\cdot (-\sqrt{3})}\cdot \frac{1}{u+\sqrt{3}}\stackrel{(9)}{=} 
+	\frac{-1}{3}\cdot \frac{1}{u} + \frac{1}{6}\cdot \frac{1}{u-\sqrt{3}} + \frac{1}{6}\cdot \frac{1}{u+\sqrt{3}}$
+	\newline
+	$Q(x) \stackrel{(10)}{=} \frac{1}{x} (\frac{1}{x+\frac{1}{x}} + \frac{-1}{3}\cdot \frac{1}{x+\frac{1}{x}} + \frac{1}{6}\cdot \frac{1}{x+\frac{1}{x}-\sqrt{3}} + \frac{1}{6}\cdot \frac{1}{x+\frac{1}{x}+\sqrt{3}}) \stackrel{(11)}{=} \frac{1}{x} (\frac{2}{3}\cdot \frac{1}{x+\frac{1}{x}} + \frac{1}{6}\cdot \frac{1}{x+\frac{1}{x}-\sqrt{3}} + \frac{1}{6}\cdot \frac{1}{x+\frac{1}{x}+\sqrt{3}})\stackrel{(12)}{=} \frac{2}{3}\cdot \frac{1}{x^2+1} + \frac{1}{6}\cdot \frac{1}{x^2-\sqrt{3}x+1} + \frac{1}{6}\cdot \frac{1}{x^2+\sqrt{3}x+1} \stackrel{(13)}{=} \frac{2}{3}\cdot \frac{1}{x^2+1} + \frac{1}{6}\cdot \frac{1}{(x-\frac{\sqrt{3}}{2})^2+(\frac{1}{2})^2} + \frac{1}{6}\cdot \frac{1}{(x+\frac{\sqrt{3}}{2})^2+(\frac{1}{2})^2}$
+	\newline
+	$\int{\frac{x^4+1}{x^6+1}\, dx} \stackrel{(14)}{=} \frac{2}{3}\int{\frac{dx}{x^2+1}}   + 
+	\frac{1}{6}\int{\frac{dx}{(x-\frac{\sqrt{3}}{2})^2+(\frac{1}{2})^2}}  + \frac{1}{6}
+	\int{\frac{dx}{(x+\frac{\sqrt{3}}{2})^2+(\frac{1}{2})^2}}\stackrel{(15)}{=} \frac{2}{3}\int{\frac{dx}{x^2+1}}   + 
+	\frac{1}{6}\int{\frac{d(x-\frac{\sqrt{3}}{2})}{(x-\frac{\sqrt{3}}{2})^2+(\frac{1}{2})^2}}  + \frac{1}{6}
+	\int{\frac{d(x+\frac{\sqrt{3}}{2})}{(x+\frac{\sqrt{3}}{2})^2+(\frac{1}{2})^2}}  \stackrel{(16)}{=} \frac{2}{3} \arctan x + \frac{1}{6} \cdot \frac{1}{\frac{1}{2}} \arctan \frac{x-\frac{\sqrt{3}}{2}}{\frac{1}{2}} + \frac{1}{6} \cdot \frac{1}{\frac{1}{2}} \arctan \frac{x+\frac{\sqrt{3}}{2}}{\frac{1}{2}} + C\stackrel{(17)}{=} \frac{2}{3} \arctan x + \frac{1}{3}  \arctan (2x+\sqrt{3}) + \frac{1}{3} \arctan (2x-\sqrt{3}) + C \stackrel{(18)}{=} \frac{1}{3} (2 \arctan x +   \arctan (2x+\sqrt{3}) +  \arctan (2x-\sqrt{3})) + C$ 
+	\newline
+	$\tan(\arctan (2x+\sqrt{3}) +  \arctan (2x-\sqrt{3})) \stackrel{(19)}{=} \frac{(2x+\sqrt{3})+(2x-\sqrt{3})}{1-(2x+\sqrt{3})(2x-\sqrt{3})}\stackrel{(20)}{=} 
+	\frac{4x}{1-(4x^2-3)} \stackrel{(21)}{=} \frac{4x}{4-4x^2} \stackrel{(22)}{=} \frac{x}{1-x^2}$
+	\newline
+	$\int{\frac{x^4+1}{x^6+1}\, dx} \stackrel{(23)}{=} \frac{1}{3} (2 \arctan x +   \arctan \frac{x}{1-x^2}) + C$
+\end{document}

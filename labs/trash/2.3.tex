@@ -1,0 +1,170 @@
+\input{default}
+\usepackage{lineno}
+\begin{document}
+	\section{Задача 2.3}
+	В последовательности вещественных чисел $a_0,a_1,a_2 ... ,a_N$ первые два члена
+	($a_0,a_1$) заданы, а последующие ($a_0,a_1,a_2 ... ,a_N$) определяются с помощью
+	рекуррентного соотношения
+	\newline
+	\begin{center}
+		$a_{n+1}+a_{n-1} = \arcsin 2a_{n}$
+	\end{center}
+	Последовательность обрывается в тот момент, когда дальнейшее применение этого
+	соотношения становится невозможным ($|a_N | > 1/2$, так что арксинус
+	неопределен). Таким образом, длина последовательности N($a_0,a_1$) полностью
+	определяется ее начальными условиями (т.е., первыми двумя членами).
+	\newline
+	1. Покажите, что при некоторых особых начальных условиях ($a_{0}^{*},a_{1}^{*}$)
+	последовательность бесконечна: $N(a_{0}^{*},a_{1}^{*}) = \infty$. Как выглядит множество
+	особых точек {($a_{0}^{*},a_{1}^{*}$)} на плоскости начальных условий ($a_0,a_1$)? Что
+	это: одна точка, множество изолированных точек, линии, целые области?
+	\newline
+%	Ответ: одна точка (0,0)
+	\newline
+	2. Как выглядят достаточно далекие члены в бесконечной последовательности?
+	\newline
+%	Ответ: арифметическая прогрессия или тождественный ноль
+	\newline
+	3. По какому закону расходится величина N($a_0,a_1$) при приближении
+	точки ($a_0,a_1$) к какой-либо особой точке ($a_{0}^{*},a_{1}^{*}$)?
+	\newline
+%	Ответ: $N \propto \mid \frac{\frac{1}{2}-a_0}{a_1-a_0} \mid$
+	\newline
+	4. Опишите далекие члены в очень длинной, но конечной последовательности
+	($N \gg 1$)
+	\newline
+%	Ответ: $a_n \simeq a_0 + (a_1-a_0)n$
+	\newline
+	\begin{center}
+		Решение
+	\end{center}
+	\linenumbers
+	$\frac{d}{dx}(\arcsin x - x) = \frac{1}{\sqrt{1-x^2}} - 1 \geq 0$ при $0 \leq x <1$ и $\arcsin 0 - 0 = 0$, значит $ \arcsin x \geq  x $ при $0 \leq x <1$
+	\newline
+	Также $ \arcsin x \leq  x $ при $-1 < x \leq 0$
+	\newline
+	Тогда $\mid \arcsin x \mid \geq \mid x \mid$
+	\newline
+	Пусть $\exists N: 
+	\begin{cases}
+		a_N < 0
+		\\
+		a_{N-1} \geq 0
+	\end{cases}$
+	\newline
+	Тогда $a_{N+1} = \arcsin(2a_N) - a_{N-1} \leq 2a_N - a_{N-1} < a_N < 0 $
+	\newline
+	$a_{N+2} = \arcsin(2a_{N+1}) - a_{N} \leq 2a_{N+1} - a_{N} = a_{N+1} + (a_{N+1}- a_{N}) < a_{N+1} < a_N < 0 $
+	\newline
+	Мы только что показали, что $a_{N+1} < a_N < 0 \Rightarrow a_{N+2} < a_{N+1} < a_N < 0$
+	\newline
+	Тогда $\forall n \geq N \; a_{n+1} < a_n$, то есть $\{a_n\} \downarrow$
+	\newline
+	Значит либо $\{a_n\}$ обрывается, либо имеет конечный предел: $-\frac{1}{2} \leq \lim\limits_{n \rightarrow \infty} a_n < 0$
+	\newline
+	Предположим, что предел существует и конечен и равен $x$. 
+	\newline
+	Тогда $x+x = \arcsin 2x \Rightarrow x = 0$. Противоречие. Значит $\{a_n\}$ обрывается.
+	\newline
+	Пусть $\exists N: 
+	\begin{cases}
+		a_N < 0
+		\\
+		a_{N-1} \geq a_N
+	\end{cases}$
+	\newline
+	Тогда $a_{N+1} = \arcsin(2a_N) - a_{N-1} < 2a_N - a_{N-1} \leq a_N < 0 $
+	\newline
+	$a_{N+2} = \arcsin(2a_{N+1}) - a_{N} < 2a_{N+1} - a_{N} = a_{N+1} + (a_{N+1}- a_{N}) \leq a_{N+1} < a_N < 0 $
+	\newline
+	Мы только что показали, что $a_{N+1} < a_N < 0 \Rightarrow a_{N+2} < a_{N+1} < a_N < 0$
+	\newline
+	Тогда $\forall n \geq N \; a_{n+1} < a_n$, то есть $\{a_n\} \downarrow$
+	\newline
+	Значит либо $\{a_n\}$ обрывается, либо имеет конечный предел: $-\frac{1}{2} \leq \lim\limits_{n \rightarrow \infty} a_n < 0$
+	\newline
+	Предположим, что предел существует и конечен и равен $x$. 
+	\newline
+	Тогда $x+x = \arcsin 2x \Rightarrow x = 0$. Противоречие. Значит $\{a_n\}$ обрывается.
+	\newline
+	Иначе $\forall N \; 
+	\left[
+	\begin{gathered} 
+		a_N \geq 0 \hfill
+		\\
+		a_{N-1} < a_N \hfill
+		\\
+	\end{gathered}
+	\right.$
+	\newline
+	Пусть $\exists N: a_N < 0$. Тогда $0 >  a_N > a_{N-1}$.
+	\newline
+	$a_{N-1} < 0 \Rightarrow a_{n-1} > a_{N-2}$.
+	\newline
+	Значит  $\forall n \leq N \; 0 > a_n > a_{n-1} > \dots > a_0$, то есть $\{a_n\} \uparrow$ до $n = N$
+	\newline
+	$A = \{ N | a_N < 0\}$. Предположим, что $A$ конечно. Возьмем $M = \sup A$.
+	\newline
+	Тогда $\forall m \leq M \; \{a_m\} \uparrow$ и $a_m < 0$ 
+	\newline
+	$\forall n > M \;  a_n \geq 0$
+	\newline
+	$a_{M+1} > a_M$
+	\newline
+	$a_{M+2} = \arcsin(2a_{M+1}) - a_{M} \geq 2a_{M+1} - a_{M} = a_{M+1} + (a_{M+1}- a_{M}) > a_{M+1}$
+	\newline
+	$a_{M+3} = \arcsin(2a_{M+2}) - a_{M+1} \geq 2a_{M+2} - a_{M+1} = a_{M+2} + (a_{M+2}- a_{M+1}) > a_{M+2}$
+	\newline
+	Тогда $\{a_m\} \uparrow$ при $m \geq M$
+	\newline
+	Значит либо $\{a_m\}$ обрывается, либо имеет конечный предел: $0 < \lim\limits_{n \rightarrow \infty} a_n \leq \frac{1}{2}$
+	\newline
+	Но если этот предел существует, то он равен $0$. Противоречие. Значит $\{a_m\}$ обрывается.
+	\newline
+	Тогда осталось 2 варианта:
+	\newline
+	$1)\; \forall n \; a_n \geq 0$
+	\newline
+	Пусть $\exists N: a_N > a_{N-1}$
+	\newline
+	Тогда $a_{N+1} = \arcsin(2a_N) - a_{N-1} \geq 2a_N - a_{N-1}  = a_{N} + (a_{N}- a_{N-1}) > a_N $
+	\newline
+	Аналогичными рассуждениями приходим к тому, что $\{a_n\} \uparrow$ и последовательность обрывается.
+	\newline
+	Иначе $ \forall n \; a_n \leq a_{n-1}$
+	\newline
+	Тогда $\{a_n\} \downarrow$ и ограничена снизу, значит если такая ситуация возможна, то по т. Вейерштрасса $\lim\limits_{n \rightarrow \infty} a_n = 0$
+	\newline
+	$2)\; \forall N 	
+	\begin{cases}
+		a_N < 0
+		\\
+		a_{N-1} < a_N
+	\end{cases}$
+	\newline
+	Аналогичными рассуждениями приходим к тому, что $\{a_n\} \uparrow$ и ограничена сверху, значит если такая ситуация возможна, то по т. Вейерштрасса $\lim\limits_{n \rightarrow \infty} a_n = 0$
+	\newline
+	Теперь поймем, возможны ли вообще последние 2 случая.
+	\newline
+	При больших $n \; a_n \ll 1 \Rightarrow a_{n+1}+a_{n-1} = \arcsin 2a_{n} \sim 2a_n$
+	\newline
+	 $a_{n+1}-a_{n} = a_{n} - a_{n-1} \Rightarrow \{a_n\} - \text{арифметическая прогрессия}$
+	\newline
+	Значит если $\; \forall n \; a_n \neq a_{n+1}$, то $\{a_n\}$ расходится(обрывается), так как $a_n \simeq a_0 + (a_1-a_0)n$ и $\exists N: \mid a_N \mid > \frac{1}{2}$.
+	\newline
+	Тогда единственный возможный вариант $a_n \equiv 0$
+	\newline
+	2. Достаточно далекие члены в бесконечной последовательности выглядят как арифметическая прогрессия или тождественный ноль
+	\newline
+	3. При приближении точки ($a_0,a_1$) к нашей особой точке ($0,0$) несложно оценить, по какому закону расходится величина N($a_0,a_1$):  
+	\newline
+	$a_N \simeq a_0 + (a_1-a_0)N = \frac{1}{2} \Rightarrow N \propto \mid \frac{\frac{1}{2}-a_0}{a_1-a_0} \mid$
+	\newline
+	4. Далекие члены в очень длинной, но конечной последовательности($N \gg 1$):
+	\newline
+	$a_n \simeq a_0 + (a_1-a_0)n$
+	\newline
+	(Тут используем формулу для малых $a_n$, так как иначе последовательность оборвется довольно быстро)
+	 
+
+\end{document}

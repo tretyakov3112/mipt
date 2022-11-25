@@ -1,0 +1,10 @@
+\input{default}
+
+\begin{document}
+	$$S = \sum_{n = 0}^{\infty} \frac{4^n (n!)^2}{(n+1)(2n+1)!} = \sum_{n = 0}^{\infty} \frac{(2n)!! \; (2n)!!}{(n+1) (2n)!! (2n+1)!!} = \sum_{n = 0}^{\infty} \frac{1}{n+1} \cdot \frac{(1)_n}{(\frac{3}{2})_n} =$$
+	$$= \int \limits_0^1 \sum_{n = 0}^{\infty} \frac{(1)_n (1)_n}{(\frac{3}{2})_n (1)_n} y^n \; dy = \int \limits_0^1 {}_2F_1 (1, 1; \frac{3}{2}; y) \; dy$$
+	$${}_2F_1 (a, b; c; z) = \frac{\Gamma(c)}{\Gamma(b) \Gamma(c-b)} \int \limits_0^1 t^{b-1} (1-t)^{c-b-1} (1-tz)^{-1}\; dt$$
+	$$S = \frac{\Gamma(\frac{3}{2})}{\Gamma(1) \Gamma(\frac{1}{2})} \int \limits_0^1 \int \limits_0^1 (1-t)^{-\frac{1}{2}} (1-tz)^{-1}\; dt \; dz = \frac{1}{2} \int \limits_0^1 (1-t)^{-\frac{1}{2}} \int \limits_0^1 (1-tz)^{-1} \; dz \; dt =$$
+	$$= \frac{1}{2} \int \limits_0^1 (1-t)^{-\frac{1}{2}} \Bigg{[} -\frac{1}{t} \ln(\frac{1}{t} - z) \Bigg|_{z = 0}^{z = 1} \Bigg{]} \; dt = = -\frac{1}{2} \int \limits_0^1 t^{-1} (1-t)^{-\frac{1}{2}} \ln(1-t) \; dt = -\frac{1}{2} I$$
+	$$I = ....$$
+\end{document}
