@@ -1,0 +1,17 @@
+\input{default}
+
+\begin{document}
+	$$S = \sum_{n= 0}^{\infty} \frac{1}{(2n+1)!!} =  \sum_{n= 0}^{\infty} \frac{1}{2^{n+1} \cdot \frac{1}{2} \cdot ... \cdot (\frac{1}{2}+n)} = \sum_{n= 0}^{\infty} \frac{2^{-n}}{\Big(\frac{3}{2}\Big)_n} =$$
+	$$= \sum_{n= 0}^{\infty} \frac{\big(1\big)_n}{\big(\frac{3}{2}\big)_n \big(1\big)_n} \Big(\frac{1}{2}\Big)^n = {}_1F_1 \Big(1; \frac{3}{2}; \frac{1}{2}\Big) $$
+	$${}_1F_1 (a; b; z) = \frac{\Gamma(b)}{\Gamma(a) \Gamma(b-a)} \int \limits_0^1 t^{a-1} (1-t)^{-a+b-1} e^{zt }\; dt$$
+	$$ {}_1F_1 \Big(1; \frac{3}{2}; \frac{1}{2}\Big)  = \frac{\Gamma(\frac{3}{2})}{\Gamma(\frac{1}{2})} \int \limits_0^1 (1-t)^{-1/2} e^{t/2}\; dt = $$
+	$$= \frac{1}{2} \sqrt{e} \int \limits_0^1 (1-t)^{-1/2} e^{-\frac{1}{2}(1-t)}\; dt = \left[ \begin{array}{c}
+		(1-t)^{\frac{1}{2}} = u \sqrt{2} \\
+		t = 1 - 2 u^2 \\
+		dt = -4u \; du
+	\end{array}\right] =$$
+	$$= \frac{1}{2} \sqrt{e} \int \limits_{\frac{1}{\sqrt{2}}}^0 e^{-u^2} \frac{1}{u\sqrt{2}} (-4u \; du) = \sqrt{2 e} \int \limits_{\frac{1}{\sqrt{2}}}^0 e^{-u^2}  \; du = \sqrt{2 e} \: \frac{\sqrt{\pi}}{2} \: erf\Big(\frac{1}{\sqrt{2}}\Big)$$
+	$$S = \sqrt{\frac{e \pi}{2}} \: erf\Big(\frac{1}{\sqrt{2}}\Big)$$
+	
+	
+\end{document}

@@ -6,5 +6,14 @@
 	$${}_2F_1 (a, b; c; z) = \frac{\Gamma(c)}{\Gamma(b) \Gamma(c-b)} \int \limits_0^1 t^{b-1} (1-t)^{c-b-1} (1-tz)^{-1}\; dt$$
 	$$S = \frac{\Gamma(\frac{3}{2})}{\Gamma(1) \Gamma(\frac{1}{2})} \int \limits_0^1 \int \limits_0^1 (1-t)^{-\frac{1}{2}} (1-tz)^{-1}\; dt \; dz = \frac{1}{2} \int \limits_0^1 (1-t)^{-\frac{1}{2}} \int \limits_0^1 (1-tz)^{-1} \; dz \; dt =$$
 	$$= \frac{1}{2} \int \limits_0^1 (1-t)^{-\frac{1}{2}} \Bigg{[} -\frac{1}{t} \ln(\frac{1}{t} - z) \Bigg|_{z = 0}^{z = 1} \Bigg{]} \; dt = = -\frac{1}{2} \int \limits_0^1 t^{-1} (1-t)^{-\frac{1}{2}} \ln(1-t) \; dt = -\frac{1}{2} I$$
-	$$I = ....$$
+	$$I = \int \limits_0^1 \frac{\ln (1-t)}{t \sqrt{1-t}} \; dt = \left[ \begin{array}{c} \ln\sqrt{1-t} = u \\ t = 1-e^{2u} \\  dt = -2e^{2u} du\end{array} \right] = \int \limits_0^{-\infty} \frac{2u}{(1-e^{2u})e^u} (-2e^{2u} du) = $$
+	$$= 4 \int \limits_0^{-\infty} \frac{u}{e^u-e^{-u}} du = -2 \int \limits_{-\infty}^{0} \frac{u}{\sinh u} du = -\int \limits_{-\infty}^{\infty} \frac{u}{\sinh u} du $$
+	Пусть С - верхняя полуокружность с радиусом $R$. Тогда
+	$$I= \lim_{R \to \infty}\oint_C \frac{z}{\sinh z} dz $$
+	Особые точки: $i\pi k , k \in \mathbb{Z}$
+	\newline
+	Это всё полюса $\RNumb{1}$ порядка.
+	$$\lim_{u \to i\pi n} \frac{u(u-i\pi n)}{\sinh u} = \left[ \begin{array}{c} u = i\pi n + x \\ x \to 0 \end{array} \right] = \lim_{x \to 0} \; \frac{i\pi n x}{x\cosh(i\pi n)} = i\pi n (-1)^n$$
+	$$I = -2i\pi \sum_{n= 1}^{\infty} i\pi n (-1)^n = -2\pi^2 \eta(-1) = -\frac{\pi^2}{2} $$
+	$$S = -\frac{1}{2} I = \frac{\pi^2}{4}$$
 \end{document}

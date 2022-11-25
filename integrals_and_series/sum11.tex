@@ -1,0 +1,22 @@
+\input{default}
+
+\begin{document}
+	$$S = \Big(\frac{1}{2}\Big)^3 \Big( 1+ \frac{1}{2} \Big)+\Big(\frac{1\cdot 3}{2 \cdot 4}\Big)^3 \Big( 1+ \frac{1}{2}+\frac{1}{3}+\frac{1}{4} \Big)+ ... =\sum_{n= 1}^{\infty} \left[ \frac{(2n-1)!!}{(2n)!!} \right]^3 H_{2n}=$$
+	$$=\sum_{n= 1}^{\infty} \left[ \frac{(1/2)_n}{(1)_n} \right]^3 H_{2n}$$
+	$$H_{2n} = \sum_{n= 1}^{2n} \frac{1}{k} = \sum_{n= 1}^{n} \frac{1}{2k}+\sum_{n= 1}^{n} \frac{1}{2k-1} = \frac{1}{2} \sum_{n= 1}^{n} \frac{1}{k}+\frac{1}{k-\frac{1}{2}}$$
+	$$\partial_c \Big|_{c = \frac{1}{2}} \frac{(c)_n}{(\frac{3}{2} - c)_n} =  \frac{(c)_n}{(\frac{3}{2} - c)_n} \Big(\frac{1}{c}+...+ \frac{1}{c+n-1}+\frac{1}{\frac{3}{2}-c}+...+\frac{1}{\frac{1}{2}-c+n}\Big) \Big|_{c = \frac{1}{2}} =$$
+	$$=\frac{(1/2)_n}{(1)_n} \Big(\frac{1}{\frac{1}{2}}+...+ \frac{1}{n-\frac{1}{2}}+\frac{1}{1}+...+\frac{1}{n}\Big) = \frac{(1/2)_n}{(1)_n} \;  2 H_{2n}$$
+	$$S = \frac{1}{2}  \partial_c \Big|_{c = \frac{1}{2}} \sum_{n= 1}^{\infty} \frac{(1/2)_n^2 (c)_n}{(1)_n^2 (3/2-c)_n} =   \frac{1}{2}  \partial_c \Big|_{c = \frac{1}{2}} {}_3F_2 \Big(\begin{array}{c}
+		\frac{1}{2}, \frac{1}{2}, c  \\ 1, \frac{3}{2}-c
+	\end{array}; 1\Big) $$
+	$${}_3F_2 \Big(\begin{array}{c}
+		a, b, c  \\ 1+a-b, 1+a-c
+	\end{array}; 1\Big) = \frac{\Gamma(1+\frac{a}{2}) \Gamma(1+a-b) \Gamma(1+a-c) \Gamma(1+\frac{a}{2}-b-c)}{\Gamma(1+a) \Gamma(1+\frac{a}{2}-b) \Gamma(1+\frac{a}{2}-c) \Gamma(1+a-b-c)}$$
+	$$a = b = \frac{1}{2}$$
+	$$S =\frac{1}{2} {}_3F_2 \Big(\begin{array}{c}
+		\frac{1}{2}, \frac{1}{2}, \frac{1}{2}  \\ 1, 1
+	\end{array}; 1\Big) \Big( -\psi(1)-\psi(1/4)+\psi(3/4)+\psi(1/2)\Big) =  \frac{\pi}{2\Gamma^4\Big(\frac{3}{4}\Big)} (\pi - 2 \ln2) $$
+	
+	
+	
+\end{document}
