@@ -1,0 +1,52 @@
+\input{default}
+\begin{document}
+	Definition and basic properties
+	$$
+	\begin{aligned}
+		\Gamma(s) &=\int_0^{\infty} t^{s-1} e^{-t} d t \quad \operatorname{Re}(s)>0 \\
+		\Gamma(s+1) &=\int_0^{\infty} t^{(s+1)-1} e^{-t} d t=\int_0^{\infty} t^s e^{-t} d t \\
+		&=-\left.e^{-t} t^s\right|_0 ^{\infty}-\int_0^{\infty} \frac{d t^s}{d t}\left(-e^{-t}\right) d t \\
+		&=\int_0^{\infty} s t^{s-1} e^{-t} d t=s \int_0^{\infty} t^{s-1} e^{-t} d t
+	\end{aligned}
+	$$
+	$$
+	\begin{gathered}
+		\Gamma(s+1)=s \cdot \int_0^{\infty} t^{s-1} e^{-t} d t \\
+		\Gamma(s+1)=s \cdot \Gamma(s) \\
+		\Gamma(n+1)=n \cdot \Gamma(n)=n \cdot(n-1) \cdot \Gamma(n-1) \\
+		\Gamma(n+1)=n !
+	\end{gathered}
+	$$
+	Gauss Representation
+	$$
+	\begin{gathered}
+		\Gamma(s)=\int_0^{\infty} t^{s-1} e^{-t} d t \quad \operatorname{Re}(s)>0 \\
+		e^{-t}=\lim _{n \rightarrow \infty}\left(1+\frac{-t}{n}\right)^n \\
+		\Gamma(s)=\int_0^{\infty} t^{s-1} \lim _{n \rightarrow \infty}\left(1-\frac{t}{n}\right)^n d t \\
+		\Gamma(s)=\lim _{n \rightarrow \infty} \int_0^{n} t^{s-1}\left(1-\frac{t}{n}\right)^n d t
+	\end{gathered}
+	$$
+	$$
+	\begin{aligned}
+		&\int_0^n t^{s-1}\left(1-\frac{t}{n}\right)^n d t=\left.\frac{1}{s} t^s\left(1-\frac{t}{n}\right)^n\right|_0 ^n \\
+		&-\int_0^n \frac{1}{s} t^s n\left(1-\frac{t}{n}\right)^{n-1}\left(-\frac{1}{n}\right) d t \\
+		&=\frac{n}{s \cdot n} \int_0^n t^s\left(1-\frac{t}{n}\right)^{n-1} d t \\
+		&=\frac{n}{s \cdot n} \frac{n-1}{(s+1) n} \int_0^n t^{s+1}\left(1-\frac{t}{n}\right)^{n-2} d t
+	\end{aligned}
+	$$
+	$$
+	\begin{aligned}
+		&=\frac{n}{s \cdot n} \frac{n-1}{(s+1) n} \int_0^n t^{s+1}\left(1-\frac{t}{n}\right)^{n-2} d t \\
+		=& \frac{n}{s \cdot n} \frac{n-1}{(s+1) n} \frac{n-2}{(s+2) n} \int_0^n t^{s+2}\left(1-\frac{t}{n}\right)^{n-3} d t \\
+		=& \frac{n}{s \cdot n} \frac{n-1}{(s+1) n} \frac{n-2}{(s+2) n} \cdots \frac{1}{(s+n-1) n} \int_0^n t^{s+n-1} d t \\
+		=&\left.\frac{n}{s \cdot n} \frac{n-1}{(s+1) n} \frac{n-2}{(s+2) n} \cdots \frac{1}{(s+n-1) n} \frac{t^{s+n}}{(s+n)}\right|_0 ^n
+	\end{aligned}
+	$$
+	$$
+	\begin{gathered}
+		\int_0^n t^{s-1}\left(1-\frac{t}{n}\right)^n d t=\frac{n !}{n^n} n^{s+n} \prod_{i=0}^n(s+i)^{-1} \\
+		\int_0^n t^{s-1}\left(1-\frac{t}{n}\right)^n d t=\frac{n ! n^s}{\prod_{i=0}^n(s+i)} \\
+		\Gamma(s)=\lim _{n \rightarrow \infty}\left(\frac{n^s}{s} \prod_{i=1}^n \frac{i}{(s+i)}\right)
+	\end{gathered}
+	$$
+\end{document}
