@@ -1,6 +1,7 @@
 \input{default}
 \begin{document}
-	Definition and basic properties
+	\section{Gamma function}
+	\subsection{Definition and basic properties}
 	$$
 	\begin{aligned}
 		\Gamma(s) &=\int_0^{\infty} t^{s-1} e^{-t} d t \quad \operatorname{Re}(s)>0 \\
@@ -17,7 +18,7 @@
 		\Gamma(n+1)=n !
 	\end{gathered}
 	$$
-	Gauss Representation
+	\subsection{Gauss Representation}
 	$$
 	\begin{gathered}
 		\Gamma(s)=\int_0^{\infty} t^{s-1} e^{-t} d t \quad \operatorname{Re}(s)>0 \\
@@ -49,4 +50,30 @@
 		\Gamma(s)=\lim _{n \rightarrow \infty}\left(\frac{n^s}{s} \prod_{i=1}^n \frac{i}{(s+i)}\right)
 	\end{gathered}
 	$$
+	\subsection{Weierstrass Representation}
+	$$
+	\begin{gathered}
+		\Gamma(s)=\lim _{n \rightarrow \infty}\left(\frac{n^s}{s} \prod_{i=1}^n \frac{i}{(s+i)}\right) \\
+		\Gamma(s)=\lim _{n \rightarrow \infty}\left(\frac{n^s}{s} \prod_{i=1}^n\left(1+\frac{s}{i}\right)^{-1}\right) \\
+		\Gamma(s)=\lim _{n \rightarrow \infty}\left(\frac{1}{s} e^{s \log n} \prod_{i=1}^n\left(1+\frac{s}{i}\right)^{-1}\right)
+	\end{gathered}
+	$$
+	$$
+	\begin{gathered}
+		\Gamma(s)=\lim _{n \rightarrow \infty}\left(\frac{1}{s} e^0 e^{s \log n} \prod_{i=1}^n\left(1+\frac{s}{i}\right)^{-1}\right) \\
+		\Gamma(s)=\lim _{n \rightarrow \infty}\left(\frac{1}{s} \exp{\left(\sum_{i=1}^n \frac{s}{i} - \sum_{i=1}^n \frac{s}{i} + s \operatorname{log} n\right) }  \prod_{i=1}^n\left(1+\frac{s}{i}\right)^{-1}\right) \\
+		\gamma=\lim _{n \rightarrow \infty}\left(\sum_{i=1}^n \frac{1}{i}-\log n\right) \\
+		\Gamma(s)=\lim _{n \rightarrow \infty}\left(\frac{1}{s} \exp{\left(\sum_{i=1}^n \frac{s}{i}-\gamma s\right)} \prod_{i=1}^n\left(1+\frac{s}{i}\right)^{-1}\right)
+	\end{gathered}
+	$$
+	$$
+	\begin{gathered}
+		\exp{\left(\sum_{i=1}^n \frac{s}{i}\right)}=\prod_{i=1}^n e^{\frac{s}{i}} \\
+		\Gamma(s)=\lim _{n \rightarrow \infty}\left(\frac{1}{s} e^{-\gamma} \prod_{i=1}^n e^{\frac{s}{i}}\left(1+\frac{s}{i}\right)^{-1}\right) \\
+		\Gamma(s)=\frac{1}{s} e^{-\gamma s} \prod_{i=1}^{\infty} e^{\frac{s}{i}}\left(1+\frac{s}{i}\right)^{-1}
+	\end{gathered}
+	$$
+	\subsection{Relationship to Sine}
+	
+	
 \end{document}
