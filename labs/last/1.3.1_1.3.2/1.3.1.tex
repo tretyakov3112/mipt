@@ -1,0 +1,159 @@
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage[a4paper,top=1.3cm,bottom=2cm,left=1.5cm,right=1.5cm,marginparwidth=0.75cm]{geometry}
+\usepackage{setspace}
+\usepackage{cmap}					
+\usepackage{mathtext} 				
+\usepackage[T2A]{fontenc}			
+\usepackage[utf8]{inputenc}			
+\usepackage[english,russian]{babel}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue}
+\usepackage[rgb]{xcolor}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\usepackage{icomma} 
+\mathtoolsset{showonlyrefs=true}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amsthm, mathtools}
+\usepackage{amssymb}
+\usepackage{icomma}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\RequirePackage{longtable}
+\newcommand{\RomanNumeralCaps}[1]
+{\MakeUppercase{\romannumeral #1}}
+
+\usepackage{soulutf8} 
+\usepackage{geometry}
+
+
+
+\begin{document}
+	\begin{center}
+		\textit{Федеральное государственное автономное образовательное\\ учреждение высшего образования }
+		
+		\vspace{0.5ex}
+		
+		\textbf{«Московский физико-технический институт\\ (национальный исследовательский университет)»}
+	\end{center}
+	
+	\vspace{10ex}
+	
+	
+	\begin{center}
+		\vspace{13ex}	
+		\textbf{Лабораторная работа №1.3.1}	
+		\vspace{1ex}
+		
+		по курсу общей физики		
+		на тему:		
+		\textbf{\textit{<<Определение модуля Юнга на основе исследования деформации растяжения и изгиба>>}}		
+		\vspace{30ex}
+		
+		\begin{flushright}
+			\noindent
+			\textit{Работу выполнил:}\\  
+			\textit{Третьяков Александр \\(группа Б02-206)}
+		\end{flushright}
+		\vfill
+		Долгопрудный \\ \today
+		
+		%\setcounter{page}{1}
+	\end{center}
+	
+	\section{Аннотация}
+	\textbf{Цель работы:} экспериментально получить зависимость между напряжением и деформацией (закон Гука) для двух простейших напряженных состояний упругих тел: одноосного растяжения и чистого изгиба; по результатам измерений вычислить модуль Юнга. \\
+	\textbf{В работе используется:} прибор лермантова, проволока из исследуемого материала, зрительная трубка со шкалой, набор грузов, микрометр, рулетка; во второй части - стойка для изгибания балки, индикатор для измерения величины прогиба, набор исследуемых стержней, грузы, линейка, штангенциркуль.
+	\section{Ход работы}
+	\paragraph{\large\RomanNumeralCaps{1}\;\;{Определение модуля Юнга по измерениям удлинения проволоки}}
+	\subsection{Методика измерений}
+	Для определения модуля Юнга используется прибор Лермантова, схема которого предствалена на рисунке ниже. В ходе эксперимента исследуется растяжение проволочки "П".
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[scale = 0.35]{"ustan_1.jpg"}
+			\caption{схема установки для определения модуля Юнга по измерениям растяжения проволоки}
+		\end{center}
+	\end{figure}
+	\subsubsection{Теоретичексая справка}
+	\begin{enumerate}
+		\item Направляем зрительную трубу на зеркальце так, чтобы мы четко видели шкалу, тогда свет от шкалы будет падать примерно перпендикулярно шкале на зеркало, поэтому
+		\[\Delta l =\dfrac{\Delta nr}{2h}\]
+		\[ \sigma_{\Delta l} = \Delta l\sqrt{\left( \dfrac{\sigma_{n}}{n}\right)^2 + \left(\dfrac{\sigma_d}{d}\right)^2+\left(\dfrac{\sigma_h}{h}\right)^2} \]
+		где $r$ - длина рычага, разница показаний шкалы - $\Delta n$, расстояние от шкалы до проволоки - $h$.  
+		\item Коэффициент жесткости считывается с графика зависимости нагрузки (P) от удлинения проволоки ($\Delta l$), т.е.: $$k = \dfrac{P}{\Delta l}$$
+		\item Найдем модуль Юнга по формуле
+		\[E = \dfrac{k*l_0}{S}\]
+		\[\sigma_E = \sqrt{\left( \dfrac{\sigma_{k}}{k} \right)^2 + \left( \dfrac{\sigma_{S}}{S} \right)^2 + \left( \dfrac{\sigma_{l_0}}{l_0} \right)^2 }\]
+	\end{enumerate}
+	\subsubsection{Используемое оборудование}
+	При помощи линейки измеряем длину проволочки (l) и расстояние от шкалы до проволоки (h) - погрешность измерений: $$\sigma_l = \sigma_h = c = 0,1\text{см}$$
+	Значение отклонения по шкале (n) измеряется с погрешностью в цену деления шкалы: $$\sigma_n = c = 0,1\text{см}$$ 
+	Все остальные значения измерены лаборантом.
+	\subsubsection{Результаты измерений}
+	\begin{enumerate}
+		\item Диаметр проволоки: $d = (0,73 \pm 0,01) \text{мм}$.
+		\item Рассчитаем площадь поперечного сечения проволоки:
+		\[S =\dfrac{ \pi (\overline{d})^2}{4} = 0,419 \text{ см}^2\]
+		\[\sigma_S = S\sqrt{2\left( \dfrac{\sigma_d}{d}\right) ^2} = 0,005 \text{ см}^2\]
+		\[S = (0,419\pm0,005) \text{ cм}^2\]
+		\item Исходя из того, что $\sigma_{\text{предел}} = 900 \text{ Н}/\text{мм}^2$ получаем, что предельный вес, который можно повесить $P_{\text{предел}} = 0,3 \sigma_{\text{предел}} S \approx 113,13 H$. 
+		\item Длина моста $r = 13\text{мм}$
+		\item Измеряем длинну проволоки($l_0$) и расстояние от шкалы до проволоки(h) $l_0 = (176,3\pm 0,1)  \text{ см\;\;\;\;\;} h = (138,8 \pm 0,1)\text{см}$   
+	\end{enumerate}
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+		\hline
+		m & P, Н & n1, см & n1', см  & n2, см & n2', см & nср, см & $\Delta$n, см & $\Delta$l, см \\ \hline
+		0 & 0 & 12,9 & 13,0 & 13,0 & 13,1 & 13,0 & 0 & 0  \\ \hline
+		246,1 & 2,4 & 14,4 & 14,4 & 14,5 & 14,4 & 14,425 & 1,425 & 0,0067  \\ \hline
+		245,5 & 4,8 & 15,6 & 15,5 & 15,6 & 15,6 & 15,575 & 2,575 & 0,0121  \\ \hline
+		245,7 & 7,2 & 16,9 & 16,7 & 16,6 & 16,6 & 16,700 & 3,700 & 0,0173  \\ \hline
+		245,6 & 9,6 & 17,9 & 17,9 & 17,8 & 17,9 & 17,875 & 4,875 & 0,0228  \\ \hline
+		245,8 & 12,0 & 19,0 & 19,1 & 19,1 & 19,1 & 19,075 & 6,075 & 0,0284  \\ \hline
+		245,7 & 14,5 & 20,2 & 20,2 & 20,3 & 20,2 & 20,225 & 7,225 & 0,0338  \\ \hline
+		245,5 & 16,9 & 21,4 & 21,4 & 21,6 & 21,5 & 21,475 & 8,475 & 0,0397  \\ \hline
+		246,1 & 19,3 & 22,4 & 22,6 & 22,7 & 22,4 & 22,525 & 9,525 & 0,0446  \\ \hline
+		245,6 & 21,7 & 23,8 & 23,8 & 23,9 & 23,9 & 23,850 & 10,850 & 0,0508 \\ \hline
+	\end{tabular}
+	\caption{Зависимость удлинения проволоки от нагрузки}
+\end{table}
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[scale = 0.95]{"graph_1.jpg"}
+			\caption{График зависимости нагрузки от удлинения проволочки}
+		\end{center}
+	\end{figure}
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			&Значение&$\sigma$&$\varepsilon$\\
+			\hline
+			k&$4,26*10^4$ H/м&$85,22$ Н/м&0,016\\
+			\hline
+			E&$1,79*10^{10}$ Па&$ 2,3*10^{8}$ Па&0,013\\
+			\hline
+		\end{tabular}
+	\caption{Значения k и E}
+	\end{table}
+\section{Вывод}
+	Модуль Юнга исследуемой проволоки - E = (17,9$\pm$ 0,23) ГПа. Табличное значение Модуля Юнга свинца - (16,2 - 17) ГПа.  
+
+
+\end{document}
+
