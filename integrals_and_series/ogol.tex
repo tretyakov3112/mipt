@@ -1,0 +1,758 @@
+\input{default}
+\begin{document}
+	\section{Zeta}
+	
+	Теперь рассмотрим аналогичную сумму, только будем повышать степень. Да, в последующих редах мы подобные суммы и будем рассматривать
+	$$
+	\frac{4}{5} \sum_{0<m<n} \frac{1}{m n^3}
+	$$
+	Вспомним некоторые определения
+	$$
+	\begin{aligned}
+		& \int_0^1 \frac{1-x^n}{1-x} d x=\sum_{k=0}^{n-1} \int_0^1 x^k d x=\sum_{k=1}^n \frac{1}{k}=H_n ; \sum_{n=1}^{\infty} \frac{1}{n^x}=\zeta(x) ; \sum_{n=1}^{\infty} \frac{x^n}{n^k}=\operatorname{Li}_k(x) \\
+		& S=\frac{4}{5} \sum_{0<m<n} \frac{1}{m n^3}=\frac{4}{5} \sum_{n=1}^{\infty} \sum_{k=1}^n \frac{1}{k n^3}=\frac{4}{5} \sum_{n=1}^{\infty} \frac{H_n}{n^3}= \\
+		& =\frac{4}{5} \sum_{n=1}^{\infty} \frac{1}{n^3} \int_0^1 \frac{1-x^n}{1-x} d x=\frac{4}{5} \int_0^1 \frac{\zeta(3)-\mathrm{Li}_3(x)}{1-x} d x= \\
+		& =\frac{4}{5}\left(\lim _{x \rightarrow 0}\left(\zeta(3)-\mathrm{Li}_3(x)\right) \ln (1-x)-\lim _{x \rightarrow 1}\left(\zeta(3)-\mathrm{Li}_3(x)\right) \ln (1-x)-\right. \\
+		& \left.-\int_0^1 \ln (1-x) \frac{\mathrm{d}}{\mathrm{d} x}\left(\operatorname{Li}_3(x)\right) d x\right) \\
+		& S=-\frac{4}{5}\left(\lim _{x \rightarrow 1}\left(\zeta(3)-\operatorname{Li}_3(x)\right) \ln (1-x)+\int_0^1 \frac{\ln (1-x)}{x} \operatorname{Li}_2(x) d x\right)= \\
+		& =-\frac{4}{5} \int_0^1 \frac{\ln (1-x)}{x} \operatorname{Li}_2(x) d x=\frac{4}{5} \int_0^1 \mathrm{Li}_2(x) \frac{\mathrm{d}}{\mathrm{d} x}\left(\mathrm{Li}_2(x)\right) d x=\frac{4}{5} \cdot \frac{1}{2} \mathrm{Li}_2^2(1)=\frac{2}{5} \zeta^2(2)=\zeta(4) \\
+		&
+	\end{aligned}
+	$$
+	Аналогично можно доказать и это представление
+	$$
+	\frac{4}{5} \sum_{0<m<m<r} \frac{1}{m n r(r-m)}=\zeta(3)
+	$$
+	
+	$$
+	\zeta(3)=8 \sum_{0<m<n<r \leq 2 n} \frac{\left(\begin{array}{c}
+			2 n \\
+			n
+		\end{array}\right)}{2^{2 n} m n r}
+	$$
+	
+	\section{Series}
+	\subsection{1}
+	Доказать, что
+	$$
+	\begin{gathered}
+		1+\left(\frac{1}{2}\right)^3+\left(\frac{1 \cdot 3}{2 \cdot 4}\right)^3+\left(\frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6}\right)^3+\ldots=\frac{\pi}{\Gamma^4\left(\frac{3}{4}\right)} \\
+		\mathrm{LHS}=\frac{1}{\Gamma^3\left(\frac{1}{2}\right)} \sum_{n=0}^{\infty} \frac{\Gamma\left(\frac{1}{2}+n\right) \Gamma\left(\frac{1}{2}+n\right) \Gamma\left(\frac{1}{2}+n\right)}{\Gamma(1+n) \Gamma(1+n) n !}={ }_3 F_2\left(\frac{1}{2}, \frac{1}{2}, \frac{1}{2} ; 1,1 ; 1\right)= \\
+		=\frac{4}{\pi^2} \mathcal{K}^2\left(\sqrt{\frac{1}{2}}\right)=\frac{\Gamma^4\left(\frac{1}{4}\right)}{4 \pi^3}=\frac{\pi}{\Gamma^4\left(\frac{3}{4}\right)}
+	\end{gathered}
+	$$
+	
+	\subsection{Ramanujan1}
+	
+	Подсказка была в самом начале поста, когда я говорил про эллиптические функции!
+	$$
+	\mathcal{S}=1-\left(\frac{1}{2}\right)^2+\left(\frac{1 \cdot 3}{2 \cdot 4}\right)^2-\left(\frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6}\right)^2+\ldots
+	$$
+	Задание заключается в том, чтобы посчитать сумму $\mathcal{S}$, которая написана выше. Давайте сделаем переход "вжух"
+	$$
+	\mathcal{S}=1-\left(\frac{1}{2}\right)^2+\left(\frac{1 \cdot 3}{2 \cdot 4}\right)^2-\left(\frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6}\right)^2+\cdots=\frac{2}{\pi} \int_0^{\pi / 2} \frac{d t}{\sqrt{1+\sin ^2 t}}
+	$$
+	Какой-то резкий переход я сделал, не больно то очевидный, но сумму мы уже посчитали! Хорошо, давайте начнём с самого начала, именно с определения эллиптической функции:
+	$$
+	\mathcal{K}(k)=\int_0^{\pi / 2} \frac{d x}{\sqrt{1-k^2 \sin ^2 x}}
+	$$
+	Представим в виде ряда, ведь задание у нас не интеграл найти!
+	
+	$$
+	\begin{aligned}
+		\mathcal{K}(k) & =\int_0^{\pi / 2} \frac{d x}{\sqrt{1-k^2 \sin ^2 x}}=\frac{2}{\pi} \int_0^{\pi / 2}\left\{\int_0^{\pi / 2} \frac{d \psi}{1-k^2 \sin ^2 x \sin ^2 \psi}\right\} d x= \\
+		& =\frac{2}{\pi} \int_0^{\pi / 2}\left\{\int_0^{\pi / 2} \sum_{n=0}^{\infty} k^{2 n} \sin ^{2 n} x \sin ^{2 n} \psi\right\} d x= \\
+		& =\frac{2}{\pi} \sum_{n=0}^{\infty} k^{2 n} \int_0^{\pi / 2} \sin ^{2 n} \psi d \psi \int_0^{\pi / 2} \sin ^{2 n x} d x=\frac{\pi}{2} \sum_{n=0}^{\infty}\left(\frac{(2 n-1) ! !}{(2 n) ! !}\right)^2 k^{2 n}
+	\end{aligned}
+	$$
+	Кто видел письма Рамануджана Харди или хотя бы знаком с некоторыми его работами, тот сразу понял бы: Рамануджан всегда раскладывал ряд на слагаемые!
+	$$
+	\mathcal{K}(k)=\frac{\pi}{2}\left[1+\left(\frac{1}{2}\right)^2 k^2+\left(\frac{1 \cdot 3}{2 \cdot 4}\right)^2 k^4+\left(\frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6}\right)^2 k^6+\ldots\right]
+	$$
+	
+	Какое совпадение! Оказывается, наше задание является частным случаем суммы, которую вы получили. Мы уже можем заметим, что для чередования знаков достаточно взять $k=i$
+	
+	На этом моменте многие бы остановились... Стало непонятно, как всё же посчитать сумму? Думаю, некоторые из вас забыли с чего мы начинали!
+	$$
+	\mathcal{S}=1-\left(\frac{1}{2}\right)^2+\left(\frac{1 \cdot 3}{2 \cdot 4}\right)^2-\left(\frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6}\right)^2+\cdots=\frac{2}{\pi} \int_0^{\pi / 2} \frac{d x}{\sqrt{1+\sin ^2 x}}
+	$$
+	Теперь мы поняли, что за переход был такой "вжух" и смело можем в дальнейшем использовать инструмент "Очевидно" Осталось посчитать интеграл и получить результат!
+	Пусть $\sin x=y$,а после $y^4=t$, тогда
+	$$
+	\frac{2}{\pi} \int_0^1 \frac{d y}{\sqrt{1-y^4}}=\frac{1}{2 \pi} \int_0^1 t^{-3 / 4}(1-t)^{-1 / 2} d t=\frac{1}{2 \pi} \mathrm{B}\left(\frac{1}{4}, \frac{1}{2}\right)
+	$$
+	Уж определение Бета-функции мы знаем! Осталось Бета-функцию выразить через Гамму-функцию, а после посмотрим, можно ли дальше преобразовать. На всякий случай напишу и представление
+	
+	$$
+	\frac{1}{2 \pi} \mathrm{B}\left(\frac{1}{4}, \frac{1}{2}\right)=\frac{1}{2 \pi} \frac{\Gamma\left(\frac{1}{4}\right) \Gamma\left(\frac{1}{2}\right)}{\Gamma\left(\frac{3}{4}\right)} ; \mathrm{B}(x, y)=\frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}
+	$$
+	Я не стал выводить представление Бета-функцию через Гамму и дальнешие преобразования. Кажется, это всё выводится за раз, думаю, неплохое домашнее задание будет!
+	$$
+	\begin{gathered}
+		\Gamma(n) \Gamma(1-n)=\frac{\pi}{\sin \pi n} \stackrel{n=1 / 4}{\Rightarrow} \Gamma\left(\frac{1}{4}\right) \Gamma\left(\frac{3}{4}\right)=\sqrt{2} \pi \\
+		\mathcal{S}=1-\left(\frac{1}{2}\right)^2+\left(\frac{1 \cdot 3}{2 \cdot 4}\right)^2-\left(\frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6}\right)^2+\cdots=\frac{\sqrt{\pi}}{\sqrt{2} \Gamma^2\left(\frac{3}{4}\right)}
+	\end{gathered}
+	$$
+	
+	\subsection{Ramanujan1. Hometask}
+	
+	Вычислить сумму $\frac{\ln 2}{2}-\frac{\ln 3}{3}+\frac{\ln 4}{4}-\frac{\ln 5}{5}+\ldots$
+	Это задание встречалось в одном из писем Рамануджана к Харди!
+	Задание на подумать и не факт, что следует сразу применять эллиптические функции
+	
+	\subsection{Ramanujan2}
+	
+	Вычислить сумму
+	$$
+	\left(\frac{1}{2}\right)^3\left(1+\frac{1}{2}\right)+\left(\frac{1 \cdot 3}{2 \cdot 4}\right)^3\left(1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}\right)+\ldots
+	$$
+	Для начала преобразуем сумму в удобный вид
+	$$
+	\begin{aligned}
+		S & =\sum_{n=1}^{\infty}\left[\frac{(2 n-1) ! !}{(2 n) ! !}\right]^3 \sum_{n=1}^{2 n} \frac{1}{k}=\sum_{n=1}^{\infty}\left[\frac{(2 n-1) ! !(2 n-2) ! !}{(2 n) ! !(2 n-2) ! !}\right]^3 H_{2 n}= \\
+		& =\sum_{n=1}^{\infty}\left[\frac{(2 n-1) !}{2^{2 n-1} n !(n-1) !}\right]^3 H_{2 n}=\sum_{n=1}^{\infty}\left[\frac{\Gamma(2 n)}{2^{2 n-1} \Gamma^2(n)}\right]^3 H_{2 n}= \\
+		& =\sum_{n=1}^{\infty}\left[\frac{\Gamma\left(n+\frac{1}{2}\right) \Gamma(1)}{\Gamma\left(\frac{1}{2}\right) \Gamma(n+1)}\right]^3 H_{2 n}=\sum_{n=0}^{\infty}\left[\frac{\left(\frac{1}{2}\right)_n}{(1)_n}\right]^3 H_{2 n} \\
+		& \Gamma(2 n)=\frac{\Gamma(n) \Gamma\left(n+\frac{1}{2}\right)}{2^{1-2 n} \Gamma\left(\frac{1}{2}\right)}, H_{2 n}=\sum_{n=1}^{2 n} \frac{1}{k}-\text { гармонический ряд }
+	\end{aligned}
+	$$
+	
+	Рассмотрим гипергеометрический ряд, в частности тождество Диксона
+	$$
+	\begin{aligned}
+		& { }_3 F_2\left[\begin{array}{c}
+			a, b, c \\
+			1+a-b, 1+a-c
+		\end{array} 1\right]= \\
+		& =\frac{\Gamma\left(1+\frac{a}{2}\right) \Gamma(1+a-b) \Gamma(1+a-c) \Gamma\left(1+\frac{a}{2}-b-c\right)}{\Gamma(1+a) \Gamma\left(1+\frac{a}{2}-b\right) \Gamma\left(1+\frac{a}{2}-c\right) \Gamma(1+a-b-c)} \\
+		&
+	\end{aligned}
+	$$
+	Гармоничный ряд можно представить как:
+	$$
+	\begin{aligned}
+		H_{2 n} & =\sum_{k=1}^{2 n} \frac{1}{k}=\sum_{k=1}^n \frac{1}{2 k}+\sum_{k=1}^n \frac{1}{2 k-1}=\frac{1}{2} \sum_{k=1}^n \frac{1}{k}+\sum_{k=0}^{n-1} \frac{1}{2 k-1}= \\
+		& =\frac{1}{2} H_n+\frac{1}{2} \sum_{k=0}^{n-1} \frac{1}{k+1 / 2}=\frac{1}{2} H_n+\frac{1}{2} H_n\left(\frac{1}{2}\right)
+	\end{aligned}
+	$$
+	В тождестве Диксона положим $a=b=1 / 2$, взяв производную по параметру $c=1 / 2$
+	$$
+	\left.\frac{\partial}{\partial c}{ }_3 F_2\left[\begin{array}{cc}
+		1 / 2, \quad 1 / 2, & c \\
+		1,3 / 2-c & ; 1
+	\end{array}\right]\right|_{c=\frac{1}{2}}=\left.\frac{\partial}{\partial c}\left\{\sum_{n=0}^{\infty}\left[\frac{\left(\frac{1}{2}\right)_n}{(1)_n}\right]^2 \frac{(c)_n}{\left(\frac{3}{2}-c\right)_n}\right\}\right|_{c=\frac{1}{2}}
+	$$
+	
+	Несложно заметить, что
+	$$
+	\frac{\mathrm{d}}{\mathrm{d} x}(x)_n=\frac{\mathrm{d}}{\mathrm{d} x} \frac{\Gamma(x+n)}{\Gamma(x)}=(x)_n H_n(x)=\left\{\begin{array}{c}
+		(1 / 2)_n H_n(1 / 2) \\
+		(1)_n H_n
+	\end{array}\right.
+	$$
+	Тогда
+	$$
+	\begin{aligned}
+		& =\sum_{n=1}^{\infty}\left[\frac{\left(\frac{1}{2}\right)_n}{(1)_n}\right]^3 2 H_{2 n} \\
+		&
+	\end{aligned}
+	$$
+	Промежуточные вычисления:
+	$$
+	\begin{aligned}
+		& \frac{1}{(x)_n} \frac{\mathrm{d}(x)_n}{\mathrm{~d} x}=\frac{\mathrm{d}}{\mathrm{d} x} \ln (x)_n=\frac{\mathrm{d}}{\mathrm{d} x} \ln \left\{\prod_{k=0}^{n-1}(x+k)\right\}=\frac{\mathrm{d}}{\mathrm{d} x} \sum_{k=0}^{n-1} \ln (x+k)= \\
+		& =\sum_{k=0}^{n-1} \frac{1}{x+k} \Rightarrow \frac{\mathrm{d}}{\mathrm{d} x}(x)_n=(x)_n H_n(x)=\left.\frac{\Gamma(x+n)}{\Gamma(x)} H_n(x)\right|_{x=1}=n ! H_n
+	\end{aligned}
+	$$
+	
+	Наша производная при $c=1 / 2$ равна
+	$$
+	\begin{gathered}
+		\left.\frac{\partial}{\partial c}{ }_3 F_2\left[\begin{array}{ccc}
+			1 / 2, & 1 / 2, & c \\
+			1,3 / 2-c & ; 1
+		\end{array}\right]\right|_{c=\frac{1}{2}}= \\
+		={ }_3 F_2\left[\begin{array}{c}
+			1 / 2,1 / 2,1 / 2 \\
+			1,1
+		\end{array} 1\right]\left[\left.\frac{\partial}{\partial c}\left\{\ln \frac{\Gamma\left(\frac{3}{2}-c\right) \Gamma\left(\frac{3}{4}-c\right)}{\Gamma\left(\frac{5}{4}-c\right) \Gamma(1-c)}\right\}\right|_{c=\frac{1}{2}}=\right. \\
+		=\left.\frac{\pi}{\Gamma^4\left(\frac{3}{4}\right)}\left\{-\psi\left(\frac{3}{2}-c\right)-\psi\left(\frac{3}{4}-c\right)+\psi\left(\frac{5}{4}-c\right)+\psi(1-c)\right\}\right|_{c=\frac{1}{2}}= \\
+		=\frac{\pi}{\Gamma^4\left(\frac{3}{4}\right)}\left\{\psi(1)-\psi\left(\frac{1}{4}\right)+\psi\left(\frac{3}{4}\right)+\psi(1)\right\}=\frac{\pi}{\Gamma^4\left(\frac{3}{4}\right)}(\pi-2 \ln 2) \\
+		S=\sum_{n=1}^{\infty}\left[\frac{\left(\frac{1}{2}\right)_n}{(1)_n}\right]^3 H_{2 n}=\frac{\pi}{2 \Gamma^4\left(\frac{3}{4}\right)}(\pi-2 \ln 2)
+	\end{gathered}
+	$$
+	
+	\subsection{Ramanujan3}
+	Вычислить сумму
+	$$
+	5\left(\frac{1}{2}\right)^3\left(1+\frac{1}{2}\right)-9\left(\frac{1 \cdot 3}{2 \cdot 4}\right)^3\left(1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}\right)+\ldots
+	$$
+	
+	С помощью некоторых преобразований:
+	$$
+	\begin{gathered}
+		\frac{(2 n-1) ! !}{(2 n) ! !}=\frac{\Gamma(2 n)}{2^{2 n-1} n \Gamma^2(n)}=\frac{\Gamma\left(n+\frac{1}{2}\right)}{\Gamma\left(\frac{1}{2}\right)} \frac{\Gamma(1)}{\Gamma(n+1)}=\frac{(1 / 2)_n}{(1)_n} \\
+		4 n+1=\frac{(1+1 / 4)_n}{(1 / 4)_n}=\frac{(5 / 4)_n}{(1 / 4)_n}=\frac{\Gamma\left(1+\frac{1}{4}+n\right)}{\Gamma\left(1+\frac{1}{4}\right)} \frac{\Gamma\left(\frac{1}{4}\right)}{\Gamma\left(\frac{1}{4}+n\right)}=4 n+1
+	\end{gathered}
+	$$
+	Сумму можно представить как
+	$$
+	\begin{aligned}
+		S & =\sum_{n=1}^{\infty}(4 n+1)\left[\frac{(2 n-1) ! !}{(2 n) ! !}\right]^3 H_{2 n}(-1)^{n-1}= \\
+		& =-\sum_{n=1}^{\infty}(4 n+1)(-1)^n\left[\frac{(1 / 2)_n}{(1)_n}\right]^3 H_{2 n}=-\sum_{n=1}^{\infty}(-1)^n\left[\frac{(1 / 2)_n}{(1)_n}\right]^3 \frac{(5 / 4)_n}{(1 / 4)_n} H_{2 n}
+	\end{aligned}
+	$$
+	Теперь рассмотрим гипергеометрический ряд с параматром $c$ :
+	Теперь продифференцируем по параметру $c$ :
+	
+	$$
+	\begin{aligned}
+		& =\sum_{n=0}^{\infty}\left[\frac{(1 / 2)_n}{(1)_n}\right]^3 \frac{(5 / 4)_n}{(1 / 4)_n}(-1)^n \underbrace{\left\{H_n\left(\frac{1}{2}\right)+H_n(1)\right\}}_{2 H_{2 n}} \\
+		&
+	\end{aligned}
+	$$
+	Где
+	$$
+	H_{2 n}=\sum_{k=1}^{2 n} \frac{1}{k}=\frac{1}{2} H_n+\frac{1}{2} \sum_{k=0}^{n-1} \frac{1}{k+\frac{1}{2}}=\frac{1}{2} H_n(1)+\frac{1}{2} H_n\left(\frac{1}{2}\right)
+	$$
+	
+	Также стоит доказать, что
+	$$
+	\begin{aligned}
+		& \frac{\mathrm{d}}{\mathrm{d} x}(x)_n=(x)_n \frac{\mathrm{d}}{\mathrm{d} x} \ln (x)_n=(x)_n \frac{\mathrm{d}}{\mathrm{d} x} \sum_{k=0}^{n-1} \ln (x+k)= \\
+		& =(x)_n \sum_{k=0}^{n-1} \frac{1}{x+k}=(x)_n H_n(x) \\
+		&
+	\end{aligned}
+	$$
+	Используя Тождество Уиппла:
+	Применяю для нашего случая $a=b=1 / 2$, мы получаем
+	$$
+	\begin{gathered}
+		2 S=-\left.\frac{\mathrm{d}}{\mathrm{d} c}\left\{\frac{\Gamma\left(\frac{3}{2}-c\right)}{\Gamma\left(\frac{3}{2}\right) \Gamma(1-c)}\right\}\right|_{c=\frac{1}{2}}= \\
+		=-\frac{2}{\pi}\left(-\psi(1)+\psi\left(\frac{1}{2}\right)\right)=\frac{2}{\pi} \ln 4 \Rightarrow S=\frac{2}{\pi} \ln 2
+	\end{gathered}
+	$$
+	
+	\subsection{Ramanujan4}
+	
+	Вычислить сумму
+	$$
+	1+\frac{1}{2} \cdot \frac{1}{5^2}+\frac{1 \cdot 3}{2 \cdot 4} \cdot \frac{1}{9^2}+\frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6} \cdot \frac{1}{13^2}+\ldots
+	$$
+	Преобразуем сумму в более удобный вид:
+	$$
+	\begin{gathered}
+		S=1+\sum_{k=1}^{\infty} \frac{(2 k-1) ! !}{(2 k) ! !(4 k+1)^2}=1+\sum_{k=1}^{\infty} \frac{\Gamma(2 k+1)}{2^{2 k-1} \cdot 2 k \Gamma(k) \Gamma(k+1)} \frac{1}{(4 k+1)^2}= \\
+		=1+2 \sum_{k=1}^{\infty} \frac{1}{2^{2 k} \cdot 2 k \mathrm{~B}(k+1, k)(4 k+1)^2} \\
+		(2 k-1) ! !=\frac{(2 k-1) !}{2^{k-1}(k-1) !}=\frac{\Gamma(2 k)}{2^{k-1} \Gamma(k)}=\frac{\Gamma(2 k+1)}{2^{k-1} \cdot 2 k \Gamma(2 k)} \\
+		(2 k) ! !=2^k k !=2^k \Gamma(k+1)
+	\end{gathered}
+	$$
+	Бета-функция имеет интгреальное предствление:
+	$$
+	\frac{1}{2^{p+q-1}(p+q-1) \mathrm{B}(p, q)}=\frac{1}{\pi} \int_0^{2 \pi}(\cos \theta)^{p+q-2} \cos (p-q) \theta d \theta
+	$$
+	Применяя данное представление к нашему случаю и подставляя $p=k+1, q=k, p+q-1=2 k, p+q-2=2 k-1$, мы получаем:
+	
+	$$
+	\begin{array}{r}
+		S=1+2 \sum_{k=1}^{\infty} \frac{1}{\pi} \int_0^{2 \pi} \frac{\cos ^{2 k} \theta}{(4 k+1)^2} d \theta=\sum_{k=0}^{\infty} \frac{2}{\pi} \int_0^{2 \pi} \frac{\left(\cos ^2 \theta\right)^k}{16\left(k+\frac{1}{4}\right)^2} d \theta= \\
+		=\frac{2}{\pi} \int_0^{2 \pi} d \theta \sum_{k=0}^{\infty} \frac{\left(\cos ^2 \theta\right)^k}{16\left(k+\frac{1}{4}\right)^2}=\frac{1}{8 \pi} \int_0^{2 \pi} d \theta \Phi\left(\cos ^2 \theta, 2, \frac{1}{4}\right) \\
+		\Phi(z, s, a)=\sum_{n=0}^{\infty} \frac{z^n}{(n+a)^s}-\text { Дзета-функция Лерха }
+	\end{array}
+	$$
+	Мы так же воспользуемся интегральным представлением дзета функции Лерха:
+	$$
+	\Phi(z, s, a)=\frac{1}{\Gamma(s)} \int_0^{\infty} \frac{t^{s-1} e^{-a t}}{1-z e^{-t}} d t, \Re(a)>0
+	$$
+	
+	Для нашего случая $z=\cos ^2 \theta, s=2, a=1 / 4$ мы получаем:
+	$$
+	\Phi\left(\cos ^2 \theta, 2, \frac{1}{4}\right)=\frac{1}{\Gamma(2)} \int_0^{\infty} \frac{t e^{-t / 4}}{1-e^{-t} \cos ^2 \theta} d t
+	$$
+	Следовательно сумма принимает вид:
+	$$
+	\begin{aligned}
+		S & =\frac{1}{8 \pi} \int_0^{\infty} d t t e^{-t / 4} \int_0^{\infty} \frac{d \theta}{1-e^{-t} \cos ^2 \theta} \stackrel{e^{-t}=\varepsilon}{=} \frac{1}{8 \pi} d t t e^{-t / 4} \int_0^{\pi / 2} \frac{d \theta}{1-\varepsilon \cos ^2 \theta}= \\
+		& =\frac{1}{8 \pi} \int_0^{\infty} d t t e^{-t} \int_0^{\pi / 2} \frac{d \theta}{(1-\varepsilon) \cos ^2 \theta+\sin ^2 \theta}= \\
+		& =\frac{1}{8 \pi} \int_0^{\infty} d t t e^{-t} \int_0^{\infty} \frac{d \operatorname{tg} \theta}{(1-\varepsilon)+\operatorname{tg}^2 \theta}=\frac{1}{8 \pi} \int_0^{\infty} d t \frac{t e^{-t / 4}}{(1-\varepsilon)^{1 / 2}} \cdot \frac{\pi}{2} \stackrel{e^{-t}=x}{=} \\
+		& =\frac{1}{16} \int_0^1 d x(-\ln x)(1-x)^{-1 / 2} x^{1 / 4-1}=-\frac{1}{16} \int_0^1 d x \ln x(1-x)^{q-1} x^{p-1}
+	\end{aligned}
+	$$
+	Где $p=1 / 4, q=1 / 2$ и $\frac{\partial}{\partial p} x^{p-1}=x^{p-1} \ln x$. Тогда
+	
+	$$
+	\begin{aligned}
+		S & =-\left.\frac{1}{16} \frac{\partial}{\partial p}\left\{\int_0^1 d x x^{p-1}(1-x)^{q-1}\right\}\right|_{p=\frac{1}{4}, q=\frac{1}{2}}=-\left.\frac{1}{16} \frac{\partial}{\partial p} \mathrm{~B}(p, q)\right|_{p=\frac{1}{4}, q=\frac{1}{2}}= \\
+		& =-\left.\frac{1}{16} \frac{\partial}{\partial p}\left[\frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)}\right]\right|_{p=\frac{1}{4}, q=\frac{1}{2}}=-\left.\frac{1}{16} \frac{\partial}{\partial p}[\psi(p)-\psi(p+q)]\right|_{p=\frac{1}{4}, q=\frac{1}{2}}= \\
+		& =-\frac{1}{16} \frac{\Gamma\left(\frac{1}{4}\right) \Gamma\left(\frac{1}{2}\right)}{\Gamma\left(\frac{3}{4}\right)}\left(\psi\left(\frac{1}{4}\right)-\psi\left(\frac{3}{4}\right)\right)=\frac{\sqrt{2 \pi}}{32} \Gamma^2\left(\frac{1}{4}\right)
+	\end{aligned}
+	$$
+	
+	\subsection{Ramanujan4.1}
+	
+	Вычислить сумму
+	$$
+	1+\frac{1}{2} \cdot \frac{1}{5^2}+\frac{1 \cdot 3}{2 \cdot 4} \cdot \frac{1}{9^2}+\frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6} \cdot \frac{1}{13^2}+\ldots
+	$$
+	Преобразуем сумму в более удобный вид:
+	$$
+	S=1+\frac{1}{2} \cdot \frac{1}{5^2}+\frac{1 \cdot 3}{2 \cdot 4} \cdot \frac{1}{9^2}+\frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6} \cdot \frac{1}{13^2}+\ldots=S=\sum_{n=0}^{\infty} \frac{(2 n-1) ! !}{(2 n) ! !(4 n+1)^2}
+	$$
+	Заметим, что разложение функции $(1-x)^{-1 / 2}$ в ряд при $x=1$ даёт почти нашу сумму:
+	$$
+	(1-x)^{-1 / 2}=\sum_{n=0}^{\infty} \frac{(2 n-1) ! !}{2^n} \frac{x^n}{n !}=\sum_{n=0}^{\infty} \frac{(2 n-1) ! !}{(2 n) ! !} x^n
+	$$
+	Так же
+	$$
+	-\int_0^1 \ln x x^{4 n} d x=\frac{1}{(4 n+1)^2}
+	$$
+	Следовательно, мы можем записать нашу сумму как
+	$$
+	S=-\int_0^1 \frac{\ln x}{\sqrt{1-x^4}} d x=-\frac{1}{4} \int_0^1 \frac{\ln \left(x^4\right)}{\sqrt{1-x^4}} \frac{x^3 d x}{x^3}=-\frac{1}{16} \int_0^1 \frac{t^{-3 / 4} \ln t}{\sqrt{1-t}} d t=
+	$$
+	
+	$$
+	\begin{aligned}
+		& =-\left.\frac{1}{16} \frac{\partial}{\partial s} \int_0^1 \frac{t^{s-3 / 4} \ln t}{\sqrt{1-t}} d t\right|_{s=0}=-\left.\frac{1}{16} \frac{\partial}{\partial s} B(s+1 / 4 ; 1 / 2)\right|_{s=0}= \\
+		& =-\left.\frac{\sqrt{\pi}}{16} \frac{\partial}{\partial s} \frac{\Gamma(s+1 / 4)}{\Gamma(s+3 / 4)}\right|_{s=0}=-\frac{\sqrt{\pi}}{16} \frac{\Gamma(1 / 4)}{\Gamma(3 / 4)}\left(\psi\left(\frac{1}{4}\right)-\psi\left(\frac{3}{4}\right)\right)= \\
+		& =\frac{\sqrt{2 \pi}}{32} \Gamma^2\left(\frac{1}{4}\right)
+	\end{aligned}
+	$$
+	
+	\subsection{Ramanujan4. Hometask}
+	
+	Вычислить сумму
+	$$
+	\frac{1}{1 ! !}+\frac{1}{3 ! !}+\frac{1}{5 ! !}+\frac{1}{7 ! !}+\ldots
+	$$
+	
+	\subsection{Ramanujan5. Fractions}
+	$$
+	\frac{e+1}{e-1}=2+\frac{1}{6+\frac{1}{10+\frac{1}{14+\cdots}}}
+	$$
+	Для начала напомним представление цепной дроби для соотношений сходящихся гипергеометрических функций типа ${ }_0 F_1(c, z)$. Пусть $\left(a_n\right)$ - последовательность комплексных чисел, определяемая
+	$$
+	a_n=\frac{1}{(c+n-1)(c+n)},
+	$$
+	где $c$ - комплексное число такое, что $c \notin \mathbb{Z}^{-} \cup\{0\}$. Тогда
+	$$
+	1+\mathcal{K}_{n=1}^{\infty}\left(\frac{a_n z}{1}\right)=\frac{{ }_0 F_1(c, z)}{{ }_0 F_1(c+1, z)}
+	$$
+	Освежили память, теперь возвращаемся $к$ нашей задаче
+	$$
+	\frac{e^z+1}{e^z-1}=\operatorname{ctgh}\left(\frac{z}{2}\right)=i \operatorname{ctg}\left(\frac{i z}{2}\right)
+	$$
+	Мы можем легко вывести
+	
+	$$
+	\begin{aligned}
+		& \operatorname{tg} x=\frac{\sin x}{\cos x}=\frac{x-\frac{x}{3 !}+\frac{x^5}{5 !}-\ldots}{1+\frac{x^2}{2 !}+\frac{x^4}{4 !}-\ldots}=\frac{x_0 F_1\left(\frac{3}{2},-\frac{x^2}{4}\right)}{{ }_0 F_1\left(\frac{1}{2},-\frac{x^2}{4}\right)}=\frac{x}{1-\frac{x^2}{3-\frac{x^2}{5-\frac{x^2}{7-\cdots}}}} \\
+		& x=\frac{i z}{2} \Rightarrow \operatorname{tg}\left(\frac{i z}{2}\right)=\frac{i z^2}{2-\frac{-z^2}{6-\frac{-z^2}{10-\frac{-z^2}{14-\cdots}}}}=\frac{i z}{2+\frac{z^2}{6+\frac{z^2}{10+\frac{z^2}{14-\cdots}}}} \\
+		&
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{aligned}
+		& \operatorname{ctgh}\left(\frac{z}{2}\right) z=\operatorname{ctg}\left(\frac{i z}{2}\right) i z=2+\frac{z^2}{6+\frac{z^2}{10+\frac{z^2}{14+\cdots}}} \\
+		& z=1 \Rightarrow \frac{e+1}{e-1}=\operatorname{coth}\left(\frac{1}{2}\right)=2+\frac{1}{6+\frac{1}{10+\frac{1}{14+\cdots}}}
+	\end{aligned}
+	$$
+	
+	\subsection{Product}
+	
+	$$
+	\begin{aligned}
+		& P=\prod_{n=1}^{\infty} e\left(1-\frac{1}{9 n^2}\right)^{9 n^2}=\exp \left\{\ln \prod_{n=1}^{\infty} e\left(1-\frac{1}{9 n^2}\right)^{9 n^2}\right\}= \\
+		& =\exp \left\{\sum_{n=1}^{\infty} 1+9 n^2 \ln \left(1-\frac{1}{9 n^2}\right)\right\}=\exp \left\{\sum_{n=1}^{\infty}\left(1-9 n^2 \sum_{k=1}^{\infty} \frac{1}{k} \cdot\left(\frac{1}{9 n^2}\right)^k\right)\right\}= \\
+		& =\exp \left\{\sum_{n=1}^{\infty}\left(1-\sum_{k=1}^{\infty} \frac{(3 n)^{2-2 k}}{k}\right)\right\}=\exp \left\{-\sum_{K=1}^{\infty} 3^{-2 k} \int_0^1 x^k d x \sum_{n=1}^{\infty} \frac{1}{n^{2 k}}\right\}= \\
+		& =\exp \left\{-\int_0^1 \sum_{k=1}^{\infty}\left(\frac{\sqrt{x}}{3}\right)^{2 k} \zeta(2 k) d x\right\}=\exp \left\{-\int_0^1\left(\frac{1}{2}-\frac{\pi \sqrt{x}}{6} \operatorname{ctg} \frac{\pi \sqrt{x}}{6}\right) d x\right\}= \\
+		& =\exp \left\{\frac{9}{\pi^2} \int_0^{\pi / 3} x^2 \operatorname{ctg} x d x-\frac{1}{2}\right\}=\exp \left\{\ln \frac{\sqrt{3}}{2}-\frac{18}{\pi^2} \int_0^{\pi / 3} x \ln \sin x d x-\frac{1}{2}\right\}= \\
+		& =\exp \left\{\ln \frac{\sqrt{3}}{2}+\frac{18}{\pi^2} \int_0^{\pi / 3} x\left(-\ln 2 \sum_{k=1}^{\infty} \frac{\cos 2 k x}{k}\right) d x-\frac{1}{2}\right\}= \\
+		&
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		=\exp \left\{\ln \frac{\sqrt{3}}{2}+\frac{18}{\pi^2} \ln \left(2 \cdot \frac{1}{2} \cdot\left(\frac{\pi}{3}\right)^2\right)+\frac{18}{\pi^2} \sum_{k=1}^{\infty} \frac{1}{k} \frac{2 \pi k \sin (2 \pi k / 3)+3 \cos (2 \pi k / 3)-3}{12 k^2}-\frac{1}{2}\right\}= \\
+		=\exp \left\{\ln \frac{\sqrt{3}}{2}+\frac{3}{2 \pi^2} \sum_{k=1}^{\infty}\left(\frac{2 \pi}{k^2} \sin \frac{2 \pi k}{3}+\frac{3}{k^2} \cos \frac{2 \pi k}{3}-\frac{3}{k^2}\right)-\frac{1}{2}\right\}= \\
+		=\exp \left\{\ln \sqrt{3}+\frac{3}{2 \pi^2}\left(2 \pi \mathrm{Cl}_2\left(\frac{2 \pi}{3}\right)+3 \operatorname{Cl}_3\left(\frac{2 \pi}{3}\right)\right)-\frac{9}{2 \pi^2} \zeta(3)-\frac{1}{2}\right\}= \\
+		=\exp \left\{\ln \sqrt{3}+\frac{3}{2 \pi^2}\left(2 \pi\left(\frac{1}{3 \sqrt{3}} \psi_1\left(\frac{1}{3}\right)-\frac{2}{9 \sqrt{3}} \pi^2\right)+3\left(-\frac{4}{9} \zeta(3)\right)\right)-\frac{9}{2 \pi^2} \zeta(3)-\frac{1}{2}\right\}= \\
+		=\exp \left\{\ln \sqrt{3}+\frac{1}{\sqrt{3} \pi} \psi_1\left(\frac{1}{3}\right)-\frac{2 \pi}{3 \sqrt{3}}-\frac{13}{2 \pi^2} \zeta(3)-\frac{1}{2}\right\}
+	\end{gathered}
+	$$
+	
+	\subsection{Product1}
+	
+	$$
+	\begin{aligned}
+		& P=\prod_{n=1}^{\infty} e\left(1-\frac{1}{9 n^2}\right)^{9 n^2} \Rightarrow \ln P=\sum_{n=1}^{\infty}\left(1+9 n^2 \ln \left(1-\frac{1}{9 n^2}\right)\right) \\
+		& f(x)=\sum_{n=1}^{\infty}\left(x^2+9 n^2 \ln \left(1-\frac{x^2}{9 n^2}\right)\right) \Rightarrow f^{\prime}(x)=\sum_{n=1}^{\infty}\left(2 x+9 n^2\left(\frac{-\frac{2 x}{9 n^2}}{1-\frac{x^2}{9 n^2}}\right)\right)= \\
+		& =\sum_{n=1}^{\infty} \frac{-2 x^3}{9 n^2-x^2}=-3\left(\frac{x}{9}\right)^2 \sum_{n=1}^{\infty} \frac{2\left(\frac{x}{9}\right)}{n^2-\left(\frac{x}{3}\right)^2} \\
+		& \sum_{n=1}^{\infty} \frac{2 x}{n^2-x^2}=\sum_{n=1}^{\infty}\left(\frac{1}{n-x}-\frac{1}{n+x}\right)=\sum_{n=1}^{\infty}\left(\frac{1}{n}-\frac{1}{n+x}\right)-\sum_{n=1}^{\infty}\left(\frac{1}{n}-\frac{1}{n-x}\right)= \\
+		& =\frac{\Gamma^{\prime}(1+x)}{\Gamma(1+x)}-\frac{\Gamma^{\prime}(1-x)}{\Gamma(1-x)} \Rightarrow \sum_{n=1}^{\infty} \frac{2\left(\frac{x}{3}\right)}{n^2-\left(\frac{x}{3}\right)^2}=\frac{\Gamma^{\prime}\left(1+\frac{x}{3}\right)}{\Gamma\left(1+\frac{x}{3}\right)}-\frac{\Gamma^{\prime}\left(1-\frac{x}{3}\right)}{\Gamma\left(1-\frac{x}{3}\right)} \\
+		& f^{\prime}(x)=3\left(\frac{x}{3}\right)^2\left(\frac{\Gamma^{\prime}\left(1-\frac{x}{3}\right)}{\Gamma\left(1-\frac{x}{3}\right)}-\frac{\Gamma^{\prime}\left(1+\frac{x}{3}\right)}{\Gamma\left(1+\frac{x}{3}\right)}\right) \Rightarrow \\
+		&
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{aligned}
+		& \Rightarrow \ln P=\int_0^1 3\left(\frac{x}{3}\right)^2\left(\frac{\Gamma^{\prime}\left(1-\frac{x}{3}\right)}{\Gamma\left(1-\frac{x}{3}\right)}-\frac{\Gamma^{\prime}\left(1+\frac{x}{3}\right)}{\Gamma\left(1+\frac{x}{3}\right)}\right) d x \stackrel{x=3 y}{=} \\
+		& =\int_0^{1 / 3} 9 x^2\left(\frac{\Gamma^{\prime}(1-x)}{\Gamma(1-x)}-\frac{\Gamma^{\prime}(1+x)}{\Gamma(1+x)}\right) d x= \\
+		& =\left.9 x^2(-\ln (\Gamma(1+x) \Gamma(1-x)))\right|_0 ^{1 / 3}+\int_0^{1 / 3} 18 x \ln (x \Gamma(x) \Gamma(1-x)) d x= \\
+		& =-\left.9 x^2(\ln x+\ln \pi-\ln \sin \pi x)\right|_0 ^{1 / 3}+\int_0^{1 / 3} 18 x(\ln x+\ln \pi 0 \ln \sin \pi x) d x= \\
+		& =-1\left(-\ln 3+\ln \pi-\frac{1}{3} \ln 3+\ln 2\right)+18 \int_0^{1 / 3} x \ln x d x+18 \ln 2 \pi \int_0^{1 / 3} x d x- \\
+		& -18 \int_0^{1 / 3} x \ln 2 \sin \pi x d x \\
+		&
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		\ln P=\frac{3}{2} \ln 3-\ln 2 \pi+\left.9 \ln 2 \pi x^2\right|_0 ^{1 / 3}+\left.9\left(x \ln x-\frac{x^2}{2}\right)\right|_0 ^{1 / 3}+18 \int_0^{1 / 3} x \sum_{n=1}^{\infty} \frac{\cos 2 \pi n x}{n} d x= \\
+		=\frac{3}{2} \ln 3-\ln 3-\frac{1}{2}+18 \sum_{n=1}^{\infty} \frac{1}{n} \int_0^{1 / 3} x \cos 2 \pi n x d x= \\
+		=\frac{1}{2} \ln 3-\frac{1}{2}+18 \sum_{n=1}^{\infty}\left\{\left.\frac{x \sin 2 \pi n x}{2 \pi n}\right|_0 ^{1 / 3}-\frac{1}{2 \pi n} \int_0^{1 / 3} \sin 2 \pi n x d x\right\}= \\
+		=\frac{1}{2} \ln 3-\frac{1}{2}+\frac{3}{\pi} \sum_{n=1}^{\infty} \frac{\sin \frac{3 \pi n}{3}}{n^2}+\frac{9}{2 \pi^2} \sum_{n=1}^{\infty} \frac{\cos \frac{2 \pi n}{3}-1}{n^3} \\
+		\sum_{n=1}^{\infty} \frac{\sin \frac{2 \pi n}{3}}{n^2}=\sum_{n=1}^{\infty} \frac{\sin 2 \pi n}{(3 n)^2}-\sin \frac{2 \pi}{3} \sum_{n=1}^{\infty} \frac{1}{(3 n-1)^2}-\sin \frac{4 \pi}{3} \sum_{n=1}^{\infty} \frac{1}{(3 n-2)^2}= \\
+		=-\frac{\sqrt{3}}{2} \sum_{n=1}^{\infty} \frac{1}{(3 n-1)^2}+\frac{\sqrt{3}}{2} \sum_{n=1}^{\infty} \frac{1}{(3 n-2)^2}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{aligned}
+		& \sum_{n=1}^{\infty} \frac{\cos \frac{2 \pi n}{3}}{n^3}=\sum_{n=1}^{\infty} \frac{\cos 2 \pi n}{(3 n)^3}+\left(-\frac{1}{2}\right) \sum_{n=1}^{\infty} \frac{1}{(3 n-1)^3}+\left(-\frac{1}{2}\right) \sum_{n=1}^{\infty} \frac{1}{(3 n-2)^2}= \\
+		& =-\frac{1}{2}\left(\sum_{n=1}^{\infty} \frac{1}{(3 n)^3}+\sum_{n=1}^{\infty} \frac{1}{(3 n-1)^2}+\sum_{n=1}^{\infty} \frac{1}{(3 n-2)^2}\right)+\frac{3}{2} \sum_{n=1}^{\infty} \frac{1}{(3 n)^3}= \\
+		& =-\frac{1}{2} \zeta(3)+\frac{1}{18} \zeta(3)=-\frac{4}{9} \zeta(3) \\
+		& \zeta(2)=\sum_{n=1}^{\infty} \frac{1}{(3 n)^2}+\sum_{n=1}^{\infty} \frac{1}{(3 n-1)^2}+\sum_{n=1}^{\infty} \frac{1}{(3 n-2)^2} \Rightarrow \\
+		& \Rightarrow \frac{8}{9} \zeta(2)=\sum_{n=1}^{\infty} \frac{1}{(3 n-1)^2}+\sum_{n=1}^{\infty} \frac{1}{(3 n-2)^2} \Rightarrow \\
+		& \Rightarrow \sum_{n=1}^{\infty} \frac{1}{(3 n-1)^2}=\frac{8}{9} \zeta(2)-\sum_{n=1}^{\infty} \frac{1}{(3 n-2)^2} \Rightarrow \\
+		& \Rightarrow \frac{2}{\sqrt{3}} \sum_{n=1}^{\infty} \frac{\sin \frac{2 \pi n}{3}}{n^2}=-\frac{8}{9} \zeta(2)+2 \sum_{n=1}^{\infty} \frac{1}{(3 n-2)^2}= \\
+		&
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		=-\frac{8}{9} \zeta(2)+\frac{2}{9} \sum_{n=1}^{\infty} \frac{1}{(n-2 / 3)^2}=\frac{2}{9} \psi^{\prime}\left(\frac{1}{3}\right)-\frac{8}{9} \cdot \frac{\pi^2}{6}=\frac{2}{9} \psi^{\prime}\left(\frac{1}{3}\right)-\frac{4}{27} \\
+		\ln P=\frac{1}{2} \ln 3-\frac{1}{2}-\frac{9 \zeta(3)}{2 \pi^2}+\frac{3}{\pi}\left(\frac{\sqrt{3}}{9} \psi^{\prime}\left(\frac{1}{3}\right)-\frac{2 \sqrt{3} \pi^2}{27}\right)+\frac{9}{2 \pi^2}\left(-\frac{4}{9} \zeta(3)\right)= \\
+		=\ln \sqrt{3}-\frac{1}{2}-\frac{13 \zeta(3)}{2 \pi^2}-\frac{2 \pi}{3 \sqrt{3}}+\frac{1}{\sqrt{3} \pi} \psi^{\prime}\left(\frac{1}{3}\right) \Rightarrow \\
+		\Rightarrow P=\exp \left\{\ln \sqrt{3}-\frac{1}{2}-\frac{13 \zeta(3)}{2 \pi^2}-\frac{2 \pi}{3 \sqrt{3}}+\frac{1}{\sqrt{3} \pi} \psi^{\prime}\left(\frac{1}{3}\right)\right\}
+	\end{gathered}
+	$$
+	
+	\subsection{Product. Hometask}
+	
+	$$
+	\begin{gathered}
+		\prod_{n=1}^{\infty}\left(\frac{n ! e^n}{\sqrt{2 \pi n} n^n}\right)^{(-1)^{n-1}}, \prod_{n=1}^{\infty}\left(\frac{\Gamma\left(2^n+\frac{1}{2}\right)}{a^2 \Gamma\left(2^n\right)}\right)^{1 / 2^n}, \prod_{k=1}^{\infty}\left(1+\frac{1}{2 k+1}\right) e^{-\frac{1}{2 k}} \\
+		\sum_{j=1}^{\infty}\left(\sum_{n=1}^{\infty} \frac{e^{-j x / n}}{n^2}-\frac{e^{-n x / j}}{j^2}\right), x>0 \\
+		\sum_{j=1}^{\infty}\left(\sum_{n=1}^{\infty} \frac{1}{\sqrt{n j}}\left(\frac{e^{-j / n}}{n}-\frac{e^{-n / j}}{j}\right)\right) \\
+		\lim _{p \rightarrow 0^{+}}\left(\sum_{n=1}^{\infty} \frac{1}{(n-1+x)^p}-\frac{1}{(n-x)^p}\right), 1>p>0,1>x>0
+	\end{gathered}
+	$$
+	
+	\subsection{Limit}
+	
+	Вычислить предел
+	$$
+	\lim _{x \rightarrow 0} \frac{\sin \tan \arcsin x-\tan \sin \arctan x}{\tan \arcsin \arctan x-\sin \arctan \arcsin x}
+	$$
+	Пусть даны функции
+	$$
+	f(x)=x+a x^n+\mathcal{O}\left(x^{n+1}\right), g(x)=x+b x^n+\mathcal{O}\left(x^{n+1}\right), a \neq b
+	$$
+	Тогда
+	$$
+	\begin{gathered}
+		f^{-1}(x)=x-a x^n+\mathcal{O}\left(x^{n+1}\right), g^{-1}(x)=x-b x^n+\mathcal{O}\left(x^{n+1}\right) \\
+		\lim _{x \rightarrow 0} \frac{f^{-1}(x)-g^{-1}(x)}{f(x)-g(x)}=\frac{(-a)-(-b)}{a-b}=-1
+	\end{gathered}
+	$$
+	Интересное наблюдение
+	$$
+	\lim _{x \rightarrow 0} \frac{f^m(x)-g^m(x)}{f(x)-g(x)}=\frac{m a-m b}{a-b}=m, f^m, m \in \mathbb{Z}
+	$$
+	
+	\subsection{Integral}
+	
+	Пусть $(m, n) \in \mathbb{N}^2$. Докажите, что интеграл существует и вычислите его
+	$$
+	\frac{1}{2 \pi} \int_{-\pi}^\pi \frac{\sin ((2 m+1) t / 2)}{\sin t / 2} \frac{\sin ((2 n+1) t / 2)}{\sin t / 2} d t
+	$$
+	$$
+	\begin{gathered}
+		I=\frac{1}{2 \pi} \int_{-\pi}^\pi \frac{\sin ((2 m+1) t / 2) \sin ((2 n+1) t / 2)}{\sin ^2 t / 2} d t= \\
+		=\frac{1}{2 \pi} \int_{-\pi}^\pi \frac{\cos ((m-n) t)-\cos ((m+n+1) t)}{1-\cos t} d t= \\
+		=\frac{1}{2 \pi i} \oint_{|z|=1} \frac{1}{2-(z+1 / 2)}\left(z^{m-n}+\frac{1}{z^{m-n}}-\left(z^{m+n+1}+\frac{1}{z^{m+n+1}}\right)\right) \frac{d z}{z}= \\
+		P(z)=\frac{1}{z^{2(m+n+1)}-z^{2 m+1}-z^{2 n+1}+1} \oint_{z \rightarrow 1} \frac{P(z)}{z^{m+n+1}} d z \\
+		(z-1)^2
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{aligned}
+		& I=\frac{1}{2 \pi i} \oint_{|z|=1} \frac{P(z)}{z^{m+n+1}} d z=\left.\frac{1}{(m+n) !} \frac{\mathrm{d}^{m+n}}{\mathrm{~d} z^{m+n}} P(z)\right|_{z=0} \\
+		& P(z)=\sum_{k=0}^{2 m+2 n} z^k+\sum_{k=1}^{2 n} \sum_{j=1}^{2 m} z^{j+k-1} \\
+		& I=\left.\frac{1}{(m+n) !} \frac{\mathrm{d}^{m+n}}{\mathrm{~d} z^{m+n}}\left[\sum_{k=0}^{2 m+2 n} z^k+\sum_{k=1}^{2 n} \sum_{j=1}^{2 m} z^{j+k-1}\right]\right|_{z=0}= \\
+		& =\left.\frac{1}{(m+n) !} \frac{\mathrm{d}^{m+n}}{\mathrm{~d} z^{m+n}}\left[z^{m+n}+\sum_{k=1}^{2 n} \sum_{j=1}^{2 m} \sum_{j+k=m+n+1} z^{j+k-1}\right]\right|_{z=0}= \\
+		& =\left.\left[1+\sum_{k=1}^{2 n} \sum_{j=1}^{2 m} \sum_{j+k=m+n+1} 1\right] \frac{1}{(m+n) !} \frac{\mathrm{d}^{m+n}}{\mathrm{~d} z^{m+n}} z^{m+n}\right|_{z=0}=1+\sum_{k=1}^{2 n} \sum_{j=1}^{2 m} \sum_{j+k=m+n+1} 1 \\
+		& m \leq n \Rightarrow I=1+\sum_{j=1}^{2 m} \sum_{k=m+n+1-j} 1=1+2 m \\
+		& n \leq m \Rightarrow I=1+\sum_{k=1}^{2 n} \sum_{j=m+n+1-k} 1=1+2 n \\
+		&
+	\end{aligned}
+	$$
+	
+	\subsection{Integral. Hometask}
+	Для целого числа $b>1$ вычислите интеграл
+	$$
+	I=\int_0^{\infty}\left\lfloor\log _b\left\lfloor\frac{\lceil x\rceil}{x}\right\rfloor\right\rfloor d x,
+	$$
+	где $\lfloor x\rfloor-$ пол $x$ и $\lceil x\rceil-$ потолок $x$
+	
+	\subsection{Integral. Hometask1}
+	
+	В квантовой статистической механике матрица плотности для квантового гармонического осциллятора имеет огромное значение. Диагональные элементы $p(x)$ матрицы плотности в координатном представлении имеют вид
+	$$
+	p(x)=\frac{e^{-x^2}}{\sqrt{\pi} \mathcal{Z}} \sum_{n=0}^{\infty} \frac{\mathrm{H}_n^2(x)}{2^n n !} e^{-\beta(n+1 / 2)},
+	$$
+	где $\beta-$ константа. $\mathcal{Z}$ и $\mathrm{H}_n(x)-$ полиномы Эрмита, определяемые следующим образом
+	$$
+	\mathcal{Z}=\sum_{n=0}^{\infty} e^{-\beta(n+1 / 2)}, \quad \mathrm{H}_n(x)=(-1)^n e^{x^2} \frac{\mathrm{d}^n}{\mathrm{~d} x^n} e^{-x^2}
+	$$
+	Докажите, что
+	$$
+	p(x)=\sqrt{\frac{1}{\pi} \operatorname{th} \frac{\beta}{2}} \exp \left\{-x^2 \operatorname{th} \frac{\beta}{2}\right\}
+	$$
+	
+	\subsection{Hypergeometry. Dikson}
+	
+	$$
+	\begin{aligned}
+		& =\sum_{n=0}^{\infty} \frac{(a)_n z^n}{n !}\left(\frac{(b)_n(c)_n}{(1+a-b)_n(1+a-c)_n}\right)= \\
+		& =\sum_{n=0}^{\infty} \frac{(a)_n z^n}{n !}\left(\frac{(c)_n(b)_n(-1)^n}{(1+a-b)_n(1+a-c)_n(-1)^n}\right)= \\
+		& =\sum_{n=0}^{\infty} \frac{(a)_n z^n}{n !}\left(\frac{(c)_n(1-b-n)_n}{(1+a-b)_n(c-a-n)_n}\right)= \\
+		& =\sum_{n=0}^{\infty} \frac{(a)_n z^n}{n !}\left({ }_3 F_2\left(\begin{array}{cc}
+			1+a-b-c, a+n,-n \\
+			1+a-b, 1+a-c
+		\end{array}\right)\right)= \\
+		& =\sum_{n=0}^{\infty} \frac{(a)_n z^n}{n !}\left(\sum_{k=0}^n \frac{(1+a-b-c)_k(a+n)_k(-n)_k}{(1+a-b)_k(1+a-c)_k} \frac{1}{k !}\right)= \\
+		& =\sum_{n=0}^{\infty} \frac{(a)_n z^n}{n !}\left(\sum_{k=0}^n \frac{(1+a-b-c)_k(a)_{n+k}(-1)^k n !}{(1+a-b)_k(1+a-c)_k(n-k) !(a)_n} \frac{1}{k !}\right)= \\
+		&
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{aligned}
+		& =\sum_{n=0}^{\infty} z^n\left(\sum_{k=0}^n \frac{(1+a-b-c)_k(a)_{n+k}(-1)^k}{(1+a-b)_k(1+a-c)_k(n-k) !} \frac{1}{k !}\right)= \\
+		& =\sum_{k=0}^{\infty} \sum_{n=k}^{\infty} \frac{(1+a-b-c)_k(-1)^k}{(1+a-b)_k(1+a-c)_k k !}\left(\frac{(a)_{n+k} z^n}{(n-k) !}\right)= \\
+		& =\sum_{k=0}^{\infty} \frac{(1+a-b-c)_k(-1)^k}{(1+a-b)_k(1+a-c)_k k !} \sum_{n=k}^{\infty} \frac{(a)_{n+k} z^n}{(n-k) !}= \\
+		& =\sum_{k=0}^{\infty} \frac{(1+a-b-c)_k(-1)^k}{(1+a-b)_k(1+a-c)_k k !} \sum_{n=0}^{\infty} \frac{(a)_{n+2 k} z^{n+k}}{n !}= \\
+		& =\sum_{k=0}^{\infty} \frac{(1+a-b-c)_k(-z)^k}{(1+a-b)_k(1+a-c)_k k !} \sum_{n=0}^{\infty} \frac{(a)_{n+2 k} z^{n+k}}{n !}= \\
+		& =\sum_{k=0}^{\infty} \frac{(1+a-b-c)_k(-z)^k}{(1+a-b)_k(1+a-c)_k k !} \sum_{n=0}^{\infty} \frac{(a)_{2 k}(a+2 k)_n z^{n+k}}{n !}= \\
+		& =\sum_{k=0}^{\infty} \frac{(1+a-b-c)_k(a)_{2 k}(-z)^k}{(1+a-b)_k(1+a-c)_k k !} \sum_{n=0}^{\infty} \frac{(a+2 k)_n z^{n+k}}{n !}= \\
+		& \quad=\sum_{k=0}^{\infty} \frac{(1+a-b-c)_k(a)_{2 k}(-z)^k}{(1+a-b)_k(1+a-c)_k k !}(1-z)^{-a-2 k}=
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		=\sum_{k=0}^{\infty} \frac{(1+a-b-c)_k(a)_{2 k}(-z)^k}{(1+a-b)_k(1+a-c)_k k !} \sum_{n=0}^{\infty} \frac{(a+2 k)_n z^{n+k}}{n !}= \\
+		=(1-z)^{-a} \sum_{k=0}^{\infty} \frac{(1+a-b-c)_k 2^{2 k}\left(\frac{a}{2}\right)_k\left(\frac{a+1}{2}\right)_k}{(1+a-b)_k(1+a-c)_k k !}\left(-\frac{z}{(1-z)^2}\right)^k= \\
+		=(1-z)^{-a} \sum_{k=0}^{\infty} \frac{(1+a-b-c)_k\left(\frac{a}{2}\right)_k\left(\frac{a+1}{2}\right)_k}{(1+a-b)_k(1+a-c)_k k !}\left(-\frac{4 z}{(1-z)^2}\right)^k= \\
+		=(1-z)^{-a}{ }_3 F_2\left(\begin{array}{c}
+			1+a-b-c, \frac{a}{2}, \frac{a+1}{2} \\
+			1+a-b, 1+a-c
+		\end{array} \mid-\frac{4 z}{(1-z)^2}\right)
+	\end{gathered}
+	$$
+	
+	\subsection{Cool series}
+	
+	$$
+	\begin{aligned}
+		& S= \sum_{n=1}^{\infty} \frac{1}{n^7} \frac{\operatorname{sh} \sqrt{2} \pi n+\sin \sqrt{2} \pi n}{\operatorname{ch} \sqrt{2} \pi n-\cos \sqrt{2} \pi n}=\Re \lim _{z_0 \rightarrow e^{i \pi / 4}} \sum_{n=1}^{\infty} \frac{1}{n^7}\left(\operatorname{ctgh} \pi n z_0-z_0^2 \operatorname{ctgh} \frac{\pi n}{z_0}\right)= \\
+		&=\frac{1}{\pi} \Re \lim _{z_0 \rightarrow e^{i \pi / 4}} \sum_{n=1}^{\infty} \frac{1}{n^7}\left(\sum_{m=-\infty}^{\infty} \frac{n z_0}{m^2+\left(n z_0\right)^2}-z_0^2 \sum_{m=-\infty}^{\infty} \frac{n / z_0}{m^2+\left(n / z_0\right)^2}\right)= \\
+		&= \frac{1}{\pi} \Re \sum_{n=1}^{\infty} \frac{1}{n^7}\left(\sum_{m=-\infty}^{\infty} n e^{i \pi / 4}\left(\frac{1}{m^2+i n^2}-\frac{1}{m^2-i n^2}\right)\right)=\frac{1}{\pi} \Re \sum_{n=1}^{\infty} \frac{1}{n^7} \sum_{m=-\infty}^{\infty} \frac{-2 i n^3 e^{i \pi / 4}}{m^4+n^4}= \\
+		&=\frac{1}{\pi} \Re\left\{-2 i e^{i \pi / 4}\right\} \sum_{n=1}^{\infty} \frac{1}{n^4} \sum_{m=-\infty}^{\infty} \frac{1}{m^4+n^4}=\frac{\sqrt{2}}{\pi} \sum_{n=1}^{\infty} \frac{1}{n^4}\left(\frac{1}{n^4}+2 \sum_{m=1}^{\infty} \frac{1}{m^4+n^4}\right)= \\
+		&=\frac{\sqrt{2}}{\pi}\left[\sum_{n=1}^{\infty} \frac{1}{n^8}+2 \sum_{n=1}^{\infty} \sum_{m=1}^{\infty} \frac{\sqrt{2}}{n^4\left(m^4+n^4\right)}\left[\sum_{n=1}^{\infty} \frac{1}{n^8}+2 \sum_{m=1}^{\infty} \sum_{n=1}^{\infty} \frac{1}{m^4\left(m^4+n^4\right)}\right]=\right. \\
+		&=\frac{\sqrt{2}}{2 \pi}\left[\zeta(8)+\sum_{n=1}^{\infty} \sum_{m=1}^{\infty}\left(\frac{1}{n^4}+\frac{1}{m^4}\right) \frac{1}{m^4+n^4}\right\rceil=\frac{\sqrt{2}}{\pi}\left\lceil\zeta(8)+\zeta^2(4)\right\rceil=\frac{13 \sqrt{2}}{56700} \pi^7
+	\end{aligned}
+	$$
+	
+	\subsection{Cool integral1}
+	
+	$$
+	\begin{gathered}
+		I=\int_0^1 \ln ^2 \Gamma(x) d x=\frac{\ln 2 \pi}{2} \int_0^1 \ln \Gamma(x) d x+\sum_{k=1}^{\infty} \frac{1}{2 k} \int_0^1 \ln \Gamma(x) \cos 2 \pi k x d x+ \\
+		+\sum_{k=1}^{\infty} \frac{\gamma+\ln 2 \pi+\ln k}{\pi k} \int_0^1 \ln \Gamma(x) \sin 2 \pi k x d x= \\
+		=\frac{\ln ^2 2 \pi}{4}+\sum_{k=1}^{\infty} \frac{1}{2 k} \frac{1}{4 k}+\sum_{k=1}^{\infty} \frac{\gamma+\ln 2 \pi+\ln k}{\pi k} \cdot \frac{\gamma+\ln 2 \pi+\ln k}{2 \pi k}= \\
+		=\frac{\ln ^2 2 \pi}{4}+\frac{1}{8} \zeta(2)+\frac{(\gamma+\ln 2 \pi)^2}{2 \pi^2} \zeta(2)+\frac{\gamma+\ln 2 \pi}{2 \pi^2} \sum_{k=1}^{\infty} \frac{\ln k}{k^2}+ \\
+		+\frac{\gamma+\ln 2 \pi}{2 \pi^2} \sum_{k=1}^{\infty} \frac{\ln k}{k^2}+\frac{1}{2 \pi^2} \sum_{k=1}^{\infty} \frac{\ln ^2 k}{k^2}= \\
+		=\frac{\gamma^2}{12}+\frac{\pi^2}{48}+\frac{\gamma \ln 2 \pi}{6}+\frac{\ln ^2 2 \pi}{3}-\frac{\gamma+\ln 2 \pi}{\pi^2} \zeta^{\prime}(2)+\frac{\zeta^{\prime \prime}(2)}{2 \pi^2}
+	\end{gathered}
+	$$
+	
+	\subsection{Cool integral2}
+	
+	$$
+	I=\int_0^{\infty} \frac{\sqrt[3]{x+1}-\sqrt[3]{x}}{\sqrt{x}} d x \stackrel{x=\frac{1-t}{=}}{=} \int_0^1 t^{-11 / 6}(1-t)^{-1 / 2}\left[1-(1-t)^{1 / 3}\right] d t=
+	$$
+	$$=B(-\frac{5}{6}; \frac{1}{2})-B(-\frac{5}{6}; \frac{5}{6}) = B(-\frac{5}{6}; \frac{1}{2}) = \frac{\sqrt{\pi}\Gamma(-\frac{5}{6})}{\Gamma(-\frac{1}{3})}
+	=\frac{2 \sqrt{\pi} \Gamma\left(\frac{1}{6}\right)}{5 \Gamma\left(\frac{2}{3}\right)} $$
+	
+	\subsection{Cool integral3}
+	
+	$$
+	\begin{aligned}
+		I= & \int_0^1 \int_0^1 \int_0^1 \frac{d x d y d z}{1+x^4+y^4+z^4}=\int_0^{\infty} \iiint_0^1 e^{-\left(x^4+y^4+z^4+1 v\right)} d x d y d z d v= \\
+		& =\int_0^{\infty} e^{-v}\left\{\int_0^1 e^{-x^4 v} d x\right\} d v=\int_0^{\infty} e^{-v}\left\{\frac{v^{-1 / 4}}{4} \int_0^v x^{-3 / 4} e^{-x} d x\right\} d v= \\
+		& \left.=\frac{1}{4^4} \int_0^{\infty} 4 v^{-3 / 4} e^{-v}\left\{\int_0^v x^{-3 / 4} e^{-x} d x\right\} d v=\frac{1}{4^4} \int_0^{\infty} d \int_0^v x^{-3 / 4} e^{-x} d x\right]^4=\frac{\Gamma^4\left(\frac{1}{4}\right)}{4^4}
+	\end{aligned}
+	$$
+	
+	\subsection{Cool integral4}
+	
+	$$
+	\begin{aligned}
+		& I=\int_0^{\infty} \exp \left\{-\frac{x^4+1}{2 a x^2}\right\} \frac{x^4+3 a x^2-1}{x^6} \ln x d x \stackrel{x=e^\theta}{=} \\
+		& =\int_{=\infty}^{\infty} e^{-\operatorname{ch}(2 \theta) / a}\left(e^{-2 \theta}+3 a e^{-4 \theta}-e^{-6 \theta}\right)^\theta d \theta= \\
+		& =2 \int_0^{\infty} e^{-\operatorname{ch}(2 \theta) / a}(\operatorname{sh} \theta-3 a \operatorname{sh} 3 \theta+\operatorname{sh} 5 \theta) \theta=\int_0^{\infty} \frac{\mathrm{d}}{\mathrm{d} \theta}\left[-a e^{-\operatorname{ch}(2 \theta) / a} \operatorname{ch} 3 \theta\right] \theta d \theta= \\
+		& =2 a \int_0^{\infty} e^{-\operatorname{ch}(2 \theta) / a} \operatorname{ch} 3 \theta d \theta=2 a \int_0^{\infty} \exp \left\{-\frac{2 \operatorname{sh}^2 \theta+1}{a}\right\}\left(-3 \operatorname{ch} \theta+4 \operatorname{ch}^3 \theta\right) d \theta= \\
+		& =2 a e^{-1 / a} \int_0^{\infty} \exp \left\{-\frac{2 \operatorname{sh}^2 \theta+1}{a}\right\}\left(1+4 \operatorname{sh}^2 \theta\right) \operatorname{ch} \theta d \theta= \\
+		& =2 a e^{-1 / a} \int_0^{\infty} e^{-2 t^2 / a}\left(1+4 t^2\right) d t=\left.2 a e^{-1 / a}\left(1-4 \frac{\partial}{\partial \beta}\right) \int_0^{\infty} d t\right|_{\beta=2 / a}= \\
+		& =\left.2 a e^{-1 / a}\left(1-4 \frac{\partial}{\partial \beta}\right)\left(\frac{\sqrt{\pi}}{2} \beta^{-1 / 2}\right)\right|_{\beta=2 / a}= \\
+		& =\left.\sqrt{\pi} a e^{-1 / a}\left(\beta^{-1 / 2}+2 \beta^{-3 / 2}\right)\right|_{\beta=2 a}=\sqrt{\frac{\pi}{2}}(1+a) a^{3/2} e^{-1 / a} . \\
+		&
+	\end{aligned}
+	$$
+	
+	\subsection{Seria1.1}
+	
+	Вычислить сумму
+	$$
+	\begin{gathered}
+		1+\left(\frac{1}{2}+\frac{1}{3}\right) \frac{1}{4}+\left(\frac{1}{4}+\frac{1}{5}\right) \frac{1}{4^2}+\left(\frac{1}{6}+\frac{1}{7}\right) \frac{1}{4^3}+\ldots \\
+		S=1+\sum_{k \geq 1}\left(\frac{1}{2 k}+\frac{1}{2 k+1}\right) \frac{1}{4^k}=1+\sum_{k \geq 1}\left\{\int_0^1\left[\frac{1}{2}\left(\frac{x}{2}\right)^{2 k-1}+\left(\frac{x}{2}\right)^{2 k}\right] d x\right\}= \\
+		=1+\int_0^1\left[\frac{1}{2} \sum_{k \geq 1}\left(\frac{x}{2}\right)^{2 k-1}+\sum_{k \geq 1}\left(\frac{x}{2}\right)^{2 k}\right] d x=1+\int_0^1\left(\frac{x / 2}{2\left(1-x^2 / 4\right)}+\frac{x^2 / 4}{1-x^2 / 4}\right) d x= \\
+		=1+\int_0^1\left(\frac{1}{2(x+2)}-\frac{3}{2(x-2)}-1\right) d x=\frac{1}{2} \ln \frac{3}{2}+\frac{3}{2} \ln 2=\ln 2 \sqrt{3}
+	\end{gathered}
+	$$
+	
+	\subsection{Seria1.2}
+	
+	Вычислить сумму
+	$$
+	\begin{gathered}
+		1+\left(\frac{1}{2}+\frac{1}{3}\right) \frac{1}{4}+\left(\frac{1}{4}+\frac{1}{5}\right) \frac{1}{4^2}+\left(\frac{1}{6}+\frac{1}{7}\right) \frac{1}{4^3}+\ldots \\
+		\ln (1-x)=-\sum_{n=1}^{\infty} \frac{x^n}{n} \Rightarrow \ln \left(1-\frac{1}{4}\right)=\ln \frac{3}{4} \Rightarrow \frac{1}{4}+\frac{1}{2 \cdot 4^2}+\frac{1}{3 \cdot 4^3}+\ldots=\ln \frac{1}{3} \\
+		\operatorname{ath} x=x+\frac{x^3}{3}+\frac{x^5}{5}+\ldots \Rightarrow 2 \operatorname{ath} \frac{1}{2}=1+\frac{1}{3 \cdot 2^2}+\frac{1}{5 \cdot 2^4}+\ldots \\
+		S=1+\sum_{i=1}^{\infty}\left(\frac{1}{2 i}+\frac{1}{2 i+1}\right) \frac{1}{4^i}=1+\frac{1}{2} \sum_{i=1}^{\infty} \frac{1}{i \cdot 4^i}+\sum_{i=1}^{\infty} \frac{1}{2 i+1} \cdot \frac{1}{4^i}= \\
+		=1+\frac{1}{2}\left[\frac{1}{4}+\frac{1}{2 \cdot 4^2}+\frac{1}{3 \cdot 4^3}+\ldots\right]+\left[\frac{1}{3 \cdot 4}+\frac{1}{5 \cdot 4^2}+\frac{1}{7 \cdot 4^3}+\ldots\right]=
+	\end{gathered}
+	$$
+	
+	\subsection{Seria1.3}
+	
+	Вычислить сумму
+	$$
+	\begin{gathered}
+		S=1+\sum_{n=1}^{\infty}\left(\frac{1}{2 n}+\frac{1}{2 n+1}\right) \frac{1}{4^n}=1+\underbrace{\sum_{n=1}^{\infty} \frac{4^{-n}}{2 n}}_{S_1}+\underbrace{\sum_{n=1}^{\infty} \frac{4^{-n}}{2 n+1}}_{S_2} \\
+		S_1=\sum_{n=1}^{\infty} \frac{2^{-2 n}}{n}=-\frac{1}{2} \ln \frac{3}{4}=\ln \frac{2 \sqrt{3}}{3} \\
+		S_2=\sum_{n=1}^{\infty} \frac{4}{4} \cdot \frac{4^{-n}}{2 n+1}=\sum_{n=1}^{\infty} \frac{4^{1-n}}{8(n+1 / 2)}=\sum_{n=0}^{\infty} \frac{4(n+3 / 2)}{8\left(n+\frac{1}{4}\right.}= \\
+		S=1+\ln \frac{2 \sqrt{3}}{3}+\frac{1}{8} \Phi\left(\frac{1}{4}, 1, \frac{3}{2}\right) \\
+		\sum_{n=0}^{\infty} \frac{2^{-2 n}}{n+3 / 2}=\frac{1}{8} \Phi\left(\frac{1}{4}, 1, \frac{3}{2}\right)
+	\end{gathered}
+	$$
+	
+	\subsection{Seria2}
+	
+	Вычислить сумму
+	$$
+	\begin{gathered}
+		\operatorname{cth} \pi+\frac{\operatorname{cth} 2 \pi}{2^7}+\frac{\operatorname{cth} 3 \pi}{3^7}+\frac{\operatorname{cth} 4 \pi}{4^7}+\ldots \\
+		\operatorname{cth} \pi t=\frac{1}{\pi t}+\frac{2 t}{\pi} \sum_{k=1}^{\infty} \frac{1}{k^2+t^2} \Rightarrow \frac{\pi c t h \pi t}{t^7}=\frac{1}{t^8}+2 t^6 \sum_{k=1}^{\infty} \frac{1}{k^2+t^2} \\
+		S=\sum_{t=1}^{\infty} \frac{\pi c t h \pi t}{t^7}=\sum_{t=1}^{\infty} \frac{1}{t^8}+2 \sum_{t=1}^{\infty} \sum_{k=1}^{\infty} \frac{1}{t^6\left(l^2+t^2\right)}= \\
+		=\zeta(8)+\sum_{t=1}^{\infty} \sum_{k=1}^{\infty}\left(\frac{1}{t^6\left(t^2+k^2\right)}+\frac{1}{k^6\left(k^2+t^2\right)}\right)=\zeta(8)+\sum_{t=1}^{\infty} \sum_{k=1}^{\infty} \frac{t^6+n^6}{t^6 k^6\left(t^2+k^2\right)}= \\
+		=\zeta(8)+\sum_{t=1}^{\infty} \sum_{k=1}^{\infty} \frac{k^4+t^4-t^2 k^2}{t^6 k^6}=\zeta(8)+\sum_{t=1}^{\infty} \frac{1}{t^6} \sum_{k=1}^{\infty} \frac{1}{k^2}-\sum_{t=1}^{\infty} \frac{1}{t^4} \sum_{k=1}^{\infty} \frac{1}{k^4}+\sum_{t=1}^{\infty} \frac{1}{k^2} \sum_{k=1}^{\infty} \frac{1}{k^6}=
+	\end{gathered}
+	$$
+	
+	\subsection{Identity}
+	
+	$$
+	\begin{aligned}
+		\pi & =\sum_{n=1}^{\infty} 2^n \sin \frac{\pi}{2^n}\left(1-\cos \frac{\pi}{2^n}\right) \\
+		\pi^2 & =\sum_{n=1}^{\infty} 4^n \sin ^4 \frac{\pi}{2^n}
+	\end{aligned}
+	$$
+	
+	$$
+	\pi=\int_0^\pi \cos (a \cos x) \operatorname{ch}(a \sin x) d x
+	$$
+	
+	$$
+	\pi=\left\{\int_{-\infty}^{\infty}\left(\frac{\sin 2 \pi x}{x}\right)^2 \frac{\Gamma\left(x+\frac{1}{2}\right)}{x \Gamma(x+1)} d x\right\}^{2 / 5}
+	$$
+	
+	\subsection{Seria3}
+	
+	$$
+	\begin{aligned}
+		& S=\sum_{n \geq 1} 4^n \sin ^4 \frac{\pi}{2^n}=\sum_{n \geq 1} 4^n\left[\frac{3}{8}-\frac{1}{2} \cos \frac{\pi}{2^{n-1}}+\frac{1}{8} \cos \frac{\pi}{2^{n-2}}\right]= \\
+		& =\lim _{m \rightarrow \infty}\left[\frac{3}{8} \sum_{n=1}^m 4^n-2 \sum_{n=1}^m 2^{2(n-1)} \cos \frac{\pi}{2^{n-1}}+2 \sum_{n=1}^m 2^{2(n-2)} \cos \frac{\pi}{2^{n-2}}\right]= \\
+		& =\lim _{m \rightarrow \infty}\left[\frac{3}{8} \cdot \frac{4^m-1}{4-1}-2 \sum_{n=2}^{m+1} 2^{2(n-2)} \cos \frac{\pi}{2^{n-2}}+2 \sum_{n=1}^m 2^{2(n-2)} \cos \frac{\pi}{2^{n-2}}\right]= \\
+		& =\lim _{m \rightarrow \infty}\left[\frac{4^m-1}{2}-2\left[\sum_{n=2}^m 2^{2(n-2)} \cos \frac{\pi}{2^{n-2}}+2^{2(m-1)} \cos \frac{\pi}{2^{m-1}}\right]+2\left[2^{-2} \cos 2 \pi \sum_{n=2}^m 2^{2(n-2)} \cos \frac{\pi}{2^{n-2}}\right]\right]= \\
+		& =\lim _{m \rightarrow \infty}\left[2^{2 m-1}-\frac{1}{2}-2^{2 m-1} \cos \frac{\pi}{2^{m-1}}+\frac{1}{2} \cos 2 \pi\right]=\lim _{m \rightarrow \infty}\left[2^{2 m-1}-2^{m-1}\left(1-\frac{1}{2} \cdot \frac{\pi^2}{2^{2 m-2}}\right)\right]=\pi^2
+	\end{aligned}
+	$$
+	
+	\subsection{Seria4.1}
+	
+	Вычислить сумму
+	$$
+	\begin{aligned}
+		\sum_{i=1}^{\infty} \sum_{j=1}^{\infty} \frac{j^2-i^2}{\left(j^2+i^2\right)^2} & =\lim _{\alpha \rightarrow 0} \sum_{i=1}^{\infty} \sum_{j=1}^{\infty} \frac{j^2-i^2(1+\alpha)^2}{\left(j^2+i^2(1+\alpha)^2\right)^2} \frac{n^2-m^2}{\left(n^2+m^2\right)^2}(1+\alpha) \\
+		& =\lim _{\alpha \rightarrow 0} \lim _{n \rightarrow \infty} \sum_{i=1}^n \sum_{j=1}^n \frac{j^2-i^2(1+\alpha)^2}{\left(j^2+i^2(1+\alpha)^2\right)^2}(1+\alpha) \\
+		& =\lim _{\alpha \rightarrow 0} \lim _{n \rightarrow \infty} \sum_{i=1}^n \sum_{j=1}^n \frac{\left(\frac{j}{n}\right)^2-\left(\frac{i(1+\alpha)}{n}\right)^2}{\left(\left(\frac{j}{n}\right)^2+\left(\frac{i(1+\alpha)}{n}\right)^2\right)^2}\left(\frac{1+\alpha}{n}\right) \frac{1}{n} \\
+		& =\lim _{\alpha \rightarrow 0} \int_0^1 \int_0^{1+\alpha} \frac{1}{\left(y^2+x^2\right)^2} d x d y=\int_0^2 \frac{y^2-x^2}{\left(y^2+x^2\right)^2} d x d y
+	\end{aligned}
+	$$
+	
+	$$\begin{aligned}
+		& S=\sum_{m=1}^{\infty} \sum_{n=1}^{\infty} \frac{n^2-m^2}{\left(n^2+m^2\right)^2}=\int_0^1 \int_0^1 \frac{y^2-x^2}{\left(y^2+x^2\right)^2} d x d y=\int_0^1 \int_0^{1 / y} \frac{y^2\left(1-z^2\right)}{y^4\left(1+z^2\right)^2} y d z d y \\
+		& =\int_0^1 \int_0^{1 / y} \frac{1-z^2}{\left(1+z^2\right)^2} d z d(\ln y)=\left.\ln y \int_0^{1 / y} \frac{1-z^2}{\left(1+z^2\right)^2} d z\right|_0 ^1+\int_0^1 \frac{\left(1-\frac{1}{y^2}\right) \ln y}{\left(1+\frac{1}{y^2}\right)^2} \frac{d y}{y^2} \\
+		& =\int_0^1 \frac{\left(y^2-1\right) \ln y}{\left(y^2+1\right)^2} d y=\int_0^1 \frac{y^2 \ln y}{\left(y^2+1\right)^2} d y-\int_0^1 \frac{\ln y}{\left(y^2+1\right)^2} d y \\
+		& =-\int_1^{\infty} \frac{\ln x}{\left(x^2+1\right)^2} d x-\int_0^1 \frac{\ln x}{\left(x^2+1\right)^2} d x=-\int_0^{\infty} \frac{\ln x}{\left(x^2+1\right)^2} d x \\
+		& =-\frac{1}{4} \int_0^{\infty} \frac{y^{-1 / 2} \ln y}{(y+1)^2} d y=-\left.\frac{1}{4} \frac{\mathrm{d}}{\mathrm{d} s} \int_0^{\infty} \frac{y^{s-1}}{(y+1)^2} d y\right|_{s=1 / 2}=-\left.\frac{1}{4} \frac{\mathrm{d}}{\mathrm{d} s} \frac{\Gamma(s) \Gamma(2-s)}{\Gamma(2)}\right|_{s=1 / 2} \\
+		& =-\left.\frac{1}{4} \frac{\mathrm{d}}{\mathrm{d} s} \frac{(1-s) \pi}{\sin \pi s}\right|_{s=1 / 2}=\frac{\pi}{4} \\
+		&
+	\end{aligned}$$
+
+	\subsection{Seria4.2}
+	
+	$$
+	\begin{aligned}
+		S & =\sum_{n=1}^{\infty} \sum_{m=1}^{\infty} \frac{n^2-m^2}{\left(n^2+m^2\right)^2}=\sum_{n=1}^{\infty} \sum_{m=1}^{\infty} \operatorname{Re} \frac{1}{(n+i m)^2}=\lim _{N \rightarrow \infty} \frac{1}{N^2} \sum_{n=1}^{\infty} \sum_{m=1}^{\infty} \frac{(n/N)^2-(m/n)^2}{\left((n/N)^2+(m/n)^2\right)^2} \\
+		& = \lim _{N \rightarrow \infty} \frac{1}{N^2} \sum_{n=1}^N \sum_{m=1}^N \operatorname{Re} \frac{1}{(n / N+i m / N)^2}=\int_0^1 \int_0^1 \operatorname{Re} \frac{1}{(x+i y)^2} d y d x=\left.\int_0^1 \operatorname{Re} \frac{i}{x+i y}\right|_0 ^1 d x \\
+		& =\operatorname{Re} \int_0^1 \frac{i}{x+i} d x=\left.\operatorname{Re}\{i \ln (x+i)\}\right|_0 ^1=-\operatorname{Im} \ln \left(\frac{1+i}{i}\right)=-\operatorname{Im} \ln \left(\sqrt{\pi} e^{-i \pi / 4}\right)=\frac{\pi}{4}
+	\end{aligned}
+	$$
+	
+	\subsection{Cool integral5}
+	
+	$$
+	\begin{gathered}
+		I=\int_0^{\infty} \sin x \cdot \ln x \cdot e^{-x} d x \\
+		\int_0^{\infty} \ln x \cdot e^{-p x} d x=\left.\frac{\partial}{\partial s}\right|_{s=1} \int_0^{\infty} x^{s-1} e^{-p x} d x=\left.\frac{\partial}{\partial s}\right|_{s=1} \frac{\Gamma(s)}{p^s}= \\
+		=\left[\frac{\Gamma(s)}{p^s}(\psi(s)-\ln p)\right]_{s=1}^{\infty}=-\frac{\gamma+\ln p}{p} \\
+		=\operatorname{Im} \int_0^{\infty} \ln x \cdot e^{-x(1-i)} d x=-\operatorname{Im}\left\{\frac{\gamma+\ln (1-i)}{1-i}\right\}= \\
+		=-\frac{1}{2} \operatorname{Im}\left\{(1+i)\left(\gamma+\ln \sqrt{2} e^{-\frac{i \pi}{4}}\right)\right\}=-\frac{1}{2} \operatorname{Im}\left\{(1+i)\left(\gamma+\frac{1}{2} \ln 2-\frac{i \pi}{4}\right)\right\}= \\
+		=-\frac{1}{2}\left(\gamma+\frac{1}{2} \ln 2-\frac{\pi}{4}\right)=\frac{1}{8}(\pi-\ln 4-4 \gamma)		
+	\end{gathered}
+	$$
+	
+	
+	
+\end{document}
