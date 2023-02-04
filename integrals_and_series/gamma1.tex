@@ -1,7 +1,7 @@
 \input{default}
 \begin{document}
-	\section{Gamma function}
-	\subsection{Definition and basic properties}
+	\section{Special functions}
+	\subsection{Definition and basic properties of Gamma function}
 	$$
 	\begin{aligned}
 		\Gamma(s) &=\int_0^{\infty} t^{s-1} e^{-t} d t \quad \operatorname{Re}(s)>0 \\
@@ -74,6 +74,862 @@
 	\end{gathered}
 	$$
 	\subsection{Relationship to Sine}
+	
+	\begin{equation}
+		\begin{gathered}
+			\Gamma(s)=\lim_{n \rightarrow \infty}\left(\frac{n^s}{s} \prod_{i=1}^n \frac{i}{i\left(1+\frac{s}{i}\right)}\right) \\
+			\Gamma(-s)=\lim_{n \rightarrow \infty}\left(\frac{n^{-s}}{-s} \prod_{i=1}^n \frac{i}{i\left(1-\frac{s}{i}\right)}\right) \\
+			\Gamma(s) \Gamma(-s)=\lim_{n \rightarrow \infty}\left(\frac{n^s}{s} \frac{n^{-s}}{-s} \prod_{i=1}^n \frac{1}{\left(1+\frac{s}{i}\right)\left(1-\frac{s}{i}\right)}\right)
+		\end{gathered}
+	\end{equation}
+
+	$$\begin{gathered}\Gamma(s) \Gamma(-s) \cdot(-s)=\lim _{n \rightarrow \infty}\left(\frac{1}{s} \prod_{i=1}^n \frac{1}{\left(1-\frac{s^2}{i^2}\right)}\right) \\ \Gamma(s) \Gamma(1-s)=\frac{1}{s} \prod_{i=1}^{\infty} \frac{1}{\left(1-\frac{s^2}{i^2}\right)} \\ \frac{\pi}{\sin \pi s}=\frac{1}{s} \prod_{i=1}^{\infty} \frac{1}{\left(1-\frac{s^2}{i^2}\right)} \\ \Gamma\left(s\right) \Gamma(1-s)=\frac{\pi}{\sin \pi s}\end{gathered}$$
+	
+	\subsection{Example: Gamma of $\frac{1}{2}$}
+	
+	$$\begin{gathered}\Gamma(s) \Gamma(1-s)=\frac{\pi}{\sin \pi s} \\ \Gamma\left(\frac{1}{2}\right) \Gamma\left(1-\frac{1}{2}\right)=\frac{\pi}{\sin \frac{\pi}{2}} \\ \Gamma^2\left(\frac{1}{2}\right)=\pi \\ \Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}\end{gathered}$$
+	
+	$$
+	\begin{gathered}
+		\Gamma\left(\frac{1}{2}\right)=\int_0^{\infty} t^{\frac{1}{2}-1} e^{-t} d t=\int_0^{\infty} \frac{1}{\sqrt{t}} e^{-t} d t \\
+		\sqrt{\pi}=\int_0^{\infty} \frac{1}{\sqrt{t}} e^{-t} d t \\
+		t=p u^2 \Rightarrow d t=2 p u d u \quad \mathrm{p}>0 \\
+		\int_0^{\infty} \frac{1}{\sqrt{p u^2}} e^{-p u^2} 2 p u d u=2 \sqrt{p} \int_0^{\infty} e^{-p u^2} d u=\sqrt{\pi} \\
+		\sqrt{\frac{\pi}{p}}=\int_{-\infty}^{\infty} e^{-p u^2} d u
+	\end{gathered}
+	$$
+	
+	\subsection{Stirling's approximation}
+	
+	$$
+	\begin{gathered}
+		\qquad \Gamma(n+1)=n !=\int_0^{\infty} t^n e^{-t} d t \\
+		\log \left(t^n e^{-t}\right)=n \log t-t \\
+		n \log t-t=n \log (n+\varepsilon)-(n+\varepsilon) \\
+		\log (n+\varepsilon)=\log n\left(1+\frac{\varepsilon}{n}\right)=\log n+\log \left(1+\frac{\varepsilon}{n}\right) \\
+		\text { For very } \operatorname{large} n, \text { we can guarantee that } \frac{\varepsilon}{n}<1 \\
+		\log \left(1+\frac{\varepsilon}{n}\right)=\sum_{k=1}^{\infty} \frac{(-1)^{k+1}}{k} \frac{\varepsilon^k}{n^k}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\log (n+\varepsilon)-(n+\varepsilon)=n\left(\log n+\sum_{k=1}^{\infty} \frac{(-1)^{k+1}}{k} \frac{\varepsilon^k}{n^k}\right)-n-\varepsilon \\
+		\log n-n+\sum_{k=1}^{\infty} \frac{(-1)^{k+1}}{k} \frac{\varepsilon^k}{n^{k-1}}-\varepsilon \\
+		\log n-n+\sum_{k=2}^{\infty} \frac{(-1)^{k+1}}{k} \frac{\varepsilon^k}{n^{k-1}} \\
+		\log n-n-\frac{\varepsilon^2}{2 n}+\frac{\varepsilon^3}{3 n^2}-\frac{\varepsilon^4}{4 n^3} \pm \ldots \\
+		\log \left(t^n e^{-t}\right) \approx n \log n-n-\frac{\varepsilon^2}{2 n} \quad t^n e^{-t} \approx \frac{n^n}{e^n} e^{-\frac{\varepsilon^2}{2 n}}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		t^n e^{-t} \approx \frac{n^n}{e^n} e^{-\frac{\varepsilon^2}{2 n}} \\
+		n !=\int_0^{\infty} t^n e^{-t} d t \approx \int_{-n}^{\infty} \frac{n^n}{e^n} e^{-\frac{\varepsilon^2}{2 n}} d \varepsilon \\
+		\sqrt{\frac{\pi}{p}}=\int_{-\infty}^{\infty} e^{-p x^2} d x  \\
+		n ! \approx \frac{n^n}{e^n} \sqrt{2 n \pi}
+	\end{gathered}
+	$$
+	
+	%TODO: prove this by метод наикрутейшего спуска
+	%TODO: Логарифм гаммы
+	
+	\subsection{Euler Integral $\RNumb{1}$}
+	
+	$$
+	\begin{gathered}
+		\Gamma(s)=\int_0^\infty t^{s-1} e^{-t} d t \\
+		t=p u^n \rightarrow d t=p n u^{n-1} d u \\
+		\Gamma(s)=\int_0^{\infty} p^{s-1} u^{n(s-1)} e^{-p u^n} p n u^{n-1} d u \\
+		\Gamma(s)=\int_0^{\infty} n p^s u^{n s-1} e^{-p u^n} d u \\
+		\frac{\Gamma(s)}{n p^s}=\int_0^{\infty} u^{n s-1} e^{-p u^n} d u \quad \frac{\Gamma(s)}{n \bar{p}^s}=\int_0^{\infty} u^{n s-1} e^{-\bar{p} u^n} d u
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\frac{\Gamma(s)}{n \bar{p}^s} \pm \frac{\Gamma(s)}{n p^s}=\int_0^{\infty}\left\{u^{n s-1} e^{-\bar{p} u^n} \pm u^{n s-1} e^{-p u^n}\right\} d u \\
+		\frac{\Gamma(s)}{n}\left(\frac{1}{\bar{p}^s} \pm \frac{1}{p^s}\right)=\int_0^{\infty} u^{n s-1}\left(e^{-\bar{p} u^n} \pm e^{-p u^n}\right) d u \\
+		p=a+i b \quad p=|p| e^{i \alpha} \quad p^s=|p|^s e^{i \alpha s} \\
+		\bar{p}=a-i b \quad \bar{p}=|p| e^{-i \alpha} \quad \bar{p}^s=|p|^s e^{-i \alpha s} \\
+		\frac{\Gamma(s)}{n|p|^s}\left(\frac{1}{e^{-i \alpha s}} \pm \frac{1}{e^{i \alpha s}}\right)=\int_0^{\infty} u^{n s-1}\left(e^{-(a-i b) u^n} \pm e^{-(a+i b) u^n}\right) d u \\
+		\frac{\Gamma(s)}{n|p|^s}\left(e^{i \alpha s} \pm e^{-i \alpha s}\right)=\int_0^{\infty} u^{n s-1}\left(e^{-a u^n+i b u^n} \pm e^{-a u u^n-i b u^n}\right) d u
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\frac{\Gamma(s)}{n|p|^s}\left(e^{i \alpha s} \pm e^{-i \alpha s}\right)=\int_0^{\infty} u^{n s-1}\left(e^{-a u^n+i b u^n} \pm e^{-a u^n-i b u^n}\right) d u \\
+		\frac{\Gamma(s)}{n|p|^s}\left(e^{i \alpha s} \pm e^{-i \alpha s}\right)=\int_0^{\infty} u^{n s-1} e^{-a u^n}\left(e^{+i b u^n} \pm e^{-i b u^n}\right) d u \\
+		\frac{\Gamma(s)}{n|p|^s} 2 \cos (\alpha s)=\int_0^{\infty} u^{n s-1} e^{-a u^n} 2 \cos \left(b u^n\right) d u \\
+		\frac{\Gamma(s)}{n|p|^s} 2 i \sin (\alpha s)=\int_0^{\infty} u^{n s-1} e^{-a u^n} 2 i \sin \left(b u^n\right) d u
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\frac{\Gamma(s)}{n|p|^s} \cos (\alpha s)=\int_0^{\infty} u^{n s-1} e^{-a u^n} \cos \left(b u^n\right) d u \\
+		\frac{\Gamma(s)}{n|p|^s} \sin (\alpha s)=\int_0^{\infty} u^{n s-1} e^{-a u^n} \sin \left(b u^n\right) d u \\
+		p=a+i b \quad|p|=\sqrt{a^2+b^2} \tan \alpha=\frac{b}{a} \\
+		\tan \alpha=\frac{b}{0} \Rightarrow \alpha=\frac{\pi}{2}
+	\end{gathered}
+	$$
+	
+	\subsection{Euler Integral $\RNumb{2}$. The Sinc-Function}
+	
+	$$
+	\begin{gathered}
+		\int_0^{\infty} \frac{\sin x}{x} d x \\
+		\frac{\Gamma(s)}{n|p|^s} \sin (\alpha s)=\int_0^{\infty} u^{n s-1} e^{-a u^n} \sin \left(b u^n\right) d u \\
+		s=0 \quad a=0 \quad b=1 \quad n=1 \\
+		|p|=\sqrt{a^2+b^2}=1 \\
+		\tan \alpha=\frac{1}{0}=\infty \Rightarrow \alpha=\frac{\pi}{2} \\
+		\Gamma(s) \Gamma(1-s)=\frac{\pi}{\sin \pi s}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\sin \frac{\pi s}{2} \cdot \frac{\pi}{\sin \pi s \cdot \Gamma(1-s)}=\int_0^{\infty}\left\{u^{s-1} \sin u\right\} d u \\
+		\frac{\pi}{2} \frac{\sin \frac{\pi s}{2}}{\frac{\pi s}{2}} \cdot \frac{\pi s}{\sin \pi s \cdot \Gamma(1-s)}=\int_0^{\infty}\left\{u^{s-1} \sin u\right\} d u \\
+		\int_0^{\infty}\left\{u^{-1} \sin u\right\} d u=\frac{\pi}{2} \lim _{s \rightarrow 0}\left\{\frac{\pi}{\frac{\pi s}{2}} \cdot \frac{\pi s}{\sin \pi s \cdot \Gamma(1-s)}\right\}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\int_0^{\infty}\left\{u^{-1} \sin u\right\} d u=\frac{\pi}{2} \frac{1}{\Gamma(1)} \lim _{s \rightarrow 0} \frac{\sin \frac{\pi s}{2}}{\frac{\pi s}{2}} \cdot \lim _{s \rightarrow 0} \frac{\pi s}{\sin \pi s} \\
+		\lim _{x \rightarrow 0} \frac{\sin x}{x}=1 \\
+		\int_0^{\infty}\left\{u^{-1} \sin u\right\} d u=\frac{\pi}{2} \frac{1}{0 !} \\
+		\int_0^{\infty} \frac{\sin u}{u} d u=\frac{\pi}{2}
+	\end{gathered}
+	$$
+	
+	\subsection{Euler Integral $\RNumb{3}$. Fresnel Integral}
+	%TODO: solve this by eiry function
+	$$
+	\begin{gathered}
+		\int_0^{\infty} \sin u^2 d u \\
+		\frac{\Gamma(s)}{n|p|^s} \sin (\alpha s)=\int_0^{\infty} u^{n s-1} e^{-a u^n} \sin \left(b u^n\right) d u \\
+		s=\frac{1}{2} \Gamma\left(\frac{1}{2}\right)=\sqrt{\pi} \quad a=0 \quad b=1 \quad n=2 \\
+		|p|=\sqrt{a^2+b^2}=1 \quad \tan \alpha=\frac{1}{0}=\infty \Rightarrow \alpha=\frac{\pi}{2} \\
+		\frac{1}{2} \Gamma\left(\frac{1}{2}\right) \sin \left(\frac{\pi}{4}\right)=\int_0^{\infty} \sin u^2 d u \\
+		\int_0^{\infty} \sin u^2 d u=\frac{\sqrt{2 \pi}}{4}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\int_0^{\infty} \cos u^2 d u \\
+		\frac{\Gamma(s)}{n|p|^s} \cos (\alpha s)=\int_0^{\infty} u^{n s-1} e^{-a u^n} \cos \left(b u^n\right) d u \\
+		s=\frac{1}{2} \quad \Gamma\left(\frac{1}{2}\right)=\sqrt{\pi} \quad a=0 \quad b=1 \quad n=2 \\
+		|p|=\sqrt{a^2+b^2}=1 \quad \tan \alpha=\frac{1}{0}=\infty \Rightarrow \alpha=\frac{\pi}{2} \\
+		\frac{1}{2} \Gamma\left(\frac{1}{2}\right) \cos \left(\frac{\pi}{4}\right)=\int_0^{\infty} \cos u^2 d u \\
+		\int_0^{\infty} \cos u^2 d u=\frac{\sqrt{2 \pi}}{4}
+	\end{gathered}
+	$$
+	
+	\subsection{Beta Function}
+	
+	$$
+	\begin{gathered}
+		\Gamma\left(s_1\right) \cdot \Gamma\left(s_2\right)=\int_0^{\infty} x^{s_1-1} e^{-x} d x \cdot \int_0^{\infty} y^{s_2-1} e^{-y} d y \\
+		x=u^2 d x=2 u d u \\
+		y=v^2 d y=2 v d v \\
+		\int_0^{\infty} u^{2 s_1-2} e^{-u^2} 2 u d u \cdot \int_0^{\infty} v^{2 s_2-2} e^{-v^2} 2 v d v \\
+		4 \int_0^{\infty} u^{2 s_1-1} e^{-u^2} d u \cdot \int_0^{\infty} v^{2 s_2-1} e^{-v^2} d v
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		4 \int_0^{\infty}\left(\int_0^{\infty} v^{2 s_2-1} e^{-v^2} d v\right) u^{2 s_1-1} e^{-u^2} d u \\
+		4 \int_0^{\infty} \int_0^{\infty} v^{2 s_2-1} e^{-v^2} u^{2 s_1-1} e^{-u^2} d v d u \\
+		4 \int_0^{\infty} \int_0^{\infty} v^{2 s_2-1} u^{2 s_1-1} e^{-\left(v^2+u^2\right)} d v d u \\
+		v=r \cos \alpha \quad u=r \sin \alpha \\
+		d v d u=r d \alpha d r \quad r:\left.\right|_0 ^{\infty} \quad \alpha:\left.\right|_0 ^{\frac{\pi}{2}} \\
+		4 \int_0^{\infty} \int_0^{\frac{\pi}{2}} r^{2 s_2-1}(\cos \alpha)^{2 s_2-1} r^{2 s_1-1}(\sin \alpha)^{2 s_1-1} e^{-r^2} r d \alpha d r
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{aligned}
+		& 4 \int_0^{\infty} \int_0^{\frac{\pi}{2}} r^{2 s_2-1} r^{2 s_1-1} e^{-r^2} r(\cos \alpha)^{2 s_2-1}(\sin \alpha)^{2 s_1-1} d \alpha d r \\
+		& \left.4 \int_0^{\infty} \int_0^{\frac{\pi}{2}} \int_0^2(\cos \alpha)^{2 s_2-1}(\sin \alpha)^{2 s_1-1} d \alpha\right) r^{2 s_1+2 s_2-2} e^{-r^2} r d r \\
+		& 4 \int_0^{\infty} r^{2 s_1+2 s_2-2} e^{-r^2} r d r \cdot \int_0^{\frac{\pi}{2}}(\cos \alpha)^{2 s_2-1}(\sin \alpha)^{2 s_1-1} d \alpha \\
+		& \int_0^{\infty} r^{2 s_1+2 s_2-2} e^{-r^2} 2 r d r \cdot 2 \int_0^{\frac{\pi}{2}}(\cos \alpha)^{2 s_2-1}(\sin \alpha)^{2 s_1-1} d \alpha
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		\int_0^{\infty}\left(r^2\right)^{s_1+s_2-1} e^{-r^2} 2 r d r \cdot 2 \int_0^{\frac{\pi}{2}}(\cos \alpha)^{2 s_2-1}(\sin \alpha)^{2 s_1-1} d \alpha \\
+		r^2=u \quad 2 r d r=d u \\
+		\int_0^{\infty} u^{s_1+s_2-1} e^{-u} d u \cdot 2 \int_0^{\frac{\pi}{2}}(\cos \alpha)^{2 s_2-1}(\sin \alpha)^{2 s_1-1} d \alpha \\
+		\Gamma\left(s_1+s_2\right) \cdot 2 \int_0^{\frac{\pi}{2}}(\cos \alpha)^{2 s_2-1}(\sin \alpha)^{2 s_1-1} d \alpha \\
+		\Gamma\left(s_1\right) \cdot \Gamma\left(s_2\right)=\Gamma\left(s_1+s_2\right) \cdot 2 \int_0^{\frac{\pi}{2}}(\sin \alpha)^{2 s_1-1}(\cos \alpha)^{2 s_2-1} d \alpha
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\frac{\Gamma\left(s_1\right) \cdot \Gamma\left(s_2\right)}{\Gamma\left(s_1+s_2\right)}=2 \int_0^{\frac{\pi}{2}}(\sin \alpha)^{2 s_1-1}(\cos \alpha)^{2 s_2-1} d \alpha \\
+		\frac{\Gamma\left(s_1\right) \cdot \Gamma\left(s_2\right)}{\Gamma\left(s_1+s_2\right)}=\int_0^{\frac{\pi}{2}}(\sin \alpha)^{2 s_1-2}(\cos \alpha)^{2 s_2-2} 2 \sin \alpha \cos \alpha d \alpha \\
+		u=(\sin \alpha)^2 d u=2 \sin \alpha \cos \alpha d \alpha \\
+		\frac{\Gamma\left(s_1\right) \cdot \Gamma\left(s_2\right)}{\Gamma\left(s_1+s_2\right)}=\int_0^1 u^{s_1-1}(1-u)^{s_2-1} d u
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\mathrm{B}\left(s_1, s_2\right)=\frac{\Gamma\left(s_1\right) \cdot \Gamma\left(s_2\right)}{\Gamma\left(s_1+s_2\right)}=2 \int_0^{\frac{\pi}{2}}(\sin \alpha)^{2 s_1-1}(\cos \alpha)^{2 s_2-1} d \alpha \\
+		\mathrm{B}\left(s_1, s_2\right)=\frac{\Gamma\left(s_1\right) \cdot \Gamma\left(s_2\right)}{\Gamma\left(s_1+s_2\right)}=\int_0^1 u^{s_1-1}(1-u)^{s_2-1} d u
+	\end{gathered}
+	$$
+	
+	\subsection{Legendre Duplication Formula}
+	
+	$$
+	\begin{gathered}
+		\mathrm{B}\left(s_1, s_2\right)=\frac{\Gamma\left(s_1\right) \Gamma\left(s_2\right)}{\Gamma\left(s_1+s_2\right)}=\int_0^1 u^{s_1-1}(1-u)^{s_2-1} d u \\
+		\frac{\Gamma(s) \Gamma(s)}{\Gamma(2 s)}=\int_0^1 u^{s-1}(1-u)^{s-1} d u \\
+		u=\frac{1+x}{2} \quad \mathrm{du}=\left.\left.\frac{1}{2} d x\right|_0 ^1 \rightarrow\right|_{-1} ^1 \\
+		\quad \int_{-1}^1\left(\frac{1+x}{2}\right)^{s-1}\left(\frac{1-x}{2}\right)^{s-1} \frac{d x}{2} \\
+		\frac{1}{2^{2 s-1}} \int_{-1}^1\left(1-x^2\right)^{s-1} d x
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\frac{\Gamma(s) \Gamma(s)}{\Gamma(2 s)}=\frac{1}{2^{2 s-1}} \int_{-1}^1\left(1-x^2\right)^{s-1} d x \\
+		2^{2 s-1} \Gamma(s) \Gamma(s)=2 \Gamma(2 s) \int_0^1\left(1-x^2\right)^{s-1} d x \\
+		\mathrm{~B}\left(s_1, s_2\right)=\int_0^1 u^{s_1-1}(1-u)^{s_2-1} d u \\
+		u=x^2 d u=2 x d x \\
+		\mathrm{~B}\left(s_1, s_2\right)=\int_0^1 x^{2 s_1-2}\left(1-x^2\right)^{s_2-1} 2 x d x \\
+		\mathrm{~B}\left(\frac{1}{2}, s\right)=2 \int_0^1\left(1-x^2\right)^{s-1} d x
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{aligned}
+		2^{2 s-1} \Gamma(s) \Gamma(s) & =2 \Gamma(2 s) \int_0^1\left(1-x^2\right)^{s-1} d t \\
+		\mathrm{~B}\left(\frac{1}{2}, s\right) & =2 \int_0^1\left(1-x^2\right)^{s-1} d x \\
+		2^{2 s-1} \Gamma(s) \Gamma(s) & =\Gamma(2 s) \mathrm{B}\left(\frac{1}{2}, s\right) \\
+		2^{2 s-1} \Gamma(s) \Gamma(s) & =\Gamma(2 s) \frac{\Gamma\left(\frac{1}{2}\right) \Gamma(s)}{\Gamma\left(\frac{1}{2}+s\right)}
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		2^{2 s-1} \Gamma(s) \Gamma(s)=\Gamma(2 s) \frac{\Gamma\left(\frac{1}{2}\right) \Gamma(s)}{\Gamma\left(\frac{1}{2}+s\right)} \\
+		2^{2 s-1} \Gamma(s) \Gamma\left(s+\frac{1}{2}\right)=\sqrt{\pi} \Gamma(2 s) \\
+		\Gamma(2 s)=\frac{2^{2 s-1}}{\sqrt{\pi}} \Gamma(s) \Gamma\left(s+\frac{1}{2}\right)
+	\end{gathered}
+	$$
+	
+	
+	\subsection{Zeta Function}
+	\subsubsection{Definition and convergence}
+	
+	$$
+	\begin{gathered}
+		\zeta(s)=\sum_{n=1}^{\infty} \frac{1}{n^s} \\
+		|\zeta(s)|=\left|\sum_{n=1}^{\infty} \frac{1}{n^s}\right| \leq \sum_{n=1}^{\infty} \mid \frac{1}{n^s}=\sum_{n=1}^{\infty} \frac{1}{\left|n^s\right|} \\
+		|\zeta(s)| \leq \sum_{n=1}^{\infty} \frac{1}{\left|n^s\right|}=\sum_{n=1}^{\infty} \frac{1}{\left|n^{x+i y}\right|}=\sum_{n=1}^{\infty} \frac{1}{\left|n^x\right|\left|n^{i y}\right|}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{aligned}
+		& |\zeta(s)| \leq \sum_{n=1}^{\infty} \frac{1}{\left|n^x\right| n^{i y} \mid}=\sum_{n=1}^{\infty} \frac{1}{n^x\left|e^{i y \log (n)}\right|}=\sum_{n=1}^{\infty} \frac{1}{n^x} \\
+		& |\zeta(s)| \leq \sum_{n=1}^{\infty} \frac{1}{n^x} \\
+		& \text { Cauchy-Integral Theorem } \\
+		& \begin{array}{l}
+			\text { Sum is converging/diverging, if the corresponding } \\
+			\text { Integral is converging / diverging. }
+		\end{array} \\
+		& \sum_{n=1}^{\infty} \frac{1}{n^x} \leftrightarrow \int_1^{\infty} \frac{1}{t^x} d t=\left.\frac{1}{1-x} t^{1-x}\right|_1 ^{\infty} x=\operatorname{Re}(s)>1 \\
+		&
+	\end{aligned}
+	$$
+	
+	\subsubsection{Euler Product Representation}
+	
+	$$
+	\begin{aligned}
+		& \zeta(s)=\sum_{n=1}^{\infty} \frac{1}{n^s}=\prod_{p \in P} \frac{1}{1-p^{-s}} \\
+		& \prod_{p \in P} \frac{1}{1-p^{-s}}=\prod_{i=1}^{\infty} \sum_{k_i=0}^{\infty}\left(\frac{1}{p_i^s}\right)^{k_i}=\prod_{i=1}^{\infty} \sum_{k_i=0}^{\infty} \frac{1}{p_i^{s k_i}} \\
+		& =\prod_{i=1} \sum_{k_i=0}^{\infty} \frac{1}{p_i^{s k_i}}=\sum_{k_1=0}^{\infty} \frac{1}{p_1^{s k_1}} \cdot \sum_{k_2=0}^{\infty} \frac{1}{p_2^{s k_2}} \cdot \ldots \cdot \sum_{k_N=0}^{\infty} \frac{1}{p_N^{s k_N}} \cdot \cdots \\
+		& =\sum_{k_1=0}^{\infty} \sum_{k_2=0}^{\infty} \cdots\left(\frac{1}{p_1^{k_1}} \frac{1}{p_2^{k_2}} \ldots \frac{1}{p_N^{k_N}} \cdot \cdots\right)^s
+	\end{aligned}
+	$$
+	
+	$$
+	\prod_{p \in P} \frac{1}{1-p^{-s}}=\sum_{k_1=0}^{\infty} \sum_{k_2=0}^{\infty} \cdots\left(\frac{1}{p_1^{k_1}} \frac{1}{p_2^{k_2}} \ldots \frac{1}{p_N^{k_N}} \cdot \cdots\right)^s
+	$$
+	\newpage
+	Fundamental Theorem of Arithmetic Let $\mathrm{n}$ be a natural number, then it is possible to write $\mathrm{n}$ as a product of primes with corresponding powers. This representation is unique!
+	$$
+	\begin{gathered}
+		n=\prod_1 p_1^{k_1} p_2^{k_2} \cdot \ldots \cdot p_{N(n)}^{k_{N(n)}} \\
+		\prod_{p \in P} \frac{1}{1-p^{-s}}=\sum_{n=1}^{\infty} \frac{1}{n^s}
+	\end{gathered}
+	$$
+	There is also easier proof.
+	This sketch of a proof makes use of simple algebra only. This was the method by which Euler originally discovered the formula. There is a certain sieving property that we can use to our advantage:
+	$$
+	\begin{aligned}
+		& \zeta(s)=1+\frac{1}{2^s}+\frac{1}{3^s}+\frac{1}{4^s}+\frac{1}{5^s}+\ldots \\
+		& \frac{1}{2^s} \zeta(s)=\frac{1}{2^s}+\frac{1}{4^s}+\frac{1}{6^s}+\frac{1}{8^s}+\frac{1}{10^s}+\ldots
+	\end{aligned}
+	$$
+	Subtracting the second equation from the first we remove all elements that have a factor of 2 :
+	$$
+	\left(1-\frac{1}{2^s}\right) \zeta(s)=1+\frac{1}{3^s}+\frac{1}{5^s}+\frac{1}{7^s}+\frac{1}{9^s}+\frac{1}{11^s}+\frac{1}{13^s}+\ldots
+	$$
+	Repeating for the next term:
+	$$
+	\frac{1}{3^s}\left(1-\frac{1}{2^s}\right) \zeta(s)=\frac{1}{3^s}+\frac{1}{9^s}+\frac{1}{15^s}+\frac{1}{21^s}+\frac{1}{27^s}+\frac{1}{33^s}+\ldots
+	$$
+	Subtracting again we get:
+	$$
+	\left(1-\frac{1}{3^s}\right)\left(1-\frac{1}{2^s}\right) \zeta(s)=1+\frac{1}{5^s}+\frac{1}{7^s}+\frac{1}{11^s}+\frac{1}{13^s}+\frac{1}{17^s}+\ldots
+	$$
+	where all elements having a factor of 3 or 2 (or both) are removed.
+	It can be seen that the right side is being sieved. Repeating infinitely for $\frac{1}{p^s}$ where $p$ is prime, we get:
+	$$
+	\ldots\left(1-\frac{1}{11^s}\right)\left(1-\frac{1}{7^s}\right)\left(1-\frac{1}{5^s}\right)\left(1-\frac{1}{3^s}\right)\left(1-\frac{1}{2^s}\right) \zeta(s)=1
+	$$
+	Dividing both sides by everything but the $\zeta(s)$ we obtain:
+	$$
+	\zeta(s)=\frac{1}{\left(1-\frac{1}{2^s}\right)\left(1-\frac{1}{3^s}\right)\left(1-\frac{1}{5^s}\right)\left(1-\frac{1}{7^s}\right)\left(1-\frac{1}{11^s}\right) \ldots}
+	$$
+	This can be written more concisely as an infinite product over all primes $p$ :
+	$$
+	\zeta(s)=\prod_{p \text { prime }} \frac{1}{1-p^{-s}}
+	$$
+	To make this proof rigorous, we need only to observe that when $\Re(s)>1$, the sieved right-hand side approaches 1 , which follows immediately from the convergence of the Dirichlet series for $\zeta(s)$.
+	
+	\subsubsection{Infinitude of Prime Numbers} 
+	
+	$$
+	\begin{gathered}
+		\zeta(s)=\sum_{n=1}^{\infty} \frac{1}{n^s}=\prod_{p \in P} \frac{1}{1-p^{-s}} \\
+		\zeta(1)=\sum_{n=1}^{\infty} \frac{1}{n} \\
+		\sum_{n=1}^{\infty} \frac{1}{n}=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\frac{1}{6}+\frac{1}{7}+\frac{1}{8}+\ldots \\
+		>1+\frac{1}{2}+\left(\frac{1}{4}+\frac{1}{4}\right)+\left(\frac{1}{8}+\frac{1}{8}+\frac{1}{8}+\frac{1}{8}\right)+\ldots \\
+		>1+\frac{1}{2}+\left(\frac{1}{2}\right)+\left(\frac{1}{2}\right)+\ldots=\infty
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\zeta(s)=\sum_{n=1}^{\infty} \frac{1}{n^s}=\prod_{p \in P} \frac{1}{1-p^{-s}} \\
+		\zeta(1)=\sum_{n=1}^{\infty} \frac{1}{n}=\infty
+	\end{gathered}
+	$$
+	A finite Set of Primes would make the product converge, but it has to diverge! That concludes that there must be infinite many primes.
+	Q.e.d.
+	
+	\subsubsection{Prime Zeta Function} 
+	
+	$$
+	\begin{gathered}
+		\zeta(s)=\prod_{p \in P} \frac{1}{1-p^{-s}} \\
+		\log \zeta(s)=\log \prod_{p \in P} \frac{1}{1-p^{-s}} \\
+		\log \zeta(s)=\sum_{p \in P} \log \frac{1}{1-p^{-s}} \\
+		\log \frac{1}{1-x}=-\log (1-x)=-\left(-\sum_{n=1}^{\infty} \frac{x^n}{n}\right)
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\log \frac{1}{1-x}=\sum_{n=1}^{\infty} \frac{x^n}{n} \\
+		\log \zeta(s)=\sum_{p \in P} \log \frac{1}{1-p^{-s}} \\
+		\log \zeta(s)=\sum_{p \in P} \sum_{n=1}^{\infty} \frac{\left(p^{-s}\right)^n}{n} \\
+		\log \zeta(s)=\sum_{p \in P} \sum_{n=1}^{\infty} \frac{p^{-s n}}{n}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\log \zeta(s)=\sum_{p \in P} \sum_{n=1}^{\infty} \frac{p^{-s n}}{n} \\
+		\log \zeta(s)=\sum_{p \in P} p^{-s}+\sum_{p \in P} \sum_{n=2}^{\infty} \frac{p^{-s n}}{n} \\
+		\log \zeta(s)=\sum_{p \in P} \frac{1}{p^s}+\sum_{n=2}^{\infty} \frac{1}{n} \sum_{p \in P} \frac{1}{p^{s n}} \\
+		\left|\sum_{p \in P} \frac{1}{p^{s n}}\right| \leq \sum_{p \in P} \frac{1}{\left|p^{s n}\right|}=\sum_{p \in P} \frac{1}{\left|p^{(x+i y) n}\right|}=\sum_{p \in P} \frac{1}{\left|p^{x n+i y n}\right|} \\
+		\left|\sum_{p \in P} \frac{1}{p^{s n} }\right| \leq \sum_{p \in P} \frac{1}{\left|p^{x n} \| p^{i y n}\right|}=\sum_{p \in P} \frac{1}{p^{x n}\left|e^{i y n \log p}\right|}=\sum_{p \in P} \frac{1}{p^{x n}}
+	\end{gathered}
+	$$
+	
+	$$
+	\left|\sum_{p \in P} \frac{1}{p^{s n}}\right| \leq \sum_{p \in P} \frac{1}{p^{x n}} \leq \sum_{p \in P} \frac{1}{p^n} \leq \sum_{k=2}^{\infty} \frac{1}{k^n}
+	$$
+	
+	$$
+	\begin{gathered}
+		\left|\sum_{p \in P} \frac{1}{p^{s n}}\right| \leq \sum_{k=2}^{\infty} \frac{1}{k^n}<\sum_{k=2}^{\infty} \int_{k-1}^k \frac{1}{t^n} d t=\int_1^{\infty} \frac{1}{t^n} d t \\
+		\left|\sum_{p \in P} \frac{1}{p^{s n}}\right| \leq\left.\frac{1}{1-n} t^{1-n}\right|_1 ^{\infty}=\frac{1}{n-1} \\
+		\left|\sum_{n=2}^{\infty} \frac{1}{n} \sum_{p \in P} \frac{1}{p^{s n}}\right| \leq \sum_{n=2}^{\infty} \frac{1}{n}\left|\sum_{p \in P} \frac{1}{p^{s n}}\right| \leq \sum_{n=2}^{\infty} \frac{1}{n} \frac{1}{n-1}=1
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\log \zeta(s)=\sum_{p \in P} \frac{1}{p^s}+\sum_{n=2}^{\infty} \frac{1}{n} \sum_{p \in P} \frac{1}{p^{s n}} \\
+		s \rightarrow 1 \quad \big| \sum_{n=2}^{\infty} \frac{1}{n} \sum_{p \in P} \frac{1}{p^{s n}} \big| \leq 1 \\
+		|\log \zeta(s)| \rightarrow \infty \\
+		\sum_{p \in P} \frac{1}{p} \rightarrow \infty
+	\end{gathered}
+	$$
+	
+	\subsubsection{The Prime Counting Function}
+	
+	$$
+	\begin{gathered}
+		\zeta(s)=\prod_{p \in P} \frac{1}{1-p^{-s}} \\
+		\log \zeta(s)=\log \prod_{p \in P} \frac{1}{1-p^{-s}} \\
+		\log \zeta(s)=\sum_{p \in P} \log \frac{1}{1-p^{-s}} \\
+		\log \zeta(s)=\sum_{n=2}^{\infty}\{\pi(n)-\pi(n-1)\} \log \frac{1}{1-n^{-s}}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{aligned}
+		& \log \zeta(s)=\sum_{n=2}^{\infty}\{\pi(n)-\pi(n-1)\} \log \frac{1}{1-n^{-s}} \\
+		& =\sum_{n=2}^{\infty} \pi(n) \log \frac{1}{1-n^{-s}}-\sum_{n=2}^{\infty} \pi(n-1) \log \frac{1}{1-n^{-s}} \\
+		& =\sum_{n=2}^{\infty} \pi(n) \log \frac{1}{1-n^{-s}}-\sum_{n=2}^{\infty} \pi(n) \log \frac{1}{1-(n+1)^{-s}} \\
+		& =\sum_{n=2}^{\infty} \pi(n)\left(\log \left(1-(n+1)^{-s}\right)-\log \left(1-n^{-s}\right)\right) \\
+		& \frac{d}{d x} \log \left(1-x^{-s}\right)=\frac{1}{1-x^{-s}}\left(s x^{-s-1}\right)=\frac{s}{x\left(x^s-1\right)}
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		\log \zeta(s)=\sum_{n=2}^{\infty} \pi(n)\left(\log \left(1-(n+1)^{-s}\right)-\log \left(1-n^{-s}\right)\right) \\
+		\log \left(1-x^{-s}\right)=\int \frac{s}{x\left(x^s-1\right)} d x+c \\
+		\log \zeta(s)=\sum_{n=2}^{\infty} \pi(n) \int_n^{n+1} \frac{s}{x\left(x^s-1\right)} d x \\
+		\log \zeta(s)=\sum_{n=2}^{\infty} \pi(n) \int_n^{n+1} \frac{s}{x\left(x^s-1\right)} d x \\
+		\log \zeta(s)=\sum_{n=2}^{\infty} \int_n^{n+1} \frac{s \pi(x)}{x\left(x^s-1\right)} d x
+	\end{gathered}
+	$$
+	
+	$$
+	\log \zeta(s)=\int_2^{\infty} \frac{s \pi(x)}{x\left(x^s-1\right)} d x
+	$$
+	
+	\subsubsection{Zeta of 2 aka The Basel Problem}
+	
+	$$
+	\begin{gathered}
+		\sin s=s-\frac{s^3}{3 !}+\frac{s^5}{5 !}-\frac{s^{7}}{7 !} \pm \ldots \\
+		\frac{\sin \pi s}{\pi s}=1-\frac{(\pi s)^2}{3 !}+\frac{(\pi s)^4}{5 !}-\frac{(\pi s)^6}{7 !} \pm \ldots \\
+		\frac{\sin \pi s}{\pi s}=1-\frac{\pi^2}{3 !} s^2+\frac{\pi^4}{5 !} s^4-\frac{\pi^6}{7 !} s^6 \pm \ldots \\
+		\frac{\sin \pi s}{\pi s}=\left(1-\frac{s^2}{1^2}\right)\left(1-\frac{s^2}{2^2}\right)\left(1-\frac{s^2}{3^2}\right) \ldots \\
+		\frac{\sin \pi s}{\pi s}=1-\left(\frac{1}{1^2}+\frac{1}{2^2}+\frac{1}{3^2}+\ldots\right) s^2+\\
+		+\left(\frac{1}{1^2 2^2}+\frac{1}{1^2 3^2}+\frac{1}{2^2 3^2}+\ldots\right) s^4-
+		\left(\frac{1}{1^2 2^2 3^2}+\ldots\right) s^6+\ldots
+	\end{gathered}
+	$$
+	
+	"De Summis Serierum Reciprocarum"(1735)
+	$$
+	\zeta(2)=1+\frac{1}{2^2}+\frac{1}{3^2}+\frac{1}{4^2}+\ldots=\frac{\pi^2}{6}
+	$$
+	%TODO: solve this another way
+	
+	\subsubsection{Zeta of $2n$. Part 1}
+	
+	$$
+	\begin{array}{r}
+		\frac{\sin \pi s}{\pi s}=\left(1-\frac{s^2}{1^2}\right)\left(1-\frac{s^2}{2^2}\right)\left(1-\frac{s^2}{3^2}\right) \ldots \\
+		\frac{\sin \pi s}{\pi s}=\prod_{k=1}^{\infty}\left(1-\frac{s^2}{k^2}\right) \\
+		\log \frac{\sin \pi s}{\pi s}=\log \prod_{k=1}^{\infty}\left(1-\frac{s^2}{k^2}\right) \\
+		\log \sin \pi s=\log \pi s+\sum_{k=1}^{\infty} \log \left(1-\frac{s^2}{k^2}\right) \\
+		\frac{d}{d s} \log \sin \pi s=\frac{d}{d s}\left\{\log \pi s+\sum_{k=1}^{\infty} \log \left(1-\frac{s^2}{k^2}\right)\right\}
+	\end{array}
+	$$
+	
+	$$
+	\begin{gathered}
+		\frac{d}{d s} \log \sin \pi s=\frac{d}{d s}\left\{\log \pi s+\sum_{k=1}^{\infty} \log \left(1-\frac{s^2}{k^2}\right)\right\} \\
+		\frac{\cos \pi s}{\sin \pi s} \pi=\frac{1}{s}+\sum_{k=1}^{\infty} \frac{1}{\left(1-\frac{s^2}{k^2}\right)}\left(-\frac{2 s}{k^2}\right) \\
+		\pi s \cot \pi s=1+\sum_{k=1}^{\infty} \frac{1}{\left(1-\frac{s^2}{k^2}\right)}\left(-\frac{2 s^2}{k^2}\right) \\
+		\pi s \cot \pi s=1+2 s^2 \sum_{k=1}^{\infty} \frac{1}{\left(s^2-k^2\right)} \\
+		\pi \cot \pi s=\frac{1}{s}+\sum_{k=1}^{\infty}\left(\frac{1}{s-k}+\frac{1}{s+k}\right)=\sum_{k=-\infty}^{\infty} \frac{1}{s+k}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\pi s \cot \pi s=1+\sum_{k=1}^{\infty} \sum_{n=0}^{\infty}\left(\frac{s^2}{k^2}\right)^n\left(-\frac{2 s^2}{k^2}\right) \\
+		\pi s \cot \pi s=1-2 \sum_{k=1}^{\infty} \sum_{n=0}^{\infty}\left(\frac{s^2}{k^2}\right)^{n+1} \\
+		\pi s \cot \pi s=1-2 \sum_{k=1}^{\infty} \sum_{n=1}^{\infty} \frac{1}{k^{2 n}} s^{2 n} \\
+		\pi s \cot \pi s=1-2 \sum_{n=1}^{\infty}\left(\sum_{k=1}^{\infty} \frac{1}{k^{2 n}}\right) s^{2 n} \\
+		\pi s \cot \pi s=1-2 \sum_{n=1}^{\infty} \zeta(2 n) s^{2 n}
+	\end{gathered}
+	$$
+	
+	\subsubsection{Zeta of $2n$. Part 2}
+	
+	$$
+	\begin{aligned}
+		& \pi s \cot \pi s= \pi s \frac{\cos \pi s}{\sin \pi s}=\pi s \frac{e^{i \pi s}+e^{-i \pi s}}{2} \frac{2 i}{e^{i \pi s}-e^{-i \pi s}} \\
+		& \pi s \cot \pi s=\pi s i \frac{e^{i \pi s}+e^{-i \pi s}}{e^{i \pi s}-e^{-i \pi s}} \\
+		& \pi s \cot \pi s=\pi s i \frac{e^{2 i \pi s}+1}{e^{2 i \pi s}-1} \\
+		& \pi s \cot \pi s= \pi s i \frac{e^{2 i \pi s}-1+2}{e^{2 i \pi s}-1}=i \pi s\left(1+\frac{2}{e^{2 i \pi s}-1}\right) \\
+		& \pi s \cot \pi s=i \pi s+\frac{2 i \pi s}{e^{2 i \pi s}-1}
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		\frac{s}{e^s-1}=\sum_{n=0}^{\infty} \frac{\beta_n}{n !} s^n \qquad \frac{s}{\sum_{n=1}^{\infty} \frac{1}{n !} s^n}=\sum_{n=0}^{\infty} \frac{\beta_n}{n !} s^n \\
+		s=\sum_{n=0}^{\infty} \frac{\beta_n}{n !} s^n \sum_{n=1}^{\infty} \frac{1}{n !} s^n \qquad 1=\sum_{n=0}^{\infty} \frac{\beta_n}{n !} s^n \sum_{n=1}^{\infty} \frac{1}{n !} s^{n-1} \\
+		1=\sum_{n=0}^{\infty} \frac{\beta_n}{n !} s^n \sum_{n=0}^{\infty} \frac{1}{(n+1) !} s^n \qquad 1=\sum_{n=0}^{\infty} \sum_{\mu=0}^n \frac{\beta_\mu}{\mu !} \frac{1}{(n-\mu+1)!} s^n \\
+		1=\sum_{n=0}^{\infty} \frac{1}{(n+1) !} \sum_{\mu=0}^n\left(\begin{array}{c}
+			n+1 \\
+			\mu
+		\end{array}\right) \beta_\mu s^n
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		1=\sum_{n=0}^{\infty} \frac{1}{(n+1) !} \sum_{\mu=0}^n\left(\begin{array}{c}
+			n+1 \\
+			\mu
+		\end{array}\right) \beta_\mu s^n \\
+		\sum_{\mu=0}^n\left(\begin{array}{c}
+			n+1 \\
+			\mu
+		\end{array}\right) \beta_\mu=0 \quad \beta_0=1 \quad \beta_1=-\frac{1}{2} \\
+		\pi s \cot \pi s=i \pi s+\frac{2 i \pi s}{e^{2 i \pi s}-1} \quad \frac{s}{e^s-1}=\sum_{n=0}^{\infty} \frac{\beta_n}{n !} s^n \\
+		\pi s \cot \pi s=i \pi s+\sum_{n=0}^{\infty} \frac{\beta_n}{n !}(2 i \pi s)^n \\
+		\pi s \cot \pi s=1-2 \sum_{n=1}^{\infty} \zeta(2 n) s^{2 n}
+	\end{gathered}
+	$$
+	
+	\subsubsection{Zeta of $2n$. Part 3}
+	
+	$$
+	\begin{gathered}
+		\sum_{\mu=0}^n\left(\begin{array}{c}
+			n+1 \\
+			\mu
+		\end{array}\right) \beta_\mu=0 \quad \beta_0=1, \beta_1=-\frac{1}{2} \\
+		\pi s \cot \pi s=i \pi s+\frac{\beta_o}{0 !}+\frac{\beta_1}{1 !}(2 i \pi s)-2 \sum_{n=2}^{\infty} \frac{\beta_n}{n !}\left(-\frac{1}{2}\right)(2 i \pi s)^n \\
+		\pi s \cot \pi s=1-2 \sum_{n=2}^{\infty} \frac{\beta_n}{n !}\left(-\frac{1}{2}\right)(2 i \pi s)^n \\
+		\pi s \cot \pi s=1-2 \sum_{n=1}^{\infty} \zeta(2 n) s^{2 n} \\
+		\pi s \cot \pi s=1-2 \sum_{n=1}^{\infty} \frac{\beta_{2 n}}{2 n !}\left(-\frac{1}{2}\right)(2 i \pi s)^{2 n}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\pi s \cot \pi s=1-2 \sum_{n=1}^{\infty} \zeta(2 n) s^{2 n} \\
+		\pi s \cot \pi s=1-2 \sum_{n=1}^{\infty} \frac{\beta_{2 n}}{2 n !}\left(-\frac{1}{2}\right)(2 i \pi s)^{2 n} \\
+		\pi s \cot \pi s=1-2 \sum_{n=1}^{\infty} \frac{\beta_{2 n}}{2 n !}(-1) \frac{(2 \pi)^{2 n} i^{2 n}}{2} s^{2 n} \\
+		\pi s \cot \pi s=1-2 \sum_{n=1}^{\infty} \frac{(-1)^{n+1}(2 \pi)^{2 n} \beta_{2 n}}{2 \cdot 2 n !} s^{2 n} \\
+		\zeta(2 n)=(-1)^{n+1} \frac{(2 \pi)^{2 n} \beta_{2 n}}{2 \cdot 2 n !}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\zeta(2 n)=(-1)^{n+1} \frac{(2 \pi)^{2 n} \beta_{2 n}}{2 \cdot 2 n !} \\
+		\sum_{\mu=0}^n\left(\begin{array}{c}
+			n+1 \\
+			\mu
+		\end{array}\right) \beta_\mu=0 \quad \beta_0=1, \beta_1=-\frac{1}{2} \\
+		\zeta(2)=\frac{4 \pi^2}{2 \cdot 2 !} \frac{1}{6}=\frac{\pi^2}{6} \\
+		\zeta(4)=-\frac{16 \pi^4}{2 \cdot 24}\left(-\frac{1}{30}\right)=\frac{\pi^4}{90} \\
+		\zeta(6)=\frac{32 \pi^6}{2 \cdot 720} \frac{1}{42}=\frac{\pi^6}{945}
+	\end{gathered}
+	$$
+	
+	\subsubsection{Relation to Gamma Function. Bose Integral}
+	
+	$$
+	\begin{gathered}
+		\Gamma(s)=\int_0^{\infty} t^{s-1} e^{-t} d t \\
+		t=n u \Rightarrow d t=n d u \\
+		\Gamma(s)=\int_0^{\infty}(n u)^{s-1} e^{-n u} n d u \\
+		\Gamma(s)=\int_0^{\infty} n^s u^{s-1} e^{-n u} d u
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\Gamma(s) \frac{1}{n^s}=\int_0^{\infty} u^{s-1} e^{-n u} d u \\
+		\Gamma(s) \sum_{n=1}^{\infty} \frac{1}{n^s}=\sum_{n=1}^{\infty} \int_0^{\infty} u^{s-1} e^{-n u} d u \\
+		\Gamma(s) \zeta(s)=\int_0^{\infty} u^{s-1} \sum_{n=1}^{\infty} e^{-n u} d u \\
+		\Gamma(s) \zeta(s)=\int_0^{\infty} u^{s-1}\left(\frac{1}{1-e^{-u}}-1\right) d u
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\Gamma(s) \zeta(s)=\int_0^{\infty} u^{s-1}\left(\frac{1}{1-e^{-u}}-\frac{1-e^{-u}}{1-e^{-u}}\right) d u \\
+		\Gamma(s) \zeta(s)=\int_0^{\infty} u^{s-1} \frac{e^{-u}}{1-e^{-u}} d u \\
+		\Gamma(s) \zeta(s)=\int_0^{\infty} \frac{u^{s-1}}{e^u-1} d u
+	\end{gathered}
+	$$
+
+	\subsubsection{Jacobi Theta Function}
+	
+	$$
+	\begin{aligned}
+		& \vartheta(x)=\sum_{n \in Z} e^{-m n^2 x} \\
+		& \sum_{n \in Z} f(n)=\sum_{k \in Z} \int_{-\infty}^{+\infty} f(y) e^{-2 \pi k y} d y \\
+		& \sum_{n \in Z} e^{-\pi \eta^2 x}=\sum_{k \in Z}^{+\infty} \int_{-\infty}^{+\infty} e^{-\pi y^2 x} e^{-2 \pi k y} d y=\sum_{k \in Z} \int_{-\infty}^{+\infty} e^{-\pi y^2 x-2 \pi i k y} d y \\
+		& =\sum_{k \in Z} \int_{-\infty}^{+\infty} e^{-\pi x\left(y^2+2 i \frac{k}{x} y+i^2 \frac{k^2}{x^2}-i^{-\frac{k^2}{x^2}}\right)} d y \\
+		& =\sum_{k \in Z}^{+\infty} \int_{-\infty}^{+\infty} e^{-\pi x\left(\left(y+i \frac{k}{x}\right)^2-i^2 \frac{k^2}{x^2}\right)} d y \\
+		&
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		\sum_{n \in Z} e^{-\pi n^2 x}=\sum_{k \in Z} \int_{-\infty}^{+\infty} e^{-\pi x\left(\left(y+i \frac{k}{x}\right)^2-i^2 \frac{k^2}{x^2}\right)} d y \\
+		\sum_{n \in Z} e^{-\pi n^2 x}=\sum_{k \in Z} \int_{-\infty}^{+\infty} e^{-\pi k^2 \frac{1}{x}} e^{-\pi x\left(y+i \frac{k}{x}\right)^2} d y \\
+		\sum_{n \in Z} e^{-\pi n^2 x}=\sum_{k \in Z} e^{-\pi k^2 \frac{1}{x}} \int_{-\infty}^{+\infty} e^{-\pi x\left(y+i \frac{k}{x}\right)^2} d y \\
+		y+i \frac{k}{x}=z \Rightarrow \mathrm{dy}=\left.\left.\mathrm{dz}\right|_{-\infty} ^{+\infty} \rightarrow\right|_{-\infty+i \frac{k}{x}} ^{+\infty+i \frac{k}{x}} \\
+		\sum_{n \in Z} e^{-\pi n^2 x}=\sum_{k \in Z} e^{-\pi k^2 \frac{1}{x}} \int_{-\infty+i \frac{k}{x}}^{+\infty+i \frac{k}{x}} e^{-\pi x z^2} d z
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{aligned}
+		& \sum_{n \in Z} e^{-\pi n^2 x}=\sum_{k \in Z} e^{-\pi k^2 \frac{1}{x}} \int_{-\infty+i \frac{k}{x}}^{+\infty+i \frac{k}{x}} e^{-\pi x z^2} d z \\
+		& \int_{-R}^R e^{-\pi z z^2} d z=\int_{-R}^{-R+i \frac{k}{x}} e^{-\pi z z^2} d z+\int_{-R+i \frac{k}{x}}^{R+i \frac{k}{x}} e^{-\pi z z^2} d z+\int_{R+i \frac{k}{x}}^R e^{-\pi z z^2} d z \\
+		& \sum_{n \in Z} e^{-\pi n^2 x}=\sum_{k \in Z} e^{-\pi k^2 \frac{1}{x}} \int_{-\infty}^{+\infty} e^{-\pi z^2} d z=\sum_{k \in Z} e^{-\pi k^2 \frac{1}{x}} \sqrt{\frac{\pi}{\pi x}} \\
+		& \sum_{n \in Z} e^{-\pi n^2 x}=\sum_{k \in Z} e^{-\pi k^2 \frac{1}{x}} \sqrt{\frac{1}{x}} \\
+		&
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{aligned}
+		& \vartheta(x)=\sum_{n \in Z} e^{-\pi n^2 x} \\
+		& \vartheta(x)=\frac{1}{\sqrt{x}} \vartheta\left(\frac{1}{x}\right)
+	\end{aligned}
+	$$
+	
+	\subsubsection{Riemann Functional Equation $\RNumb{1}$}
+	
+	$$
+	\begin{gathered}
+		\Gamma(s)=\int_0^{\infty} t^{s-1} e^{-t} d t \\
+		s \rightarrow \frac{s}{2}: \Gamma\left(\frac{s}{2}\right)=\int_0^{\infty} t^{\frac{s}{2}-1} e^{-t} d t \\
+		S u b: t=\pi n^2 x \rightarrow d t=\pi n^2 d x \\
+		\Gamma\left(\frac{s}{2}\right)=\int_0^{\infty}\left(\pi n^2 x\right)^{\frac{s}{2}-1} e^{-\pi n^2 x} \pi n^2 d x \\
+		\Gamma\left(\frac{s}{2}\right)=\int_0^{\infty} \pi^{\frac{s}{2}} n^s x^{\frac{s}{2}-1} e^{-\pi n^2 x} d x
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\Gamma\left(\frac{s}{2}\right)=\int_0^{\infty} \pi^{\frac{s}{2}} n^s x^{\frac{s}{2}-1} e^{-\pi n^2 x} d x \\
+		\pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \frac{1}{n^s}=\int_0^{\infty} x^{\frac{s}{2}-1} e^{-\pi n^2 x} d x \\
+		\sum_{n=1}^{\infty} \pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \frac{1}{n^s}=\sum_{n=1}^{\infty} \int_0^{\infty} x^{\frac{s}{2}-1} e^{-\pi n^2 x} d x \\
+		\pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \sum_{n=1}^{\infty} \frac{1}{n^s}=\int_0^{\infty} x^{\frac{s}{2}-1} \sum_{n=1}^{\infty} e^{-\pi n^2 x} d x
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{aligned}
+		& \pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \sum_{n=1}^{\infty} \frac{1}{n^s}=\int_0^{\infty} x^{\frac{s}{2}-1} \sum_{n=1}^{\infty} e^{-\pi n^2 x} d x \\
+		& \pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \zeta(s)=\int_0^{\infty} x^{\frac{s}{2}-1} \sum_{n=1}^{\infty} e^{-\pi n^2 x} d x \\
+		& \vartheta(x)=\sum_{n \in Z} e^{-\pi n^2 x}=1+2 \sum_{n=1}^{\infty} e^{-\pi n^2 x}=1+2 \psi(x) \\
+		& \int_0^{\infty} x^{\frac{s}{2}-1} \sum_{n=1}^{\infty} e^{-\pi n^2 x} d x=\int_0^{\infty} x^{\frac{s}{2}-1} \psi(x) d x
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		\int_0^{\infty} x^{\frac{s}{2}-1} \psi(x) d x=\int_1^{\infty} x^{\frac{s}{2}-1} \psi(x) d x+\int_0^1 x^{\frac{s}{2}-1} \psi(x) d x \\
+		\vartheta(x)=\frac{1}{\sqrt{x}} \vartheta\left(\frac{1}{x}\right) \text { or } 2 \psi(x)+1=\frac{1}{\sqrt{x}}\left(2 \psi\left(\frac{1}{x}\right)+1\right) \\
+		\psi(x)=\frac{1}{\sqrt{x}} \psi\left(\frac{1}{x}\right)+\frac{1}{2 \sqrt{x}}-\frac{1}{2} \\
+		\int_0^1 x^{\frac{s}{2}-1} \psi(x) d x=\int_0^1 x^{\frac{s}{2}-1}\left(\frac{1}{\sqrt{x}} \psi\left(\frac{1}{x}\right)+\frac{1}{2 \sqrt{x}}-\frac{1}{2}\right) d x \\
+		\int_0^1\left[x^{\frac{s}{2}-\frac{3}{2}} \psi\left(\frac{1}{x}\right)+\frac{1}{2}\left(x^{\frac{s}{2}-\frac{3}{2}}-x^{\frac{s}{2}-1}\right)\right]
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\int_0^1 x^{\frac{s}{2}-\frac{3}{2}} \psi\left(\frac{1}{x}\right) d x+\frac{1}{2} \int_0^1\left(x^{\frac{s}{2}-\frac{3}{2}}-x^{\frac{s}{2}-1}\right) d x \\
+		\int_0^1 x^{\frac{s}{2}-\frac{3}{2}} \psi\left(\frac{1}{x}\right) d x+\frac{1}{2}\left(\frac{1}{\frac{s}{2}-\frac{1}{2}} x^{\frac{s}{2}-\frac{1}{2}}-\frac{1}{\frac{s}{2}} x^{\frac{s}{2}}\right)_0^1 d x \\
+		\int_0^1 x^{\frac{s}{2}-\frac{3}{2}} \psi\left(\frac{1}{x}\right) d x+\frac{1}{s(s-1)}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\int_0^1 x^{\frac{s}{2}-\frac{3}{2}} \psi\left(\frac{1}{x}\right) d x+\frac{1}{s(s-1)} \\
+		x=\frac{1}{u} \rightarrow d x=-\left.\left.\frac{1}{u^2} d u \quad\right|_0 ^1 \rightarrow\right|_{\infty} ^1 \\
+		\int_{\infty}^1\left(\frac{1}{u}\right)^{\frac{s}{2}-\frac{3}{2}} \psi(u)\left(-\frac{d u}{u^2}\right)+\frac{1}{s(s-1)} \\
+		\int_1^{\infty}\left(\frac{1}{x}\right)^{\frac{s}{2}-\frac{3}{2}} \psi(x)\left(\frac{d x}{x^2}\right)+\frac{1}{s(s-1)}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{aligned}
+		& \int_0^1 x^{\frac{s}{2}-1} \psi(x) d x=\int_1^{\infty} x^{-\frac{s}{2}-\frac{1}{2}} \psi(x) d x+\frac{1}{s(s-1)} \\
+		& \int_0^{\infty} x^{\frac{s}{2}-1} \psi(x) d x=\int_1^{\infty} x^{\frac{s}{2}-1} \psi(x) d x+\int_0^1 x^{\frac{s}{2}-1} \psi(x) d x \\
+		& \int_0^{\infty} x^{\frac{s}{2}-1} \psi(x) d x=\int_1^{\infty} x^{\frac{s}{2}-1} \psi(x) d x+\int_1^{\infty} x^{-\frac{s}{2}-\frac{1}{2}} \psi(x) d x+\frac{1}{s(s-1)} \\
+		& \int_0^{\infty} x^{\frac{s}{2}-1} \psi(x) d x=\int_1^s\left(x^{\frac{s}{2}-1}+x^{-\frac{s}{2}-\frac{1}{2}}\right) \psi(x) d x+\frac{1}{s(s-1)}
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		\int_0^{\infty} x^{\frac{s}{2}-1} \psi(x) d x=\int_1^{\infty}\left(x^{\frac{s}{2}-1}+x^{-\frac{s}{2}-\frac{1}{2}}\right) \psi(x) d x+\frac{1}{s(s-1)} \\
+		\pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \zeta(s)=\int_0^{\infty} x^{\frac{s}{2}-1} \psi(x) d x \\
+		\pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \zeta(s)=\int_1^{\infty}\left(x^{\frac{s}{2}}+x^{\frac{1-s}{2}}\right) \psi \frac{\psi(x)}{x} d x-\frac{1}{s(1-s)} \\
+		\pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \zeta(s)=\pi^{-\frac{1-s}{2}} \Gamma\left(\frac{1-s}{2}\right) \zeta(1-s)
+	\end{gathered}
+	$$
+	
+	\subsubsection{Riemann Functional Equation $\RNumb{2}$}
+	
+	$$
+	\begin{gathered}
+		\pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \zeta(s)=\pi^{-\frac{1-s}{2}} \Gamma\left(\frac{1-s}{2}\right) \zeta(1-s) \\
+		\frac{\sqrt{\pi}}{2^{s-1}} \Gamma(s)=\Gamma\left(\frac{s}{2}\right) \Gamma\left(\frac{s+1}{2}\right) \\
+		\Gamma\left(\frac{s+1}{2}\right) \Gamma\left(\frac{1-s}{2}\right)=\frac{\pi}{\cos \frac{\pi s}{2}}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{aligned}
+		& \Gamma(2 s)=\frac{2^{2 s-1}}{\sqrt{\pi}} \Gamma(s) \Gamma\left(s+\frac{1}{2}\right) \\
+		& s \rightarrow \frac{s}{2} \\
+		& \Gamma\left(2 \frac{s}{2}\right)=\frac{2^{2 \frac{s}{2}-1}}{\sqrt{\pi}} \Gamma\left(\frac{s}{2}\right) \Gamma\left(\frac{s}{2}+\frac{1}{2}\right) \\
+		& \Gamma(s)=\frac{2^{s-1}}{\sqrt{\pi}} \Gamma\left(\frac{s}{2}\right) \Gamma\left(\frac{s+1}{2}\right) \\
+		& \frac{\sqrt{\pi}}{2^{s-1}} \Gamma(s)=\Gamma\left(\frac{s}{2}\right) \Gamma\left(\frac{s+1}{2}\right)
+	\end{aligned}
+	$$
+	
+	$$
+	\begin{gathered}
+		\Gamma(s) \Gamma(1-s)=\frac{\pi}{\sin \pi s} \\
+		s \rightarrow \frac{s+1}{2}=\frac{s}{2}+\frac{1}{2} \\
+		\Gamma\left(\frac{s+1}{2}\right) \Gamma\left(1-\frac{s+1}{2}\right)=\frac{\pi}{\sin \left(\frac{\pi s}{2}+\frac{\pi}{2}\right)} \\
+		\Gamma\left(\frac{s+1}{2}\right) \Gamma\left(\frac{1-s}{2}\right)=\frac{\pi}{\cos \frac{\pi s}{2}}
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \zeta(s)=\pi^{-\frac{1-s}{2}} \Gamma\left(\frac{1-s}{2}\right) \zeta(1-s) \\
+		\pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \Gamma\left(\frac{s+1}{2}\right) \zeta(s)=\pi^{-\frac{1-s}{2}} \Gamma\left(\frac{s+1}{2}\right) \Gamma\left(\frac{1-s}{2}\right) \zeta(1-s) \\
+		\pi^{-\frac{s}{2}} \frac{\sqrt{\pi}}{2^{s-1}} \Gamma(s) \zeta(s)=\pi^{-\frac{1-s}{2}} \frac{\pi}{\cos \frac{\pi s}{2}} \zeta(1-s) \\
+		\zeta(1-s)=\frac{2}{(2 \pi)^s} \cos \frac{\pi s}{2} \Gamma(s) \zeta(s)
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\zeta(1-s)=\frac{2}{(2 \pi)^s} \cos \frac{\pi s}{2} \Gamma(s) \zeta(s) \\
+		1-s \rightarrow s \\
+		\zeta(s)=\frac{2}{(2 \pi)^{1-s}} \cos \frac{\pi(1-s)}{2} \Gamma(1-s) \zeta(1-s) \\
+		\zeta(s)=2^s \pi^{s-1} \sin \frac{\pi s}{2} \Gamma(1-s) \zeta(1-s)
+	\end{gathered}
+	$$
+	
+	$$
+	\begin{gathered}
+		\zeta(1-s)=\frac{2}{(2 \pi)^s} \cos \frac{\pi s}{2} \Gamma(s) \zeta(s) \\
+		\zeta(s)=2^s \pi^{s-1} \sin \frac{\pi s}{2} \Gamma(1-s) \zeta(1-s)
+	\end{gathered}
+	$$
+	
+	\subsubsection{Trivial Zeros of the Zeta Function}
+	
+	$$
+	\begin{gathered}
+		\zeta(s)=2^s \pi^{s-1} \sin \frac{\pi s}{2} \Gamma(1-s) \zeta(1-s) \\
+		\zeta(-2 k)=-2^{-2 k} 2 k ! \pi^{-2 k-1} \sin \pi k \zeta(1+2 k) \\
+		\zeta(-2 k)=0 \\
+		\zeta(-2)=0 \neq 1+2^2+3^2+4^2+\ldots \\
+		\zeta(-4)=0 \neq 1+2^4+3^4+4^4+\ldots
+	\end{gathered}
+	$$
+	
+	\subsubsection{Riemann Xi Function}
+	
+	$$
+	\begin{gathered}
+		\pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \zeta(s)=\int_1^{\infty}\left(x^{\frac{s}{2}}+x^{\frac{1-s}{2}}\right) \frac{\psi(x)}{x} d x-\frac{1}{s(1-s)} \\
+		\frac{1}{2} s(s-1) \pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \zeta(s)=\frac{1}{2} s(s-1) \int_1^{\infty}\left(x^{\frac{s}{2}}+x^{\frac{1-s}{2}}\right) \frac{\psi(x)}{x} d x+\frac{1}{2} \\
+		\xi(s)=\frac{1}{2} s(s-1) \pi^{-\frac{s}{2}} \Gamma\left(\frac{s}{2}\right) \zeta(s) \\
+		\xi(s)=\xi(1-s)
+	\end{gathered}
+	$$
+	
+	Symmetry of the $\xi$-Function
+	$$
+	\begin{gathered}
+		s=\frac{1}{2}+i t \quad t \in C \\
+		\xi\left(\frac{1}{2}+i t\right)=\xi\left(1-\left(\frac{1}{2}+i t\right)\right) \\
+		\xi\left(\frac{1}{2}+i t\right)=\xi\left(\frac{1}{2}-i t\right)
+	\end{gathered}
+	$$
+	
+	\subsubsection{Why $1+2+3+4+5+...$ not equals $-1/12 = \zeta(-1)$}
+	
+	NOT TRUE!!!
+	$$
+	\begin{array}{r}
+		1+2+3+4+\cdots \neq-\frac{1}{12} \\
+		1+2+3+4+\cdots+n=\frac{n(n+1)}{2}
+	\end{array}
+	$$
+	TRUE!!!
+	$$
+	\zeta(-1)=-\frac{1}{12}
+	$$
+	
+	Representation of Sine function:
+	$$
+	\begin{aligned}
+		& f(z)=\sin (z) \\
+		& f(z)=\frac{e^{i z}-e^{-i z}}{2 i} \\
+		& f(z)=\cdots \\
+		& f(z)=z-\frac{z^3}{3 !}+\frac{z^5}{5 !}-\frac{z^7}{7 !} \pm \cdots \\
+		& f(z)=z \prod_{n=1}^{\infty}\left(1-\frac{z^2}{\pi^2 n^2}\right)
+	\end{aligned}
+	$$
+	Representation of Zeta function:
+	$$
+	\begin{aligned}
+		& \zeta(s)=\sum_{n=1}^{\infty} \frac{1}{n^s} \quad \operatorname{Re}(s)>1 \\
+		& \zeta(s)=1+\frac{1}{2^s}+\frac{1}{3^s}+\frac{1}{4^s}+\cdots \\
+		& \zeta(-1)=1+\frac{1}{2^{-1}}+\frac{1}{3^{-1}}+\frac{1}{4^{-1}}+\cdots \\
+		& \zeta(-1)=1+2+3+4+\cdots
+	\end{aligned}
+	$$
+	But $\operatorname{Re}(s)=-1<1$ ! Not allowed!!!
+	$$
+	\begin{aligned}
+		& \zeta(s)=2^s \pi^{s-1} \sin \left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s) \quad s \in C \backslash\{0,1\} \\
+		& \zeta(-1)=2^{-1} \pi^{-1-1} \sin \left(-\frac{\pi}{2}\right) \Gamma(1-(-1)) \zeta(1-(-1)) \\
+		& \zeta(-1)=2^{-1} \pi^{-2}(-1) \Gamma(2) \zeta(2)
+	\end{aligned}
+	$$ 
+	
+	$$
+	\zeta(-1) \neq 1+2+3+4+\cdots
+	$$
+	But $\operatorname{Re}(s)=-1<1$ ! Not allowed!!!
+	$$
+	\begin{gathered}
+		\zeta(-1)=2^{-1} \pi^{-2}(-1) \Gamma(2) \zeta(2) \\
+		\Gamma(2)=(2-1) !=1 \quad \zeta(2)=1+\frac{1}{2^2}+\frac{1}{3^2}+\frac{1}{4^2}+\cdots=\frac{\pi^2}{6} \\
+		\zeta(-1)=2^{-1} \pi^{-2}(-1) \cdot 1 \cdot \frac{\pi^2}{6}=-\frac{1}{12}
+	\end{gathered}
+	$$
+	
 	
 	
 \end{document}
