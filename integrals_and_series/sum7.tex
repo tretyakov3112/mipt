@@ -1,8 +1,0 @@
-\input{default}
-
-\begin{document}
-	$$S = \sum_{n= 1}^{\infty} \frac{(-1)^{n+1} \sin n}{n} =  \sum_{n= 1}^{\infty} (-1)^{n+1}\int \limits_{0}^{1} \cos(xn) \; dx = -\frac{1}{2} \int \limits_{0}^{1} \sum_{n= 1}^{\infty} (-e^{ix})^n+(-e^{-ix})^n \; dx $$
-	$$z = -e^{ix}$$
-	$$S = -\frac{1}{2} \int \limits_{0}^{1} \frac{z}{1-z}+\frac{\frac{1}{z}}{1-\frac{1}{z}} \; dx  =-\frac{1}{2} \int \limits_{0}^{1} \frac{z}{1-z}-\frac{1}{1-z} \; dx = \frac{1}{2} $$
-	
-\end{document}
